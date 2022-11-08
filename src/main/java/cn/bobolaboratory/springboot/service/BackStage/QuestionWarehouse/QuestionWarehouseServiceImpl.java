@@ -32,4 +32,13 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
             return ResponseResult.error(e.getMessage());
         }
     }
+
+    /**
+     * 查询所有题目库
+     * @return 返回查询结果
+     */
+    @Override
+    public ResponseResult queryAllQuestionWarehouse() {
+        return ResponseResult.success(questionWarehouseMapper.queryAllQuestionWarehouse());
+    }
 }

@@ -14,4 +14,10 @@ public interface QuestionWarehouseService {
      * @return 返回结果
      */
     ResponseResult addQuestionWarehouse(QuestionWarehouse questionWarehouse);
+
+    /**
+     * 查询所有题目库
+     * @return 返回查询结果
+     */
+    ResponseResult queryAllQuestionWarehouse();
 }
