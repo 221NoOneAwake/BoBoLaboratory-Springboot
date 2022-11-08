@@ -22,6 +22,11 @@ public class ChoiceQuestion {
     private Long questionId;
 
     /**
+     * 题目
+     */
+    private String question;
+
+    /**
      * 选项1
      */
     private String choice1;

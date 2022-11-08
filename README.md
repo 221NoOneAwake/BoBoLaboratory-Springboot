@@ -74,10 +74,11 @@ create table bobo.questionwarehouse
 | ---------- | -------- | ------------- | ------------ | -------- | ---------- |
 | id         | Long     | bigint        | no           | yes      | 自增主键   |
 | questionid | Long     | bigint        | no           | no       | 题库表外键 |
-| question1  | String   | varchar(3000) | no           | no       | 题目       |
-| question2  | String   | varchar(3000) | no           | no       | 题目       |
-| question3  | String   | varchar(3000) | no           | no       | 题目       |
-| question4  | String   | varchar(3000) | no           | no       | 题目       |
+| question   | String   | varchar(3000) | no           | no       | 题目       |
+| choice1    | String   | varchar(3000) | no           | no       | 选项1      |
+| choice2    | String   | varchar(3000) | no           | no       | 选项2      |
+| choice3    | String   | varchar(3000) | no           | no       | 选项3      |
+| choice4    | String   | varchar(3000) | no           | no       | 选项4      |
 | answer     | String   | varchar(3000) | no           | no       | 答案       |
 
 ```mysql
@@ -86,11 +87,12 @@ create table bobo.choicequestion
     id         bigint auto_increment
         primary key,
     questionid bigint        not null,
-    question1  varchar(3000) not null,
-    question2  varchar(3000) not null,
-    question3  varchar(3000) not null,
-    question4  varchar(3000) not null,
+    choice1    varchar(3000) not null,
+    choice2    varchar(3000) not null,
+    choice3    varchar(3000) not null,
+    choice4    varchar(3000) not null,
     answer     varchar(3000) not null,
+    question   varchar(3000) not null,
     constraint choicequestion_ibfk_1
         foreign key (questionid) references bobo.questionwarehouse (id)
 )
