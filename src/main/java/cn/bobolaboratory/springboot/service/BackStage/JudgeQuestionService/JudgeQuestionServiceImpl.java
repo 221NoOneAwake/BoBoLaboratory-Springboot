@@ -1,2 +1,7 @@
-package cn.bobolaboratory.springboot.service.BackStage.JudgeQuestionService;public class JudgeQuestionServiceImpl {
+package cn.bobolaboratory.springboot.service.BackStage.JudgeQuestionService;
+
+/**
+ * @author WhiteLeaf03
+ */
+public class JudgeQuestionServiceImpl {
 }

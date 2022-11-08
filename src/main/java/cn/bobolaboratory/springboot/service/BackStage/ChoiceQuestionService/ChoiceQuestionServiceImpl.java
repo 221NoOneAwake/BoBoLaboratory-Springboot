@@ -1,2 +1,7 @@
-package cn.bobolaboratory.springboot.service.BackStage.ChoiceQuestionService;public class ChoiceQuestionServiceImpl {
+package cn.bobolaboratory.springboot.service.BackStage.ChoiceQuestionService;
+
+/**
+ * @author WhiteLeaf03
+ */
+public class ChoiceQuestionServiceImpl {
 }

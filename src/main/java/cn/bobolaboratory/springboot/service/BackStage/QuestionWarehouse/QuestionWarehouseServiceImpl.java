@@ -1,2 +1,7 @@
-package cn.bobolaboratory.springboot.service.BackStage.QuestionWarehouse;public class QuestionWarehouseServiceImpl {
+package cn.bobolaboratory.springboot.service.BackStage.QuestionWarehouse;
+
+/**
+ * @author WhiteLeaf03
+ */
+public class QuestionWarehouseServiceImpl {
 }
