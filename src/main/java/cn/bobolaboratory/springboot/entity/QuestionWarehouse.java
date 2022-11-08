@@ -39,17 +39,17 @@ public class QuestionWarehouse {
     /**
      * 开始日期时间
      */
-    private Long startdate;
+    private Long startDate;
 
     /**
      * 结束日期时间
      */
-    private Long enddate;
+    private Long endDate;
 
     /**
      * 单次答题时间
      */
-    private Long examtime;
+    private Long examTime;
 
     /**
      * 允许答题次数
