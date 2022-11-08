@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.bobolaboratory.springboot.mapper.JudgeQuestionMapper">
+    <insert id="addJudgeQuestion" parameterType="cn.bobolaboratory.springboot.entity.JudgeQuestion">
+        insert into bobo.judgequestion (questionid, question, answer)
+            value (#{questionId}, #{question}, #{answer});
+    </insert>
+
+    <select id="queryAllJudgeQuestion" resultType="cn.bobolaboratory.springboot.entity.JudgeQuestion">
+        select *
+        from bobo.judgequestion;
+    </select>
+</mapper>

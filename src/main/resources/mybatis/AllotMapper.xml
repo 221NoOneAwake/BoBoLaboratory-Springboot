@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.bobolaboratory.springboot.mapper.AllotMapper">
+    <insert id="addAllot" parameterType="cn.bobolaboratory.springboot.entity.Allot">
+        insert into bobo.allot (questionid, `group`)
+            value (#{questionId}, #{group});
+    </insert>
+
+    <select id="queryAllAllot" resultType="cn.bobolaboratory.springboot.entity.Allot">
+        select *
+        from bobo.allot;
+    </select>
+</mapper>
