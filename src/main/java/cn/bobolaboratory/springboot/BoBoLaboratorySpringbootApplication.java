@@ -1,6 +1,6 @@
 package cn.bobolaboratory.springboot;
 
-import cn.bobolaboratory.springboot.Config.BeanNameConfig;
+import cn.bobolaboratory.springboot.config.BeanNameConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;

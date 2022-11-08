@@ -1,4 +1,4 @@
-package cn.bobolaboratory.springboot.Config;
+package cn.bobolaboratory.springboot.config;
 
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.config.BeanDefinition;
