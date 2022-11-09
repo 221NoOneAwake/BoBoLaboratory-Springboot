@@ -7012,3 +7012,33 @@ Caused by: java.lang.ClassNotFoundException: Cannot find class: NormalUser
 2022-11-08 22:05:25.152  INFO 20720 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
 2022-11-08 22:05:25.181  INFO 20720 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
 2022-11-08 22:05:25.190  INFO 20720 --- [restartedMain] .b.s.BoBoLaboratorySpringbootApplication : Started BoBoLaboratorySpringbootApplication in 1.757 seconds (JVM running for 2.349)
+2022-11-08 22:05:53.281  INFO 33660 --- [restartedMain] .b.s.BoBoLaboratorySpringbootApplication : Starting BoBoLaboratorySpringbootApplication using Java 17.0.4 on WhiteLeaf03-16p with PID 33660 (D:\Code\web\BoBoLaboratory\BoBoLaboratory-Springboot\target\classes started by WhiteLeaf03 in D:\Code\web\BoBoLaboratory\BoBoLaboratory-Springboot)
+2022-11-08 22:05:53.282  INFO 33660 --- [restartedMain] .b.s.BoBoLaboratorySpringbootApplication : No active profile set, falling back to 1 default profile: "default"
+2022-11-08 22:05:53.313  INFO 33660 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-11-08 22:05:53.313  INFO 33660 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-11-08 22:05:53.685  INFO 33660 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2022-11-08 22:05:53.686  INFO 33660 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-11-08 22:05:53.704  INFO 33660 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2022-11-08 22:05:54.127  INFO 33660 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-08 22:05:54.133  INFO 33660 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-08 22:05:54.134  INFO 33660 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-08 22:05:54.199  INFO 33660 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-08 22:05:54.199  INFO 33660 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 886 ms
+2022-11-08 22:05:54.786  INFO 33660 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-08 22:05:54.816  INFO 33660 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-08 22:05:54.824  INFO 33660 --- [restartedMain] .b.s.BoBoLaboratorySpringbootApplication : Started BoBoLaboratorySpringbootApplication in 1.796 seconds (JVM running for 2.326)
+2022-11-08 22:07:43.426  INFO 32984 --- [restartedMain] .b.s.BoBoLaboratorySpringbootApplication : Starting BoBoLaboratorySpringbootApplication using Java 17.0.4 on WhiteLeaf03-16p with PID 32984 (D:\Code\web\BoBoLaboratory\BoBoLaboratory-Springboot\target\classes started by WhiteLeaf03 in D:\Code\web\BoBoLaboratory\BoBoLaboratory-Springboot)
+2022-11-08 22:07:43.427  INFO 32984 --- [restartedMain] .b.s.BoBoLaboratorySpringbootApplication : No active profile set, falling back to 1 default profile: "default"
+2022-11-08 22:07:43.457  INFO 32984 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-11-08 22:07:43.457  INFO 32984 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-11-08 22:07:43.835  INFO 32984 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2022-11-08 22:07:43.837  INFO 32984 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2022-11-08 22:07:43.857  INFO 32984 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2022-11-08 22:07:44.280  INFO 32984 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-11-08 22:07:44.286  INFO 32984 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-11-08 22:07:44.287  INFO 32984 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.68]
+2022-11-08 22:07:44.352  INFO 32984 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-11-08 22:07:44.352  INFO 32984 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 894 ms
+2022-11-08 22:07:44.931  INFO 32984 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-11-08 22:07:44.959  INFO 32984 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-11-08 22:07:44.968  INFO 32984 --- [restartedMain] .b.s.BoBoLaboratorySpringbootApplication : Started BoBoLaboratorySpringbootApplication in 1.787 seconds (JVM running for 2.326)

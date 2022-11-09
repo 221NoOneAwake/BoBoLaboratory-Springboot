@@ -27,7 +27,7 @@ public class BlankQuestion {
     private String question;
 
     /**
-     * 题目
+     * 答案
      */
     private String answer;
 }
