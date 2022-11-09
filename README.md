@@ -169,11 +169,53 @@ create index questionid
 | group      | String   | varchar(255) | no           | no       | 班级       |
 
 ```mysql
-create table allot (
-    id bigint not null unique auto_increment primary key ,
-    questionid bigint not null ,
-    `group` varchar(255) not null ,
-    foreign key (questionid) references bobo.questionwarehouse(id)
-) character set utf8;
+create table bobo.allot
+(
+    id         bigint auto_increment
+        primary key,
+    questionid bigint       not null,
+    `group`    varchar(255) not null,
+    constraint id
+        unique (id),
+    constraint allot_ibfk_1
+        foreign key (questionid) references bobo.questionwarehouse (id)
+)
+    charset = utf8;
+
+create index questionid
+    on bobo.allot (questionid);
+```
+
+
+
+## 答题记录表
+
+| 键名       | Java类型 | MySQL类型     | 是否允许为空 | 是否唯一 | 描述       |
+| ---------- | -------- | ------------- | ------------ | -------- | ---------- |
+| id         | Long     | bigint        | no           | yes      | 自增主键   |
+| questionid | Long     | bigint        | no           | no       | 题目的id   |
+| studentid  | Long     | bigint        | no           | no       | 学生的id   |
+| type       | String   | varchar(255)  | no           | no       | 题目类型   |
+| date       | Long     | bigint        | no           | no       | 答题时间   |
+| times      | int      | int           | no           | no       | 答题的次数 |
+| answer     | String   | varchar(3000) | no           | no       | 答案       |
+| result     | byte     | tinyint       | no           | no       | 是否正确   |
+| score      | int      | int           | yes          | no       | 得分 * 10  |
+
+```mysql
+create table bobo.record
+(
+    id         bigint auto_increment
+        primary key,
+    questionid bigint        not null,
+    studentid  bigint        not null,
+    type       varchar(255)  not null,
+    date       bigint        not null,
+    times      int           not null,
+    answer     varchar(3000) not null,
+    result     tinyint       not null,
+    score      int           null
+)
+    charset = utf8;
 ```
 
