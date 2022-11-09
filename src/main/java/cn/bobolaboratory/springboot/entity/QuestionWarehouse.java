@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 /**
  * @author WhiteLeaf03
  */
@@ -60,4 +62,19 @@ public class QuestionWarehouse {
      * 提交后是否允许查看答案
      */
     private byte answer;
+
+    /**
+     * 选择题列表
+     */
+    private List<ChoiceQuestion> choiceQuestionList;
+
+    /**
+     * 填空题列表
+     */
+    private List<BlankQuestion> blankQuestionList;
+
+    /**
+     * 判断题列表
+     */
+    private List<JudgeQuestion> judgeQuestionList;
 }

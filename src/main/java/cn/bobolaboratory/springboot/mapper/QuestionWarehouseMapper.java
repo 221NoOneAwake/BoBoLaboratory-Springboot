@@ -21,4 +21,11 @@ public interface QuestionWarehouseMapper {
      * @return 返回查询结果
      */
     List<QuestionWarehouse> queryAllQuestionWarehouse();
+
+    /**
+     * 根据题目库名称获取id
+     * @param name 要查询id的题目库名
+     * @return 查询的id列表
+     */
+    List<Long> queryQuestionWarehouseIdByName(String name);
 }

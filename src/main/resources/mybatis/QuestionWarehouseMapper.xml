@@ -11,4 +11,10 @@
         select *
         from bobo.questionwarehouse;
     </select>
+
+    <select id="queryQuestionWarehouseIdByName" parameterType="string">
+        select id
+        from bobo.questionwarehouse
+        where name = #{name};
+    </select>
 </mapper>

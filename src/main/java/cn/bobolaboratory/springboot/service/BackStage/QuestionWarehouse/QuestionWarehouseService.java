@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
  */
 public interface QuestionWarehouseService {
     /**
-     * 新增一条题目库
+     * 新建题目库并添加题目
      * @param questionWarehouse 要添加的题目库
      * @return 返回结果
      */
