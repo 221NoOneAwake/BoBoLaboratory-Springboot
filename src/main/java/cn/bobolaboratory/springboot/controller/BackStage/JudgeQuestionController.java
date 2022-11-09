@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  * @author WhiteLeaf03
  */
 @RestController
-@RequestMapping("")
+@RequestMapping("/bs/api/judgeQuestion")
 public class JudgeQuestionController {
     private final JudgeQuestionService judgeQuestionService;
 
