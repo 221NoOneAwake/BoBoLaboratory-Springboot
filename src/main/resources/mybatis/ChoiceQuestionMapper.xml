@@ -3,7 +3,7 @@
 
 <mapper namespace="cn.bobolaboratory.springboot.mapper.ChoiceQuestionMapper">
     <insert id="addChoiceQuestion" parameterType="cn.bobolaboratory.springboot.entity.ChoiceQuestion">
-        insert into bobo.choicequestion (questionid, question, choice1, choice2, choice3, choice4, answer)
+        insert into bobo.choicequestion (questionId, question, choice1, choice2, choice3, choice4, answer)
             VALUE (#{questionId}, #{question}, #{choice1}, #{choice2}, #{choice3}, #{choice4}, #{answer})
     </insert>
 

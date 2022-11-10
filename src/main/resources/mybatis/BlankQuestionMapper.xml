@@ -3,8 +3,8 @@
 
 <mapper namespace="cn.bobolaboratory.springboot.mapper.BlankQuestionMapper">
     <insert id="addBlankQuestion" parameterType="cn.bobolaboratory.springboot.entity.BlankQuestion">
-        insert into bobo.blankquestion (questionid, question, answer)
-            VALUE (#{questionid}, #{question}, #{answer})
+        insert into bobo.blankquestion (questionId, question, answer)
+            VALUE (#{questionId}, #{question}, #{answer})
     </insert>
 
     <select id="queryAllBlankQuestion" resultType="cn.bobolaboratory.springboot.entity.BlankQuestion">

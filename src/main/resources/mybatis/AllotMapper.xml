@@ -3,7 +3,7 @@
 
 <mapper namespace="cn.bobolaboratory.springboot.mapper.AllotMapper">
     <insert id="addAllot" parameterType="cn.bobolaboratory.springboot.entity.Allot">
-        insert into bobo.allot (questionid, `group`)
+        insert into bobo.allot (questionId, `group`)
             value (#{questionId}, #{group});
     </insert>
 

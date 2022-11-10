@@ -3,8 +3,8 @@
 
 <mapper namespace="cn.bobolaboratory.springboot.mapper.RecordMapper">
     <insert id="addRecord" parameterType="cn.bobolaboratory.springboot.entity.Record">
-        insert into bobo.record (questionid, studentid, type, date, times, answer, result, score)
-            VALUE (#{questionid}, #{studentid}, #{type}, #{date}, #{times}, #{answer}, #{result}, #{score});
+        insert into bobo.record (questionId, studentId, type, date, times, answer, result, score)
+            VALUE (#{questionId}, #{studentId}, #{type}, #{date}, #{times}, #{answer}, #{result}, #{score});
     </insert>
 
     <select id="queryAllRecord">

@@ -15,14 +15,14 @@ create table bobo.normaluser
 (
     id       bigint auto_increment
         primary key,
-    openid   varchar(255) null,
+    openId   varchar(255) null,
     name     varchar(255) not null,
     `group`  varchar(255) not null,
-    schoolid varchar(255) not null,
-    constraint openid
-        unique (openid),
-    constraint schoolid
-        unique (schoolid)
+    schoolId varchar(255) not null,
+    constraint openId
+        unique (openId),
+    constraint schoolId
+        unique (schoolId)
 )
     charset = utf8;
 ```
@@ -53,9 +53,9 @@ create table bobo.questionwarehouse
     choice    int          not null,
     blank     int          not null,
     judge     int          not null,
-    startdate bigint       not null,
-    enddate   bigint       not null,
-    examtime  bigint       not null,
+    startDate bigint       not null,
+    endDate   bigint       not null,
+    examTime  bigint       not null,
     times     int          not null,
     answer    tinyint      not null,
     constraint id
@@ -86,7 +86,7 @@ create table bobo.choicequestion
 (
     id         bigint auto_increment
         primary key,
-    questionid bigint        not null,
+    questionId bigint        not null,
     choice1    varchar(3000) not null,
     choice2    varchar(3000) not null,
     choice3    varchar(3000) not null,
@@ -94,12 +94,12 @@ create table bobo.choicequestion
     answer     varchar(3000) not null,
     question   varchar(3000) not null,
     constraint choicequestion_ibfk_1
-        foreign key (questionid) references bobo.questionwarehouse (id)
+        foreign key (questionId) references bobo.questionwarehouse (id)
 )
     charset = utf8;
 
-create index questionid
-    on bobo.choicequestion (questionid);
+create index questionId
+    on bobo.choicequestion (questionId);
 ```
 
 
@@ -118,7 +118,7 @@ create table bobo.blankquestion
 (
     id         bigint auto_increment
         primary key,
-    questionid bigint        not null,
+    questionId bigint        not null,
     question   varchar(3000) not null,
     answer     varchar(3000) not null,
     constraint blankquestion_ibfk_1
@@ -126,8 +126,8 @@ create table bobo.blankquestion
 )
     charset = utf8;
 
-create index questionid
-    on bobo.blankquestion (questionid);
+create index questionId
+    on bobo.blankquestion (questionId);
 ```
 
 
@@ -146,16 +146,16 @@ create table bobo.judgequestion
 (
     id         bigint auto_increment
         primary key,
-    questionid bigint        not null,
+    questionId bigint        not null,
     question   varchar(3000) not null,
     answer     varchar(3000) not null,
     constraint judgequestion_ibfk_1
-        foreign key (questionid) references bobo.questionwarehouse (id)
+        foreign key (questionId) references bobo.questionwarehouse (Id)
 )
     charset = utf8;
 
-create index questionid
-    on bobo.judgequestion (questionid);
+create index questionId
+    on bobo.judgequestion (questionId);
 ```
 
 
@@ -173,17 +173,17 @@ create table bobo.allot
 (
     id         bigint auto_increment
         primary key,
-    questionid bigint       not null,
+    questionId bigint       not null,
     `group`    varchar(255) not null,
     constraint id
         unique (id),
     constraint allot_ibfk_1
-        foreign key (questionid) references bobo.questionwarehouse (id)
+        foreign key (questionId) references bobo.questionwarehouse (id)
 )
     charset = utf8;
 
-create index questionid
-    on bobo.allot (questionid);
+create index questionId
+    on bobo.allot (questionId);
 ```
 
 
@@ -207,10 +207,10 @@ create table bobo.record
 (
     id         bigint auto_increment
         primary key,
-    questionid bigint        not null,
-    studentid  bigint        not null,
+    questionId bigint        not null,
+    studentId  bigint        not null,
     type       varchar(255)  not null,
-    date       bigint        not null,
+    `date`     bigint        not null,
     times      int           not null,
     answer     varchar(3000) not null,
     result     tinyint       not null,
