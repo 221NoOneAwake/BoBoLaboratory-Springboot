@@ -6,14 +6,12 @@ import com.alibaba.fastjson2.JSONWriter;
 import com.alibaba.fastjson2.filter.Filter;
 import org.springframework.data.redis.serializer.RedisSerializer;
 
-/**
- * @author WhiteLeaf03
- */
 public class FastJsonRedisSerializer <T> implements RedisSerializer<T> {
 
     static final Filter AUTO_TYPE_FILTER = JSONReader.autoTypeFilter(
             // 按需加上需要支持自动类型的类名前缀，范围越小越安全
-            "cn.whiteleaf03.blogbackend.security.AuthBackstageUser"
+            "cn.whiteleaf03.blogbackend.security.AuthBackstageUser",
+            "org.springframework.security.core.authority.SimpleGrantedAuthority"
     );
 
     private final Class<T> clazz;

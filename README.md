@@ -82,24 +82,24 @@ create table bobo.questionwarehouse
 | answer     | String   | varchar(3000) | no           | no       | 答案       |
 
 ```mysql
-create table bobo.choicequestion
-(
-    id         bigint auto_increment
-        primary key,
-    questionId bigint        not null,
-    choice1    varchar(3000) not null,
-    choice2    varchar(3000) not null,
-    choice3    varchar(3000) not null,
-    choice4    varchar(3000) not null,
-    answer     varchar(3000) not null,
-    question   varchar(3000) not null,
-    constraint choicequestion_ibfk_1
-        foreign key (questionId) references bobo.questionwarehouse (id)
-)
-    charset = utf8;
+    create table bobo.choicequestion
+    (
+        id         bigint auto_increment
+            primary key,
+        questionId bigint        not null,
+        choice1    varchar(3000) not null,
+        choice2    varchar(3000) not null,
+        choice3    varchar(3000) not null,
+        choice4    varchar(3000) not null,
+        answer     varchar(3000) not null,
+        question   varchar(3000) not null,
+        constraint choicequestion_ibfk_1
+            foreign key (questionId) references bobo.questionwarehouse (id)
+    )
+        charset = utf8;
 
-create index questionId
-    on bobo.choicequestion (questionId);
+    create index questionId
+        on bobo.choicequestion (questionId);
 ```
 
 
@@ -215,6 +215,33 @@ create table bobo.record
     answer     varchar(3000) not null,
     result     tinyint       not null,
     score      int           null
+)
+    charset = utf8;
+```
+
+
+
+## 后台用户表
+
+| 键名      | Java类型 | MySQL类型 | 是否允许为空 | 是否唯一 | 描述     |
+| --------- | -------- | --------- | ------------ | -------- | -------- |
+| id        | Long     | bigint    | no           | yes      | 自增主键 |
+| username  | String   | varchar() | no           | yes      | 用户名   |
+| password  | String   | varchar() | no           | no       | 密码     |
+| nickname  | String   | varchar() | no           | no       | 昵称     |
+| authority | String   | varchar() | no           | no       | 账户权限 |
+
+```mysql
+create table bobo.backstageuser
+(
+    id        bigint auto_increment
+        primary key,
+    username  varchar(32) not null,
+    password  varchar(64) not null,
+    nickname  varchar(8)  not null,
+    authority varchar(16) not null,
+    constraint username
+        unique (username)
 )
     charset = utf8;
 ```

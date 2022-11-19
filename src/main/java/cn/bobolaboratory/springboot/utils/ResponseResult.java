@@ -5,9 +5,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-/**
- * @author WhiteLeaf03
- */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JSONType(orders = {"status", "msg", "data"})
 @Data
