@@ -18,4 +18,10 @@ public interface NormalUserMapper {
      */
     List<NormalUser> queryNormalUserByOpenid(String openid);
 
+
+    /**
+     * 获取所有学生数据
+     * @return 返回查询获得的信息
+     */
+    List<NormalUser> queryAllNormalUser();
 }

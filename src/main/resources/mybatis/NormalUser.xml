@@ -7,4 +7,9 @@
         from normaluser
         where openid = #{openid};
     </select>
+
+    <select id="queryAllNormalUser" resultType="cn.bobolaboratory.springboot.entity.NormalUser">
+        select name, sex, `group`, schoolId
+        from bobo.normaluser;
+    </select>
 </mapper>
