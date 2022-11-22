@@ -28,4 +28,10 @@ public interface QuestionWarehouseMapper {
      * @return 查询的id列表
      */
     List<Long> queryQuestionWarehouseIdByName(String name);
+
+    /**
+     * 开放新的题目库
+     * @param id 要开放的题目库
+     */
+    void openQuestionWarehouseById(Long id);
 }

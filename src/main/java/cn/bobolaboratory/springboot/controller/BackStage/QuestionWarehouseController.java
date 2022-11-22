@@ -28,4 +28,9 @@ public class QuestionWarehouseController {
     public ResponseResult queryAllQuestionWarehouse() {
         return questionWarehouseService.queryAllQuestionWarehouse();
     }
+
+    @PutMapping("")
+    public ResponseResult openQuestionWarehouseById(@RequestBody Long id) {
+        return questionWarehouseService.openQuestionWarehouseById(id);
+    }
 }

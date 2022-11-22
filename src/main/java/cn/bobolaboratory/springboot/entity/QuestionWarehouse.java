@@ -77,4 +77,9 @@ public class QuestionWarehouse {
      * 判断题列表
      */
     private List<JudgeQuestion> judgeQuestionList;
+
+    /**
+     * 是否开放
+     */
+    private short open;
 }

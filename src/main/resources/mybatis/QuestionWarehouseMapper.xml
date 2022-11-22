@@ -3,8 +3,8 @@
 
 <mapper namespace="cn.bobolaboratory.springboot.mapper.QuestionWarehouseMapper">
     <insert id="addQuestionWarehouse" parameterType="cn.bobolaboratory.springboot.entity.QuestionWarehouse">
-        insert into bobo.questionwarehouse (name, choice, blank, judge, startDate, endDate, examTime, times, answer)
-            VALUE (#{name}, #{choice}, #{blank}, #{judge}, #{startDate}, #{endDate}, #{examTime}, #{times}, #{answer});
+        insert into bobo.questionwarehouse (name, choice, blank, judge, startDate, endDate, examTime, times, answer, open)
+            VALUE (#{name}, #{choice}, #{blank}, #{judge}, #{startDate}, #{endDate}, #{examTime}, #{times}, #{answer}, 0);
     </insert>
 
     <select id="queryAllQuestionWarehouse" resultType="cn.bobolaboratory.springboot.entity.QuestionWarehouse">
@@ -17,4 +17,8 @@
         from bobo.questionwarehouse
         where name = #{name};
     </select>
+
+    <update id="openQuestionWarehouseById" parameterType="long">
+        update bobo.questionwarehouse set open = 1 where id = #{id};
+    </update>
 </mapper>

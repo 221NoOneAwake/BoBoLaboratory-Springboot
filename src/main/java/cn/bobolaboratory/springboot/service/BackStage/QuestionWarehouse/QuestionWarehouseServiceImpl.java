@@ -72,4 +72,19 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
     public ResponseResult queryAllQuestionWarehouse() {
         return ResponseResult.success(questionWarehouseMapper.queryAllQuestionWarehouse());
     }
+
+    /**
+     * 开放新的题目库
+     * @param id 要开放的题目库
+     * @return 返回结果
+     */
+    @Override
+    public ResponseResult openQuestionWarehouseById(Long id) {
+        try {
+            questionWarehouseMapper.openQuestionWarehouseById(id);
+            return ResponseResult.success();
+        } catch (RuntimeException e) {
+            return ResponseResult.error(e.getMessage());
+        }
+    }
 }
