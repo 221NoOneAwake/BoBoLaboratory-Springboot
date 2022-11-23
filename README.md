@@ -5,10 +5,10 @@
 | 键名       | Java类型 | MySQL类型      | 是否允许为空 | 是否唯一 | 描述          |
 |----------| -------- |--------------| ------------ | -------- |-------------|
 | id       | Long     | bigint       | no           | yes      | 自增主键        |
-| openid   | String   | varchar(255) | no           | yes      | 微信返回的id     |
+| openId   | String   | varchar(255) | no           | yes      | 微信返回的id     |
 | name     | String   | varchar(255) | yes          | no       | 真实姓名        |
 | group    | String   | varchar(255) | yes          | no       | 班级          |
-| schoolid | String   | varchar(255) | yes          | yes      | 学号          |
+| schoolId | String   | varchar(255) | yes          | yes      | 学号          |
 | sex      | String   | varchar(2)   | yes          | yes      | 学号          |
 
 ```mysql
@@ -38,9 +38,9 @@ create table bobo.normaluser
 | choice    | int      | int          | no           | no       | 选择题数量       |
 | blank     | int      | int          | no           | no       | 填空题数量       |
 | judge     | int      | int          | no           | no       | 判断题数量       |
-| startdate | Long     | bigint       | no           | no       | 开始日期时间      |
-| enddate   | Long     | bigint       | no           | no       | 结束日期时间      |
-| examtime  | Long     | bigint       | no           | no       | 单次答题时间      |
+| startDate | Long     | bigint       | no           | no       | 开始日期时间      |
+| endDate   | Long     | bigint       | no           | no       | 结束日期时间      |
+| examTime  | Long     | bigint       | no           | no       | 单次答题时间      |
 | times     | int      | int          | no           | no       | 允许答题次数      |
 | answer    | byte     | tinyint      | no           | no       | 提交后是否允许查看答案 |
 | open      | byte     | tinyint      | no           | no       | 题集是否开放      |
@@ -73,7 +73,7 @@ create table bobo.questionwarehouse
 | 键名       | Java类型 | MySQL类型     | 是否允许为空 | 是否唯一 | 描述       |
 | ---------- | -------- | ------------- | ------------ | -------- | ---------- |
 | id         | Long     | bigint        | no           | yes      | 自增主键   |
-| questionid | Long     | bigint        | no           | no       | 题库表外键 |
+| questionId | Long     | bigint        | no           | no       | 题库表外键 |
 | question   | String   | varchar(3000) | no           | no       | 题目       |
 | choice1    | String   | varchar(3000) | no           | no       | 选项1      |
 | choice2    | String   | varchar(3000) | no           | no       | 选项2      |
@@ -107,7 +107,7 @@ create index questionId
 | 键名       | Java类型 | MySQL类型     | 是否允许为空 | 是否唯一 | 描述       |
 | ---------- | -------- | ------------- | ------------ | -------- | ---------- |
 | id         | Long     | bigint        | no           | yes      | 自增主键   |
-| questionid | Long     | bigint        | no           | no       | 题库表外键 |
+| questionId | Long     | bigint        | no           | no       | 题库表外键 |
 | question   | String   | varchar(3000) | no           | no       | 题目       |
 | answer     | String   | varchar(3000) | no           | no       | 答案       |
 
@@ -133,7 +133,7 @@ create index questionId
 | 键名       | Java类型 | MySQL类型     | 是否允许为空 | 是否唯一 | 描述       |
 | ---------- | -------- | ------------- | ------------ | -------- | ---------- |
 | id         | Long     | bigint        | no           | yes      | 自增主键   |
-| questionid | Long     | bigint        | no           | no       | 题库表外键 |
+| questionId | Long     | bigint        | no           | no       | 题库表外键 |
 | question   | String   | varchar(3000) | no           | no       | 题目       |
 | answer     | String   | varchar(3000) | no           | no       | 答案       |
 
@@ -159,7 +159,7 @@ create index questionId
 | 键名       | Java类型 | MySQL类型    | 是否允许为空 | 是否唯一 | 描述       |
 | ---------- | -------- | ------------ | ------------ | -------- | ---------- |
 | id         | Long     | bigint       | no           | yes      | 自增主键   |
-| questionid | Long     | bigint       | no           | no       | 题库表外键 |
+| questionId | Long     | bigint       | no           | no       | 题库表外键 |
 | group      | String   | varchar(255) | no           | no       | 班级       |
 
 ```mysql
@@ -185,8 +185,8 @@ create index questionId
 | 键名       | Java类型 | MySQL类型     | 是否允许为空 | 是否唯一 | 描述       |
 | ---------- | -------- | ------------- | ------------ | -------- | ---------- |
 | id         | Long     | bigint        | no           | yes      | 自增主键   |
-| questionid | Long     | bigint        | no           | no       | 题目的id   |
-| studentid  | Long     | bigint        | no           | no       | 学生的id   |
+| questionId | Long     | bigint        | no           | no       | 题目的id   |
+| studentId  | Long     | bigint        | no           | no       | 学生的id   |
 | type       | String   | varchar(255)  | no           | no       | 题目类型   |
 | date       | Long     | bigint        | no           | no       | 答题时间   |
 | times      | int      | int           | no           | no       | 答题的次数 |

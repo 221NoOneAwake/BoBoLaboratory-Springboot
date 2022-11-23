@@ -35,4 +35,9 @@ public class NormalUser {
      * 学号
      */
     private String schoolid;
+
+    /**
+     * 学号
+     */
+    private String sex;
 }
