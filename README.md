@@ -2,23 +2,25 @@
 
 ## 普通用户表
 
-| 键名     | Java类型 | MySQL类型    | 是否允许为空 | 是否唯一 | 描述         |
-| -------- | -------- | ------------ | ------------ | -------- | ------------ |
-| id       | Long     | bigint       | no           | yes      | 自增主键     |
-| openid   | String   | varchar(255) | no           | yes      | 微信返回的id |
-| name     | String   | varchar(255) | no           | no       | 真实姓名     |
-| group    | String   | varchar(255) | no           | no       | 班级         |
-| schoolid | String   | varchar(255) | no           | yes      | 学号         |
+| 键名       | Java类型 | MySQL类型      | 是否允许为空 | 是否唯一 | 描述          |
+|----------| -------- |--------------| ------------ | -------- |-------------|
+| id       | Long     | bigint       | no           | yes      | 自增主键        |
+| openid   | String   | varchar(255) | no           | yes      | 微信返回的id     |
+| name     | String   | varchar(255) | yes          | no       | 真实姓名        |
+| group    | String   | varchar(255) | yes          | no       | 班级          |
+| schoolid | String   | varchar(255) | yes          | yes      | 学号          |
+| sex      | String   | varchar(2)   | yes          | yes      | 学号          |
 
 ```mysql
 create table bobo.normaluser
 (
     id       bigint auto_increment
         primary key,
-    openId   varchar(255) null,
-    name     varchar(255) not null,
-    `group`  varchar(255) not null,
-    schoolId varchar(255) not null,
+    openId   varchar(255) not null,
+    name     varchar(255) null,
+    `group`  varchar(255) null,
+    schoolId varchar(255) null,
+    sex      varchar(2)   null,
     constraint openId
         unique (openId),
     constraint schoolId
@@ -27,22 +29,21 @@ create table bobo.normaluser
     charset = utf8;
 ```
 
-
-
 ## 题库表
 
-| 键名      | Java类型 | MySQL类型    | 是否允许为空 | 是否唯一 | 描述                   |
-| --------- | -------- | ------------ | ------------ | -------- | ---------------------- |
-| id        | Long     | bigint       | no           | yes      | 自增主键               |
-| name      | String   | varchar(255) | no           | yes      | 题库名称               |
-| choice    | int      | int          | no           | no       | 选择题数量             |
-| blank     | int      | int          | no           | no       | 填空题数量             |
-| judge     | int      | int          | no           | no       | 判断题数量             |
-| startdate | Long     | bigint       | no           | no       | 开始日期时间           |
-| enddate   | Long     | bigint       | no           | no       | 结束日期时间           |
-| examtime  | Long     | bigint       | no           | no       | 单次答题时间           |
-| times     | int      | int          | no           | no       | 允许答题次数           |
+| 键名        | Java类型 | MySQL类型    | 是否允许为空 | 是否唯一 | 描述          |
+|-----------| -------- | ------------ | ------------ | -------- |-------------|
+| id        | Long     | bigint       | no           | yes      | 自增主键        |
+| name      | String   | varchar(255) | no           | yes      | 题库名称        |
+| choice    | int      | int          | no           | no       | 选择题数量       |
+| blank     | int      | int          | no           | no       | 填空题数量       |
+| judge     | int      | int          | no           | no       | 判断题数量       |
+| startdate | Long     | bigint       | no           | no       | 开始日期时间      |
+| enddate   | Long     | bigint       | no           | no       | 结束日期时间      |
+| examtime  | Long     | bigint       | no           | no       | 单次答题时间      |
+| times     | int      | int          | no           | no       | 允许答题次数      |
 | answer    | byte     | tinyint      | no           | no       | 提交后是否允许查看答案 |
+| open      | byte     | tinyint      | no           | no       | 题集是否开放      |
 
 ```mysql
 create table bobo.questionwarehouse
@@ -50,14 +51,15 @@ create table bobo.questionwarehouse
     id        bigint auto_increment
         primary key,
     name      varchar(255) not null,
-    choice    int          not null,
-    blank     int          not null,
-    judge     int          not null,
+    choice    int          null,
+    blank     int          null,
+    judge     int          null,
     startDate bigint       not null,
     endDate   bigint       not null,
     examTime  bigint       not null,
     times     int          not null,
     answer    tinyint      not null,
+    open      tinyint      not null,
     constraint id
         unique (id),
     constraint name
@@ -65,8 +67,6 @@ create table bobo.questionwarehouse
 )
     charset = utf8;
 ```
-
-
 
 ## 选择题表
 
@@ -96,13 +96,11 @@ create table bobo.questionwarehouse
         constraint choicequestion_ibfk_1
             foreign key (questionId) references bobo.questionwarehouse (id)
     )
-        charset = utf8;
+    charset = utf8;
 
-    create index questionId
-        on bobo.choicequestion (questionId);
+create index questionId
+    on bobo.choicequestion (questionId);
 ```
-
-
 
 ## 填空题表
 
@@ -130,8 +128,6 @@ create index questionId
     on bobo.blankquestion (questionId);
 ```
 
-
-
 ## 判断题表
 
 | 键名       | Java类型 | MySQL类型     | 是否允许为空 | 是否唯一 | 描述       |
@@ -158,8 +154,6 @@ create index questionId
     on bobo.judgequestion (questionId);
 ```
 
-
-
 ## 分配表
 
 | 键名       | Java类型 | MySQL类型    | 是否允许为空 | 是否唯一 | 描述       |
@@ -185,8 +179,6 @@ create table bobo.allot
 create index questionId
     on bobo.allot (questionId);
 ```
-
-
 
 ## 答题记录表
 
@@ -218,8 +210,6 @@ create table bobo.record
 )
     charset = utf8;
 ```
-
-
 
 ## 后台用户表
 
