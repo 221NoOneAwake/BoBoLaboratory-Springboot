@@ -40,4 +40,10 @@ public interface QuestionWarehouseMapper {
      * @param id 要删除的题目库
      */
     void deleteQuestionWarehouseById(Long id);
+
+    /**
+     * 更新题目库基本信息
+     * @param questionWarehouse 要更新的信息
+     */
+    void updateQuestionWarehouseInfo(QuestionWarehouse questionWarehouse);
 }

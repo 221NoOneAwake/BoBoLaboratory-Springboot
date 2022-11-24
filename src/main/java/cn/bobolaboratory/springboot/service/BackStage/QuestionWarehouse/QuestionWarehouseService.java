@@ -40,4 +40,11 @@ public interface QuestionWarehouseService {
      * @return 返回结果
      */
     ResponseResult deleteQuestionWarehouseAndQuestionById(Long id);
+
+    /**
+     * 更新题目库基本信息
+     * @param questionWarehouse 要更新的信息
+     * @return 返回结果
+     */
+    ResponseResult updateQuestionWarehouseInfo(QuestionWarehouse questionWarehouse);
 }

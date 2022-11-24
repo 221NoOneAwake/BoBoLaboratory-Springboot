@@ -140,4 +140,19 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
             return ResponseResult.error(e.getMessage());
         }
     }
+
+    /**
+     * 更新题目库基本信息
+     * @param questionWarehouse 要更新的信息
+     * @return 返回结果
+     */
+    @Override
+    public ResponseResult updateQuestionWarehouseInfo(QuestionWarehouse questionWarehouse) {
+        try {
+            questionWarehouseMapper.updateQuestionWarehouseInfo(questionWarehouse);
+            return ResponseResult.success();
+        } catch (RuntimeException e) {
+            return ResponseResult.error(e.getMessage());
+        }
+    }
 }

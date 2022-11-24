@@ -29,7 +29,7 @@ public class QuestionWarehouseController {
         return questionWarehouseService.queryAllQuestionWarehouse();
     }
 
-    @PutMapping("")
+    @PutMapping("/open")
     public ResponseResult openQuestionWarehouseById(@RequestBody Long id) {
         return questionWarehouseService.openQuestionWarehouseById(id);
     }
@@ -42,5 +42,10 @@ public class QuestionWarehouseController {
     @GetMapping("")
     public ResponseResult queryQuestionFromQuestionWarehouseById(Long id) {
         return questionWarehouseService.queryQuestionFromQuestionWarehouseById(id);
+    }
+
+    @PutMapping
+    public ResponseResult updateQuestionWarehouseInfo(@RequestBody QuestionWarehouse questionWarehouse) {
+        return questionWarehouseService.updateQuestionWarehouseInfo(questionWarehouse);
     }
 }
