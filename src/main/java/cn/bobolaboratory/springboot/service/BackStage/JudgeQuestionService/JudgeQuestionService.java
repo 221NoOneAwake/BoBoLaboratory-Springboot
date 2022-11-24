@@ -18,4 +18,18 @@ public interface JudgeQuestionService {
      * @return 返回查询结果
      */
     ResponseResult queryAllJudgeQuestion();
+
+    /**
+     * 修改题目
+     * @param judgeQuestion 要修改的内容
+     * @return 返回结果
+     */
+    ResponseResult updateJudgeQuestion(JudgeQuestion judgeQuestion);
+
+    /**
+     * 删除题目
+     * @param id 要删除的题目的id
+     * @return 返回结果
+     */
+    ResponseResult deleteQuestionById(Long id);
 }

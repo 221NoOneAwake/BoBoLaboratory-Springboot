@@ -42,4 +42,34 @@ public class BlankQuestionServiceImpl implements BlankQuestionService {
     public ResponseResult queryAllBlankQuestion() {
         return ResponseResult.success(blankQuestionMapper.queryAllBlankQuestion());
     }
+
+    /**
+     * 修改题目
+     * @param blankQuestion 要修改的内容
+     * @return 返回结果
+     */
+    @Override
+    public ResponseResult updateBlankQuestion(BlankQuestion blankQuestion) {
+       try {
+           blankQuestionMapper.updateBlankQuestion(blankQuestion);
+           return ResponseResult.success();
+       } catch (RuntimeException e) {
+           return ResponseResult.error(e.getMessage());
+       }
+    }
+
+    /**
+     * 删除题目
+     * @param id 要删除的题目的id
+     * @return 返回结果
+     */
+    @Override
+    public ResponseResult deleteQuestionById(Long id) {
+        try {
+            blankQuestionMapper.deleteQuestionById(id);
+            return ResponseResult.success();
+        } catch (RuntimeException e) {
+            return ResponseResult.error(e.getMessage());
+        }
+    }
 }

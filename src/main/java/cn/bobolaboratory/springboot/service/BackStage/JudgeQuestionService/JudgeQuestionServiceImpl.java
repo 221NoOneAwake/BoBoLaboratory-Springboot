@@ -40,4 +40,34 @@ public class JudgeQuestionServiceImpl implements JudgeQuestionService {
     public ResponseResult queryAllJudgeQuestion() {
         return ResponseResult.success(judgeQuestionMapper.queryAllJudgeQuestion());
     }
+
+    /**
+     * 修改题目
+     * @param judgeQuestion 要修改的内容
+     * @return 返回结果
+     */
+    @Override
+    public ResponseResult updateJudgeQuestion(JudgeQuestion judgeQuestion) {
+        try {
+            judgeQuestionMapper.updateJudgeQuestion(judgeQuestion);
+            return ResponseResult.success();
+        } catch (RuntimeException e) {
+            return ResponseResult.error(e.getMessage());
+        }
+    }
+
+    /**
+     * 删除题目
+     * @param id 要删除的题目的id
+     * @return 返回结果
+     */
+    @Override
+    public ResponseResult deleteQuestionById(Long id) {
+        try {
+            judgeQuestionMapper.deleteQuestionById(id);
+            return ResponseResult.success();
+        } catch (RuntimeException e) {
+            return ResponseResult.error(e.getMessage());
+        }
+    }
 }

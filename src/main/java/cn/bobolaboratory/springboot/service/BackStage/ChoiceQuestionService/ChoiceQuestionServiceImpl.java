@@ -41,4 +41,34 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService {
     public ResponseResult queryAllChoiceQuestion() {
         return ResponseResult.success(choiceQuestionMapper.queryAllChoiceQuestion());
     }
+
+    /**
+     * 修改题目
+     * @param choiceQuestion 要修改的内容
+     * @return 返回结果
+     */
+    @Override
+    public ResponseResult updateChoiceQuestion(ChoiceQuestion choiceQuestion) {
+        try {
+            choiceQuestionMapper.updateChoiceQuestion(choiceQuestion);
+            return ResponseResult.success();
+        } catch (RuntimeException e) {
+            return ResponseResult.error(e.getMessage());
+        }
+    }
+
+    /**
+     * 删除题目
+     * @param id 要删除的题目的id
+     * @return 返回结果
+     */
+    @Override
+    public ResponseResult deleteQuestionById(Long id) {
+        try {
+            choiceQuestionMapper.deleteQuestionById(id);
+            return ResponseResult.success();
+        } catch (RuntimeException e) {
+            return ResponseResult.error(e.getMessage());
+        }
+    }
 }

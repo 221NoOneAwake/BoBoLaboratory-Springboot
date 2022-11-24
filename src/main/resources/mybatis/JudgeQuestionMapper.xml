@@ -11,4 +11,17 @@
         select *
         from bobo.judgequestion;
     </select>
+
+    <update id="updateJudgeQuestionById" parameterType="cn.bobolaboratory.springboot.entity.JudgeQuestion">
+        update bobo.judgequestion
+        set question = #{question},
+            answer   = #{answer}
+        where id = #{id};
+    </update>
+
+    <delete id="deleteQuestionById" parameterType="long">
+        delete
+        from bobo.judgequestion
+        where id = #{id};
+    </delete>
 </mapper>

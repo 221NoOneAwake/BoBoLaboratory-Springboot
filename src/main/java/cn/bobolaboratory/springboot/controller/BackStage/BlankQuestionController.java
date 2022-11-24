@@ -28,4 +28,14 @@ public class BlankQuestionController {
     public ResponseResult queryAllBlankQuestion() {
         return blankQuestionService.queryAllBlankQuestion();
     }
+
+    @PutMapping("")
+    public ResponseResult updateQuestion(@RequestBody BlankQuestion blankQuestion) {
+        return blankQuestionService.updateBlankQuestion(blankQuestion);
+    }
+
+    @DeleteMapping("")
+    public ResponseResult deleteQuestion(@RequestBody Long id) {
+        return blankQuestionService.deleteQuestionById(id);
+    }
 }

@@ -19,4 +19,18 @@ public interface BlankQuestionService {
      * @return 返回结果
      */
     ResponseResult queryAllBlankQuestion();
+
+    /**
+     * 修改题目
+     * @param blankQuestion 要修改的内容
+     * @return 返回结果
+     */
+    ResponseResult updateBlankQuestion(BlankQuestion blankQuestion);
+
+    /**
+     * 删除题目
+     * @param id 要删除的题目的id
+     * @return 返回结果
+     */
+    ResponseResult deleteQuestionById(Long id);
 }

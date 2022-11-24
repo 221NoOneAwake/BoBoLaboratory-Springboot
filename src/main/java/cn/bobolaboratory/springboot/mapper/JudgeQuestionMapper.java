@@ -1,5 +1,6 @@
 package cn.bobolaboratory.springboot.mapper;
 
+import cn.bobolaboratory.springboot.entity.BlankQuestion;
 import cn.bobolaboratory.springboot.entity.JudgeQuestion;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -21,4 +22,16 @@ public interface JudgeQuestionMapper {
      * @return 返回查询结果
      */
     List<JudgeQuestion> queryAllJudgeQuestion();
+
+    /**
+     * 修改题目
+     * @param judgeQuestion 要修改的内容
+     */
+    void updateJudgeQuestion(JudgeQuestion judgeQuestion);
+
+    /**
+     * 删除题目
+     * @param id 要删除的题目的id
+     */
+    void deleteQuestionById(Long id);
 }

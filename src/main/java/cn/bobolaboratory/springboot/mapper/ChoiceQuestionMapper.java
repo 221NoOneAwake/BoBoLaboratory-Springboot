@@ -21,4 +21,16 @@ public interface ChoiceQuestionMapper {
      * @return 返回查询结果
      */
     List<ChoiceQuestion> queryAllChoiceQuestion();
+
+    /**
+     * 修改题目
+     * @param choiceQuestion 要修改的内容
+     */
+    void updateChoiceQuestion(ChoiceQuestion choiceQuestion);
+
+    /**
+     * 删除题目
+     * @param id 要删除的题目的id
+     */
+    void deleteQuestionById(Long id);
 }

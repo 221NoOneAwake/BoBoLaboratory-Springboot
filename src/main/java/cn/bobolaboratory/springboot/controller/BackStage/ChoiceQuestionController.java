@@ -28,4 +28,14 @@ public class ChoiceQuestionController {
     public ResponseResult queryAllChoiceQuestion() {
         return choiceQuestionService.queryAllChoiceQuestion();
     }
+
+    @PutMapping("")
+    public ResponseResult updateQuestion(@RequestBody ChoiceQuestion choiceQuestion) {
+        return choiceQuestionService.updateChoiceQuestion(choiceQuestion);
+    }
+
+    @DeleteMapping("")
+    public ResponseResult deleteQuestion(@RequestBody Long id) {
+        return choiceQuestionService.deleteQuestionById(id);
+    }
 }

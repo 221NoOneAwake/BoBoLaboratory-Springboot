@@ -11,4 +11,17 @@
         select *
         from bobo.blankquestion;
     </select>
+
+    <update id="updateBlankQuestion" parameterType="cn.bobolaboratory.springboot.entity.BlankQuestion">
+        update bobo.blankquestion
+        set question = #{question},
+            answer   = #{answer}
+        where id = #{id};
+    </update>
+
+    <delete id="deleteQuestionById" parameterType="long">
+        delete
+        from bobo.blankquestion
+        where id = #{id};
+    </delete>
 </mapper>

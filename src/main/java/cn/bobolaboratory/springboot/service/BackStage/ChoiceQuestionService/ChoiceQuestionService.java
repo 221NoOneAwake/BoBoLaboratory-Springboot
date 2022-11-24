@@ -19,4 +19,18 @@ public interface ChoiceQuestionService {
      * @return 返回结果
      */
     ResponseResult queryAllChoiceQuestion();
+
+    /**
+     * 修改题目
+     * @param choiceQuestion 要修改的内容
+     * @return 返回结果
+     */
+    ResponseResult updateChoiceQuestion(ChoiceQuestion choiceQuestion);
+
+    /**
+     * 删除题目
+     * @param id 要删除的题目的id
+     * @return 返回结果
+     */
+    ResponseResult deleteQuestionById(Long id);
 }

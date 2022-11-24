@@ -28,4 +28,14 @@ public class JudgeQuestionController {
     public ResponseResult queryAllJudgeQuestion() {
         return judgeQuestionService.queryAllJudgeQuestion();
     }
+
+    @PutMapping("")
+    public ResponseResult updateQuestion(@RequestBody JudgeQuestion judgeQuestion) {
+        return judgeQuestionService.updateJudgeQuestion(judgeQuestion);
+    }
+
+    @DeleteMapping("")
+    public ResponseResult deleteQuestion(@RequestBody Long id) {
+        return judgeQuestionService.deleteQuestionById(id);
+    }
 }

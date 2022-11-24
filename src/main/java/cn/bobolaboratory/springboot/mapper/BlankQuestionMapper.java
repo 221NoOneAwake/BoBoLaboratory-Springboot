@@ -21,4 +21,16 @@ public interface BlankQuestionMapper {
      * @return 返回查询结果
      */
     List<BlankQuestion> queryAllBlankQuestion();
+
+    /**
+     * 修改题目
+     * @param blankQuestion 要修改的内容
+     */
+    void updateBlankQuestion(BlankQuestion blankQuestion);
+
+    /**
+     * 删除题目
+     * @param id 要删除的题目的id
+     */
+    void deleteQuestionById(Long id);
 }
