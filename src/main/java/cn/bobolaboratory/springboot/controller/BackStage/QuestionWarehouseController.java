@@ -33,4 +33,14 @@ public class QuestionWarehouseController {
     public ResponseResult openQuestionWarehouseById(@RequestBody Long id) {
         return questionWarehouseService.openQuestionWarehouseById(id);
     }
+
+    @DeleteMapping("")
+    public ResponseResult deleteQuestionWarehouseAndQuestionById(@RequestBody Long id) {
+        return questionWarehouseService.deleteQuestionWarehouseAndQuestionById(id);
+    }
+
+    @GetMapping("")
+    public ResponseResult queryQuestionFromQuestionWarehouseById(@RequestBody Long id) {
+        return questionWarehouseService.queryQuestionFromQuestionWarehouseById(id);
+    }
 }
