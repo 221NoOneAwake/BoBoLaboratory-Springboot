@@ -4,7 +4,7 @@
 <mapper namespace="cn.bobolaboratory.springboot.mapper.NormalUserMapper">
     <select id="queryNormalUserByOpenid" resultType="cn.bobolaboratory.springboot.entity.NormalUser">
         select *
-        from normaluser
+        from bobo.normaluser
         where openid = #{openid};
     </select>
 
@@ -12,4 +12,19 @@
         select name, sex, `group`, schoolId
         from bobo.normaluser;
     </select>
+
+    <update id="updateNormalUserById" parameterType="cn.bobolaboratory.springboot.entity.NormalUser">
+        update bobo.normaluser
+        set name     = #{name},
+            sex      = #{sex},
+            `group`  = #{group},
+            schoolId = #{schoolId}
+        where id = #{id};
+    </update>
+
+    <delete id="deleteNormalUserById" parameterType="long">
+        delete
+        from bobo.normaluser
+        where id = #{id};
+    </delete>
 </mapper>

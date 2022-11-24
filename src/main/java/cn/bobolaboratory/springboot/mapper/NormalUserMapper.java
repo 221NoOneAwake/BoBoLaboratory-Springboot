@@ -24,4 +24,16 @@ public interface NormalUserMapper {
      * @return 返回查询获得的信息
      */
     List<NormalUser> queryAllNormalUser();
+
+    /**
+     * 更新学生信息
+     * @param normalUser 要更新的学生信息
+     */
+    void updateNormalUserById(NormalUser normalUser);
+
+    /**
+     * 删除学生信息
+     * @param id 要删除的学生的id
+     */
+    void deleteNormalUserById(Long id);
 }

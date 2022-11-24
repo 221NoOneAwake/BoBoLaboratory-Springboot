@@ -30,4 +30,34 @@ public class NormalUserServiceImpl implements NormalUserService {
             return ResponseResult.error(e.getMessage());
         }
     }
+
+    /**
+     * 更新学生信息
+     * @param normalUser 要更新的学生信息
+     * @return 返回结果
+     */
+    @Override
+    public ResponseResult updateNormalUserById(NormalUser normalUser) {
+        try {
+            normalUserMapper.updateNormalUserById(normalUser);
+            return ResponseResult.success();
+        } catch (RuntimeException e) {
+            return ResponseResult.error(e.getMessage());
+        }
+    }
+
+    /**
+     * 删除学生信息
+     * @param id 要删除的学生的id
+     * @return 返回结果
+     */
+    @Override
+    public ResponseResult deleteNormalUserById(Long id) {
+        try {
+            normalUserMapper.deleteNormalUserById(id);
+            return ResponseResult.success();
+        } catch (RuntimeException e) {
+            return ResponseResult.error(e.getMessage());
+        }
+    }
 }
