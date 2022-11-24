@@ -2,14 +2,14 @@
 
 ## 普通用户表
 
-| 键名       | Java类型 | MySQL类型      | 是否允许为空 | 是否唯一 | 描述          |
-|----------| -------- |--------------| ------------ | -------- |-------------|
-| id       | Long     | bigint       | no           | yes      | 自增主键        |
-| openId   | String   | varchar(255) | no           | yes      | 微信返回的id     |
-| name     | String   | varchar(255) | yes          | no       | 真实姓名        |
-| group    | String   | varchar(255) | yes          | no       | 班级          |
-| schoolId | String   | varchar(255) | yes          | yes      | 学号          |
-| sex      | String   | varchar(2)   | yes          | yes      | 学号          |
+| 键名       | Java类型 | MySQL类型      | 是否允许为空 | 是否唯一 | 描述      |
+|----------| -------- |--------------| ------------ | -------- |---------|
+| id       | Long     | bigint       | no           | yes      | 自增主键    |
+| openId   | String   | varchar(255) | no           | yes      | 微信返回的id |
+| name     | String   | varchar(255) | yes          | no       | 真实姓名    |
+| group    | String   | varchar(255) | yes          | no       | 班级      |
+| schoolId | String   | varchar(255) | yes          | yes      | 学号      |
+| sex      | String   | varchar(2)   | yes          | yes      | 性别      |
 
 ```mysql
 create table bobo.normaluser
