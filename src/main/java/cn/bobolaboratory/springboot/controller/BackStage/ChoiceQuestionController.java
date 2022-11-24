@@ -3,6 +3,7 @@ package cn.bobolaboratory.springboot.controller.BackStage;
 import cn.bobolaboratory.springboot.entity.ChoiceQuestion;
 import cn.bobolaboratory.springboot.service.BackStage.ChoiceQuestionService.ChoiceQuestionService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,11 @@ public class ChoiceQuestionController {
     @Autowired
     public ChoiceQuestionController(ChoiceQuestionService choiceQuestionService) {
         this.choiceQuestionService = choiceQuestionService;
+    }
+
+    @Setter
+    static class ChoiceQuestionData {
+        Long id;
     }
 
     @PostMapping("")
@@ -35,7 +41,7 @@ public class ChoiceQuestionController {
     }
 
     @DeleteMapping("")
-    public ResponseResult deleteQuestion(@RequestBody Long id) {
-        return choiceQuestionService.deleteQuestionById(id);
+    public ResponseResult deleteQuestion(@RequestBody ChoiceQuestionData choiceQuestionData) {
+        return choiceQuestionService.deleteQuestionById(choiceQuestionData.id);
     }
 }

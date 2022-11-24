@@ -3,6 +3,7 @@ package cn.bobolaboratory.springboot.controller.BackStage;
 import cn.bobolaboratory.springboot.entity.JudgeQuestion;
 import cn.bobolaboratory.springboot.service.BackStage.JudgeQuestionService.JudgeQuestionService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,11 @@ public class JudgeQuestionController {
     @Autowired
     public JudgeQuestionController(JudgeQuestionService judgeQuestionService) {
         this.judgeQuestionService = judgeQuestionService;
+    }
+
+    @Setter
+    static class JudgeQuestionData {
+        Long id;
     }
 
     @PostMapping("")
@@ -35,7 +41,7 @@ public class JudgeQuestionController {
     }
 
     @DeleteMapping("")
-    public ResponseResult deleteQuestion(@RequestBody Long id) {
-        return judgeQuestionService.deleteQuestionById(id);
+    public ResponseResult deleteQuestion(@RequestBody JudgeQuestionData judgeQuestionData) {
+        return judgeQuestionService.deleteQuestionById(judgeQuestionData.id);
     }
 }

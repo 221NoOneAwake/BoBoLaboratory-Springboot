@@ -3,6 +3,7 @@ package cn.bobolaboratory.springboot.controller.BackStage;
 import cn.bobolaboratory.springboot.entity.BlankQuestion;
 import cn.bobolaboratory.springboot.service.BackStage.BlankQuestionService.BlankQuestionService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,11 @@ public class BlankQuestionController {
     @Autowired
     public BlankQuestionController(BlankQuestionService blankQuestionService) {
         this.blankQuestionService = blankQuestionService;
+    }
+
+    @Setter
+    static class BlankQuestionData {
+        Long id;
     }
 
     @PostMapping("")
@@ -35,7 +41,7 @@ public class BlankQuestionController {
     }
 
     @DeleteMapping("")
-    public ResponseResult deleteQuestion(@RequestBody Long id) {
-        return blankQuestionService.deleteQuestionById(id);
+    public ResponseResult deleteQuestion(@RequestBody BlankQuestionData blankQuestionData) {
+        return blankQuestionService.deleteQuestionById(blankQuestionData.id);
     }
 }

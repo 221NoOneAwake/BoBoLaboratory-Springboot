@@ -3,6 +3,7 @@ package cn.bobolaboratory.springboot.controller.BackStage;
 import cn.bobolaboratory.springboot.entity.QuestionWarehouse;
 import cn.bobolaboratory.springboot.service.BackStage.QuestionWarehouse.QuestionWarehouseService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/bs/api/questionWarehouse")
 public class QuestionWarehouseController {
     private final QuestionWarehouseService questionWarehouseService;
+
+    @Setter
+    static class QuestionWarehouseData {
+        Long id;
+    }
 
     @Autowired
     public QuestionWarehouseController(QuestionWarehouseService questionWarehouseService) {
@@ -30,18 +36,18 @@ public class QuestionWarehouseController {
     }
 
     @PutMapping("/open")
-    public ResponseResult openQuestionWarehouseById(@RequestBody Long id) {
-        return questionWarehouseService.openQuestionWarehouseById(id);
+    public ResponseResult openQuestionWarehouseById(@RequestBody QuestionWarehouseData questionWarehouseData) {
+        return questionWarehouseService.openQuestionWarehouseById(questionWarehouseData.id);
     }
 
     @DeleteMapping("")
-    public ResponseResult deleteQuestionWarehouseAndQuestionById(@RequestBody Long id) {
-        return questionWarehouseService.deleteQuestionWarehouseAndQuestionById(id);
+    public ResponseResult deleteQuestionWarehouseAndQuestionById(@RequestBody QuestionWarehouseData questionWarehouseData) {
+        return questionWarehouseService.deleteQuestionWarehouseAndQuestionById(questionWarehouseData.id);
     }
 
     @GetMapping("")
-    public ResponseResult queryQuestionFromQuestionWarehouseById(Long id) {
-        return questionWarehouseService.queryQuestionFromQuestionWarehouseById(id);
+    public ResponseResult queryQuestionFromQuestionWarehouseById(QuestionWarehouseData questionWarehouseData) {
+        return questionWarehouseService.queryQuestionFromQuestionWarehouseById(questionWarehouseData.id);
     }
 
     @PutMapping

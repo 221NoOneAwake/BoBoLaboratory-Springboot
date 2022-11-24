@@ -3,6 +3,7 @@ package cn.bobolaboratory.springboot.controller.BackStage;
 import cn.bobolaboratory.springboot.entity.NormalUser;
 import cn.bobolaboratory.springboot.service.BackStage.NormalUserService.NormalUserService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,11 @@ public class NormalUserController {
     @Autowired
     public NormalUserController(NormalUserService normalUserService) {
         this.normalUserService = normalUserService;
+    }
+
+    @Setter
+    static class NormalUserData {
+        Long id;
     }
 
     @GetMapping("")
@@ -29,7 +35,7 @@ public class NormalUserController {
     }
 
     @DeleteMapping("")
-    ResponseResult deleteNormalUserById(Long id) {
-        return normalUserService.deleteNormalUserById(id);
+    ResponseResult deleteNormalUserById(@RequestBody NormalUserData normalUserData) {
+        return normalUserService.deleteNormalUserById(normalUserData.id);
     }
 }
