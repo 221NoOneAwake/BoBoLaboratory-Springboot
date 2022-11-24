@@ -33,4 +33,18 @@ public interface ChoiceQuestionMapper {
      * @param id 要删除的题目的id
      */
     void deleteQuestionById(Long id);
+
+    /**
+     * 根据questionId获取题目列表
+     * @param questionId 题目库Id
+     * @return 返回题目列表
+     */
+    List<ChoiceQuestion> queryQuestionByQuestionId(Long questionId);
+
+    /**
+     * 根据questionId查询Id
+     * @param questionId 题目库id
+     * @return 返回题目id列表
+     */
+    List<Long> queryIdByQuestionId(Long questionId);
 }

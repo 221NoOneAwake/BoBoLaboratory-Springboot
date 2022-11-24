@@ -34,4 +34,10 @@ public interface QuestionWarehouseMapper {
      * @param id 要开放的题目库
      */
     void openQuestionWarehouseById(Long id);
+
+    /**
+     * 根据id删除题目库
+     * @param id 要删除的题目库
+     */
+    void deleteQuestionWarehouseById(Long id);
 }

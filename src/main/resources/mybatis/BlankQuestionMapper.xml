@@ -24,4 +24,12 @@
         from bobo.blankquestion
         where id = #{id};
     </delete>
+
+    <select id="queryQuestionByQuestionId" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.BlankQuestion">
+        select question, answer from bobo.blankquestion where questionId = #{questionId};
+    </select>
+
+    <select id="queryIdByQuestionId" parameterType="long" resultType="long">
+        select id from bobo.blankquestion where questionId = #{questionId};
+    </select>
 </mapper>

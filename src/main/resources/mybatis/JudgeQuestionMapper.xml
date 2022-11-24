@@ -24,4 +24,12 @@
         from bobo.judgequestion
         where id = #{id};
     </delete>
+
+    <select id="queryQuestionByQuestionId" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.JudgeQuestion">
+        select question, answer from bobo.judgequestion where questionId = #{questionId};
+    </select>
+
+    <select id="queryIdByQuestionId" parameterType="long" resultType="long">
+        select id from bobo.judgequestion where questionId = #{questionId};
+    </select>
 </mapper>

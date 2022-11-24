@@ -2,7 +2,6 @@ package cn.bobolaboratory.springboot.service.BackStage.QuestionWarehouse;
 
 import cn.bobolaboratory.springboot.entity.QuestionWarehouse;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
-import org.springframework.http.ResponseEntity;
 
 /**
  * @author WhiteLeaf03
@@ -27,4 +26,18 @@ public interface QuestionWarehouseService {
      * @return 返回结果
      */
     ResponseResult openQuestionWarehouseById(Long id);
+
+    /**
+     * 根据id获取题目库中的题目
+     * @param id 题目库id
+     * @return 返回结果
+     */
+    ResponseResult queryQuestionFromQuestionWarehouseById(Long id);
+
+    /**
+     * 根据id删除题目库
+     * @param id 题目库id
+     * @return 返回结果
+     */
+    ResponseResult deleteQuestionWarehouseAndQuestionById(Long id);
 }

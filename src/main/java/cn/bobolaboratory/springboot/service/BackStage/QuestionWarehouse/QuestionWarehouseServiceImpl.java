@@ -12,6 +12,11 @@ import cn.bobolaboratory.springboot.utils.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author WhiteLeaf03
  */
@@ -82,6 +87,54 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
     public ResponseResult openQuestionWarehouseById(Long id) {
         try {
             questionWarehouseMapper.openQuestionWarehouseById(id);
+            return ResponseResult.success();
+        } catch (RuntimeException e) {
+            return ResponseResult.error(e.getMessage());
+        }
+    }
+
+    /**
+     * 根据id获取题目库中的题目
+     * @param id 题目库id
+     * @return 返回结果
+     */
+    @Override
+    public ResponseResult queryQuestionFromQuestionWarehouseById(Long id) {
+        try {
+            Map<String, Object> questions = new HashMap<>();
+            List<BlankQuestion> blankQuestionList = blankQuestionMapper.queryQuestionByQuestionId(id);
+            List<ChoiceQuestion> choiceQuestionList = choiceQuestionMapper.queryQuestionByQuestionId(id);
+            List<JudgeQuestion> judgeQuestionList = judgeQuestionMapper.queryQuestionByQuestionId(id);
+            questions.put("BlankQuestion", blankQuestionList);
+            questions.put("ChoiceQuestion", choiceQuestionList);
+            questions.put("JudgeQuestion", judgeQuestionList);
+            return ResponseResult.success(questions);
+        } catch (RuntimeException e) {
+            return ResponseResult.error(e.getMessage());
+        }
+    }
+
+    /**
+     * 根据id删除题目库
+     * @param questionId 题目库id
+     * @return 返回结果
+     */
+    @Override
+    public ResponseResult deleteQuestionWarehouseAndQuestionById(Long questionId) {
+        try {
+            List<Long> blankQuestionIdList = blankQuestionMapper.queryIdByQuestionId(questionId);
+            List<Long> choiceQuestionIdList = choiceQuestionMapper.queryIdByQuestionId(questionId);
+            List<Long> judgeQuestionIdList = judgeQuestionMapper.queryIdByQuestionId(questionId);
+            for (Long id : blankQuestionIdList) {
+                blankQuestionMapper.deleteQuestionById(id);
+            }
+            for (Long id : choiceQuestionIdList) {
+                choiceQuestionMapper.deleteQuestionById(id);
+            }
+            for (Long id : judgeQuestionIdList) {
+                judgeQuestionMapper.deleteQuestionById(id);
+            }
+            questionWarehouseMapper.deleteQuestionWarehouseById(questionId);
             return ResponseResult.success();
         } catch (RuntimeException e) {
             return ResponseResult.error(e.getMessage());

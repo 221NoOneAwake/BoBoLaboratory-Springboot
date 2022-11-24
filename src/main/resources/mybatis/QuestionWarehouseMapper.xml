@@ -19,6 +19,14 @@
     </select>
 
     <update id="openQuestionWarehouseById" parameterType="long">
-        update bobo.questionwarehouse set open = 1 where id = #{id};
+        update bobo.questionwarehouse
+        set open = 1
+        where id = #{id};
     </update>
+
+    <delete id="deleteQuestionWarehouseById" parameterType="long">
+        delete
+        from bobo.questionwarehouse
+        where id = #{id};
+    </delete>
 </mapper>
