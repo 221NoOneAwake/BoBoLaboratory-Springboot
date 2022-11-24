@@ -30,4 +30,9 @@ public class BlankQuestion {
      * 答案
      */
     private String answer;
+
+    /**
+     * 类型
+     */
+    private String type = "判断题";
 }

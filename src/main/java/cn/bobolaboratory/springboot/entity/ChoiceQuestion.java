@@ -50,4 +50,10 @@ public class ChoiceQuestion {
      * 答案
      */
     private String answer;
+
+
+    /**
+     * 类型
+     */
+    private String type = "选择题";
 }
