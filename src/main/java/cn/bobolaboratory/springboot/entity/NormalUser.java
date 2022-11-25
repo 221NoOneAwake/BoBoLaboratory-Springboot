@@ -37,7 +37,7 @@ public class NormalUser {
     private String schoolid;
 
     /**
-     * 学号
+     * 性别
      */
     private String sex;
 }
