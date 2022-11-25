@@ -25,8 +25,12 @@
         where id = #{id};
     </delete>
 
-    <select id="queryQuestionByQuestionId" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.BlankQuestion">
+    <select id="queryQuestionAndAnswerByQuestionId" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.BlankQuestion">
         select question, answer from bobo.blankquestion where questionId = #{questionId};
+    </select>
+
+    <select id="queryIdAndQuestionByQuestionId" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.BlankQuestion">
+        select id, question from bobo.blankquestion where questionId = #{questionId};
     </select>
 
     <select id="queryIdByQuestionId" parameterType="long" resultType="long">

@@ -11,4 +11,11 @@ public interface QuestionWarehouseService {
      * @return 返回查询结果
      */
     ResponseResult queryAllOpenQuestionWarehouse();
+
+    /**
+     * 根据题目库Id获取题目
+     * @param id 题目库Id
+     * @return 返回查询结果
+     */
+    ResponseResult queryQuestionFromQuestionWarehouseById(Long id);
 }

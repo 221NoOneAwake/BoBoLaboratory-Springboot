@@ -102,9 +102,9 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
     public ResponseResult queryQuestionFromQuestionWarehouseById(Long id) {
         try {
             Map<String, Object> questions = new HashMap<>();
-            List<BlankQuestion> blankQuestionList = blankQuestionMapper.queryQuestionByQuestionId(id);
-            List<ChoiceQuestion> choiceQuestionList = choiceQuestionMapper.queryQuestionByQuestionId(id);
-            List<JudgeQuestion> judgeQuestionList = judgeQuestionMapper.queryQuestionByQuestionId(id);
+            List<BlankQuestion> blankQuestionList = blankQuestionMapper.queryQuestionAndAnswerByQuestionId(id);
+            List<ChoiceQuestion> choiceQuestionList = choiceQuestionMapper.queryQuestionAndAnswerByQuestionId(id);
+            List<JudgeQuestion> judgeQuestionList = judgeQuestionMapper.queryQuestionAndAnswerByQuestionId(id);
             questions.put("BlankQuestion", blankQuestionList);
             questions.put("ChoiceQuestion", choiceQuestionList);
             questions.put("JudgeQuestion", judgeQuestionList);

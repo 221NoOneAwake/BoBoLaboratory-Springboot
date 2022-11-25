@@ -36,11 +36,18 @@ public interface JudgeQuestionMapper {
     void deleteQuestionById(Long id);
 
     /**
-     * 根据questionId获取题目列表
+     * 根据questionId获取题目和答案
      * @param questionId 题目库Id
      * @return 返回题目列表
      */
-    List<JudgeQuestion> queryQuestionByQuestionId(Long questionId);
+    List<JudgeQuestion> queryQuestionAndAnswerByQuestionId(Long questionId);
+
+    /**
+     * 根据questionId获取Id和题目
+     * @param questionId 题目库Id
+     * @return 返回题目列表
+     */
+    List<JudgeQuestion> queryIdAndQuestionByQuestionId(Long questionId);
 
     /**
      * 根据questionId查询Id

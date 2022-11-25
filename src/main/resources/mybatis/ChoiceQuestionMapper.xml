@@ -29,8 +29,12 @@
         where id = #{id};
     </delete>
 
-    <select id="queryQuestionByQuestionId" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.ChoiceQuestion">
+    <select id="queryQuestionAndAnswerByQuestionId" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.ChoiceQuestion">
         select question, choice1, choice2, choice3, choice4, answer from bobo.choicequestion where questionId = #{questionId};
+    </select>
+
+    <select id="queryIdAndQuestionByQuestionId" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.ChoiceQuestion">
+        select id, question, choice1, choice2, choice3, choice4 from bobo.choicequestion where questionId = #{questionId};
     </select>
 
     <select id="queryIdByQuestionId" parameterType="long" resultType="long">
