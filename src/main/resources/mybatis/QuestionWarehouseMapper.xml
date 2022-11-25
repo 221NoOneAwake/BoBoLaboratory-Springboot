@@ -42,4 +42,19 @@
             `open`      = #{open}
         where id = #{id};
     </update>
+
+    <select id="queryAllOpenQuestionWarehouse" resultType="cn.bobolaboratory.springboot.entity.QuestionWarehouse">
+        select id,
+               `name`,
+               choice,
+               blank,
+               judge,
+               startDate,
+               endDate,
+               examTime,
+               times,
+               answer
+        from bobo.questionwarehouse
+        where open = 1;
+    </select>
 </mapper>

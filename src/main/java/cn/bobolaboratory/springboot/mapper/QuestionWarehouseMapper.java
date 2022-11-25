@@ -46,4 +46,10 @@ public interface QuestionWarehouseMapper {
      * @param questionWarehouse 要更新的信息
      */
     void updateQuestionWarehouseInfo(QuestionWarehouse questionWarehouse);
+
+    /**
+     * 查询已开放的题库
+     * @return 返回以开放的题库
+     */
+    List<QuestionWarehouse> queryAllOpenQuestionWarehouse();
 }
