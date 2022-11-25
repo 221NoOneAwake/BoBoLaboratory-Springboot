@@ -10,5 +10,5 @@ public interface QuestionWarehouseService {
      * 查询所有题目库
      * @return 返回查询结果
      */
-    ResponseResult queryAllQuestionWarehouse();
+    ResponseResult queryAllOpenQuestionWarehouse();
 }

@@ -22,6 +22,6 @@ public class QuestionWarehouseController {
 
     @GetMapping("")
     public ResponseResult queryAllOpenQuestionWarehouse() {
-        return questionWarehouseService.queryAllQuestionWarehouse();
+        return questionWarehouseService.queryAllOpenQuestionWarehouse();
     }
 }
