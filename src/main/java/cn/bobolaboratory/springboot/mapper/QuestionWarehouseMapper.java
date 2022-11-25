@@ -52,4 +52,11 @@ public interface QuestionWarehouseMapper {
      * @return 返回以开放的题库
      */
     List<QuestionWarehouse> queryAllOpenQuestionWarehouse();
+
+    /**
+     * 查看Id是否存在
+     * @param id 要查询的id
+     * @return 返回查询结果
+     */
+    Long checkIdExist(Long id);
 }

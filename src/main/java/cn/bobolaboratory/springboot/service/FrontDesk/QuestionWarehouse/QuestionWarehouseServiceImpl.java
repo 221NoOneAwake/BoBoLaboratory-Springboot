@@ -56,6 +56,9 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
     @Override
     public ResponseResult queryQuestionFromQuestionWarehouseById(Long id) {
         try {
+            if (questionWarehouseMapper.checkIdExist(id) == 0) {
+                return ResponseResult.error("id不存在");
+            }
             Map<String, Object> questions = new HashMap<>();
             List<BlankQuestion> blankQuestionList = blankQuestionMapper.queryIdAndQuestionByQuestionId(id);
             List<ChoiceQuestion> choiceQuestionList = choiceQuestionMapper.queryIdAndQuestionByQuestionId(id);

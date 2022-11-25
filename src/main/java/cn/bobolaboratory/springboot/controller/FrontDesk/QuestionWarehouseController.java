@@ -26,7 +26,7 @@ public class QuestionWarehouseController {
         Long id;
     }
 
-    @GetMapping("")
+    @GetMapping("/open")
     public ResponseResult queryAllOpenQuestionWarehouse() {
         return questionWarehouseService.queryAllOpenQuestionWarehouse();
     }

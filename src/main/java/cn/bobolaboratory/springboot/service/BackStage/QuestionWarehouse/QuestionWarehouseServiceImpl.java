@@ -86,6 +86,9 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
     @Override
     public ResponseResult openQuestionWarehouseById(Long id) {
         try {
+            if (questionWarehouseMapper.checkIdExist(id) == 0L) {
+                return ResponseResult.error("id不存在");
+            }
             questionWarehouseMapper.openQuestionWarehouseById(id);
             return ResponseResult.success();
         } catch (RuntimeException e) {
@@ -101,6 +104,9 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
     @Override
     public ResponseResult queryQuestionFromQuestionWarehouseById(Long id) {
         try {
+            if (questionWarehouseMapper.checkIdExist(id) == 0L) {
+                return ResponseResult.error("id不存在");
+            }
             Map<String, Object> questions = new HashMap<>();
             List<BlankQuestion> blankQuestionList = blankQuestionMapper.queryQuestionAndAnswerByQuestionId(id);
             List<ChoiceQuestion> choiceQuestionList = choiceQuestionMapper.queryQuestionAndAnswerByQuestionId(id);
@@ -122,6 +128,9 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
     @Override
     public ResponseResult deleteQuestionWarehouseAndQuestionById(Long questionId) {
         try {
+            if (questionWarehouseMapper.checkIdExist(questionId) == 0L) {
+                return ResponseResult.error("id不存在");
+            }
             List<Long> blankQuestionIdList = blankQuestionMapper.queryIdByQuestionId(questionId);
             List<Long> choiceQuestionIdList = choiceQuestionMapper.queryIdByQuestionId(questionId);
             List<Long> judgeQuestionIdList = judgeQuestionMapper.queryIdByQuestionId(questionId);
