@@ -24,7 +24,6 @@ public class LoginStatusController {
 
     @PostMapping("")
     public ResponseResult login(@RequestBody BackstageUser backstageUser) {
-        System.out.println(backstageUser.toString());
         return loginStatusService.login(backstageUser);
     }
 }
