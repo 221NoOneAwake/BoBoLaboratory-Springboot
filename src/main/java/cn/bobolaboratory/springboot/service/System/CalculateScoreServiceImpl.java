@@ -39,8 +39,18 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
     @Override
     public ResponseResult calculateScoreAndSaveRecord(AnswerListDTO answerListDTO) {
         int score = 0;
+        int times;
         Record record;
-        int times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getBlankQuestionList().get(0).getQuestionId(), answerListDTO.getOpenId()));
+        if (answerListDTO.getBlankQuestionList().size() != 0) {
+            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getBlankQuestionList().get(0).getId(), answerListDTO.getOpenId()));
+        } else if (answerListDTO.getChoiceQuestionList().size() != 0) {
+            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getChoiceQuestionList().get(0).getId(), answerListDTO.getOpenId()));
+        } else if (answerListDTO.getJudgeQuestionList().size() != 0) {
+            System.out.println(answerListDTO.getJudgeQuestionList().get(0).getId());
+            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getJudgeQuestionList().get(0).getId(), answerListDTO.getOpenId()));
+        } else {
+            return ResponseResult.error("空题目集无法作答");
+        }
         for (BlankQuestion blankQuestion : answerListDTO.getBlankQuestionList()) {
             BlankQuestion blankQuestionAnswerAndScore = blankQuestionMapper.queryAnswerAndScoreById(blankQuestion.getId());
             if (blankQuestion.getAnswer().equals(blankQuestionAnswerAndScore.getAnswer())) {
@@ -67,9 +77,11 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
             JudgeQuestion judgeQuestionAnswerAndScore = judgeQuestionMapper.queryAnswerAndScoreById(judgeQuestion.getId());
             if (judgeQuestion.getAnswer().equals(judgeQuestionAnswerAndScore.getAnswer())) {
                 score += judgeQuestionAnswerAndScore.getScore();
+                System.out.println(times);
                 record = new Record(judgeQuestion.getId(), answerListDTO.getOpenId(), "判断题", answerListDTO.getDate(), times + 1, judgeQuestion.getAnswer(), (byte) 1, judgeQuestionAnswerAndScore.getScore());
                 recordMapper.addRecord(record);
             } else {
+                System.out.println(times);
                 record = new Record(judgeQuestion.getId(), answerListDTO.getOpenId(), "判断题", answerListDTO.getDate(), times + 1, judgeQuestion.getAnswer(), (byte) 0, 0);
                 recordMapper.addRecord(record);
             }

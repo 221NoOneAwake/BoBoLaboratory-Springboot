@@ -3,8 +3,8 @@
 
 <mapper namespace="cn.bobolaboratory.springboot.mapper.JudgeQuestionMapper">
     <insert id="addJudgeQuestion" parameterType="cn.bobolaboratory.springboot.entity.JudgeQuestion">
-        insert into bobo.judgequestion (questionId, question, answer)
-            value (#{questionId}, #{question}, #{answer});
+        insert into bobo.judgequestion (questionId, question, answer, score)
+            value (#{questionId}, #{question}, #{answer}, #{score});
     </insert>
 
     <select id="queryAllJudgeQuestion" resultType="cn.bobolaboratory.springboot.entity.JudgeQuestion">

@@ -12,6 +12,6 @@
     </select>
 
     <select id="checkTimesByOpenIdAndQuestionId" parameterType="cn.bobolaboratory.springboot.entity.Record" resultType="int">
-        select COUNT(id) from bobo.record where openId = #{openId} and questionId = #{id};
+        select COUNT(id) from bobo.record where openId = #{openId} and questionId = #{questionId};
     </select>
 </mapper>
