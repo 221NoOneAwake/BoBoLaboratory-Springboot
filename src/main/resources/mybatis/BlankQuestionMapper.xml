@@ -38,6 +38,6 @@
     </select>
 
     <select id="queryAnswerAndScoreById" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.BlankQuestion">
-        select answer from bobo.blankquestion where id = #{id};
+        select answer, score from bobo.blankquestion where id = #{id};
     </select>
 </mapper>

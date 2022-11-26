@@ -63,6 +63,6 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
                 recordMapper.addRecord(record);
             }
         }
-        return ResponseResult.success(score);
+        return ResponseResult.success(score / 10);
     }
 }

@@ -188,11 +188,11 @@ create index questionId
 
 ## 答题记录表
 
-| 键名       | Java类型 | MySQL类型     | 是否允许为空 | 是否唯一 | 描述       |
-| ---------- | -------- | ------------- | ------------ | -------- | ---------- |
+| 键名         | Java类型 | MySQL类型     | 是否允许为空 | 是否唯一 | 描述       |
+|------------| -------- | ------------- | ------------ | -------- | ---------- |
 | id         | Long     | bigint        | no           | yes      | 自增主键   |
 | questionId | Long     | bigint        | no           | no       | 题目的id   |
-| studentId  | Long     | bigint        | no           | no       | openid     |
+| openId     | Long     | bigint        | no           | no       | openid     |
 | type       | String   | varchar(255)  | no           | no       | 题目类型   |
 | date       | Long     | bigint        | no           | no       | 答题时间   |
 | times      | int      | int           | no           | no       | 答题的次数 |
