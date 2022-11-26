@@ -54,7 +54,7 @@ public class ChoiceQuestion {
     /**
      * 分值
      */
-    private String score;
+    private Integer score;
 
     /**
      * 类型
