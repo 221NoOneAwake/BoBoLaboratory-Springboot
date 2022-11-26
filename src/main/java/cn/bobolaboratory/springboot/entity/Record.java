@@ -66,4 +66,9 @@ public class Record {
         this.result = result;
         this.score = score;
     }
+
+    public Record(Long questionId, String openId) {
+        this.questionId = questionId;
+        this.openId = openId;
+    }
 }

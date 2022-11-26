@@ -40,34 +40,35 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
     public ResponseResult calculateScoreAndSaveRecord(AnswerListDTO answerListDTO) {
         int score = 0;
         Record record;
+        int times = recordMapper.checkTimesByNormalUserIdAndQuestionId(new Record(answerListDTO.getBlankQuestionList().get(0).getQuestionId(), answerListDTO.getOpenId()));
         for (BlankQuestion blankQuestion : answerListDTO.getBlankQuestionList()) {
             BlankQuestion blankQuestionAnswerAndScore = blankQuestionMapper.queryAnswerAndScoreById(blankQuestion.getId());
             if (blankQuestion.getAnswer().equals(blankQuestionAnswerAndScore.getAnswer())) {
                 score += blankQuestionAnswerAndScore.getScore();
-                record= new Record(blankQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), answerListDTO.getTimes(), blankQuestion.getAnswer(), (byte) 1, blankQuestionAnswerAndScore.getScore());
+                record= new Record(blankQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), times + 1, blankQuestion.getAnswer(), (byte) 1, blankQuestionAnswerAndScore.getScore());
                 recordMapper.addRecord(record);
             }
-            record = new Record(blankQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), answerListDTO.getTimes(), blankQuestion.getAnswer(), (byte) 0, 0);
+            record = new Record(blankQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), times + 1, blankQuestion.getAnswer(), (byte) 0, 0);
             recordMapper.addRecord(record);
         }
         for (ChoiceQuestion choiceQuestion : answerListDTO.getChoiceQuestionList()) {
             ChoiceQuestion choiceQuestionAnswerAndScore = choiceQuestionMapper.queryAnswerAndScoreById(choiceQuestion.getId());
             if (choiceQuestion.getAnswer().equals(choiceQuestionAnswerAndScore.getAnswer())) {
                 score += choiceQuestionAnswerAndScore.getScore();
-                record = new Record(choiceQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), answerListDTO.getTimes(), choiceQuestion.getAnswer(), (byte) 1, choiceQuestionAnswerAndScore.getScore());
+                record = new Record(choiceQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), times + 1, choiceQuestion.getAnswer(), (byte) 1, choiceQuestionAnswerAndScore.getScore());
                 recordMapper.addRecord(record);
             }
-            record = new Record(choiceQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), answerListDTO.getTimes(), choiceQuestion.getAnswer(), (byte) 0, 0);
+            record = new Record(choiceQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), times + 1, choiceQuestion.getAnswer(), (byte) 0, 0);
             recordMapper.addRecord(record);
         }
         for (JudgeQuestion judgeQuestion : answerListDTO.getJudgeQuestionList()) {
             JudgeQuestion judgeQuestionAnswerAndScore = judgeQuestionMapper.queryAnswerAndScoreById(judgeQuestion.getId());
             if (judgeQuestion.getAnswer().equals(judgeQuestionAnswerAndScore.getAnswer())) {
                 score += judgeQuestionAnswerAndScore.getScore();
-                record = new Record(judgeQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), answerListDTO.getTimes(), judgeQuestion.getAnswer(), (byte) 1, judgeQuestionAnswerAndScore.getScore());
+                record = new Record(judgeQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), times + 1, judgeQuestion.getAnswer(), (byte) 1, judgeQuestionAnswerAndScore.getScore());
                 recordMapper.addRecord(record);
             }
-            record = new Record(judgeQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), answerListDTO.getTimes(), judgeQuestion.getAnswer(), (byte) 0, 0);
+            record = new Record(judgeQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), times + 1, judgeQuestion.getAnswer(), (byte) 0, 0);
             recordMapper.addRecord(record);
         }
         return ResponseResult.success(score / 10);
