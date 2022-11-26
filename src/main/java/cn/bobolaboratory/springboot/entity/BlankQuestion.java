@@ -32,6 +32,11 @@ public class BlankQuestion {
     private String answer;
 
     /**
+     * 分值
+     */
+    private String score;
+
+    /**
      * 类型
      */
     private String type = "判断题";

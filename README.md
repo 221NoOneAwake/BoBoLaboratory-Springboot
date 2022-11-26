@@ -80,6 +80,7 @@ create table bobo.questionwarehouse
 | choice3    | String   | varchar(3000) | no           | no       | 选项3      |
 | choice4    | String   | varchar(3000) | no           | no       | 选项4      |
 | answer     | String   | varchar(3000) | no           | no       | 答案       |
+| score      | Integer  | int           | no           | no       | 分数       |
 
 ```mysql
     create table bobo.choicequestion
@@ -93,6 +94,7 @@ create table bobo.questionwarehouse
         choice4    varchar(3000) not null,
         answer     varchar(3000) not null,
         question   varchar(3000) not null,
+        score      int           not null,
         constraint choicequestion_ibfk_1
             foreign key (questionId) references bobo.questionwarehouse (id)
     )
@@ -110,6 +112,7 @@ create index questionId
 | questionId | Long     | bigint        | no           | no       | 题库表外键 |
 | question   | String   | varchar(3000) | no           | no       | 题目       |
 | answer     | String   | varchar(3000) | no           | no       | 答案       |
+| score      | Integer  | int           | no           | no       | 分数       |
 
 ```mysql
 create table bobo.blankquestion
@@ -119,6 +122,7 @@ create table bobo.blankquestion
     questionId bigint        not null,
     question   varchar(3000) not null,
     answer     varchar(3000) not null,
+    score      int           not null,
     constraint blankquestion_ibfk_1
         foreign key (questionid) references bobo.questionwarehouse (id)
 )
@@ -136,6 +140,7 @@ create index questionId
 | questionId | Long     | bigint        | no           | no       | 题库表外键 |
 | question   | String   | varchar(3000) | no           | no       | 题目       |
 | answer     | String   | varchar(3000) | no           | no       | 答案       |
+| score      | Integer  | int           | no           | no       | 分数       |
 
 ```mysql
 create table bobo.judgequestion
@@ -145,6 +150,7 @@ create table bobo.judgequestion
     questionId bigint        not null,
     question   varchar(3000) not null,
     answer     varchar(3000) not null,
+    score      int           not null,
     constraint judgequestion_ibfk_1
         foreign key (questionId) references bobo.questionwarehouse (Id)
 )
