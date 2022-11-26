@@ -35,4 +35,8 @@ public class NormalUserLoginController {
         return normalUserService.normalUserLogin(loginData.code);
     }
 
+    @PostMapping("/register")
+    public ResponseResult normalUserRegister(@RequestBody NormalUser normalUser) {
+        return normalUserService.normalUserRegister(normalUser);
+    }
 }

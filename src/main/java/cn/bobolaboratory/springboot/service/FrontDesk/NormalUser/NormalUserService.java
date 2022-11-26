@@ -1,5 +1,6 @@
 package cn.bobolaboratory.springboot.service.FrontDesk.NormalUser;
 
+import cn.bobolaboratory.springboot.entity.NormalUser;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 
 /**
@@ -14,4 +15,10 @@ public interface NormalUserService {
      */
     ResponseResult normalUserLogin(String code);
 
+    /**
+     * 新用户注册
+     * @param normalUser 新用户信息
+     * @return 返回结果
+     */
+    ResponseResult normalUserRegister(NormalUser normalUser);
 }

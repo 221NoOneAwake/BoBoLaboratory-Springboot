@@ -81,4 +81,19 @@ public class NormalUserServiceImpl implements NormalUserService {
         String token = JwtUtil.createJwt(openid);
         return ResponseResult.success(token);
     }
+
+    /**
+     * 新用户注册
+     * @param normalUser 新用户信息
+     * @return 返回结果
+     */
+    @Override
+    public ResponseResult normalUserRegister(NormalUser normalUser) {
+        try {
+            normalUserMapper.updateNormalUserByOpenId(normalUser);
+            return ResponseResult.success();
+        } catch (RuntimeException e) {
+            return ResponseResult.error(e.getMessage());
+        }
+    }
 }
