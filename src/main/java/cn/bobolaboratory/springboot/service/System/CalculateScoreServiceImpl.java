@@ -40,7 +40,7 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
     public ResponseResult calculateScoreAndSaveRecord(AnswerListDTO answerListDTO) {
         int score = 0;
         Record record;
-        int times = recordMapper.checkTimesByNormalUserIdAndQuestionId(new Record(answerListDTO.getBlankQuestionList().get(0).getQuestionId(), answerListDTO.getOpenId()));
+        int times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getBlankQuestionList().get(0).getQuestionId(), answerListDTO.getOpenId()));
         for (BlankQuestion blankQuestion : answerListDTO.getBlankQuestionList()) {
             BlankQuestion blankQuestionAnswerAndScore = blankQuestionMapper.queryAnswerAndScoreById(blankQuestion.getId());
             if (blankQuestion.getAnswer().equals(blankQuestionAnswerAndScore.getAnswer())) {
