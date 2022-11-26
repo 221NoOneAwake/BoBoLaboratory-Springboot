@@ -73,10 +73,8 @@ public class NormalUserServiceImpl implements NormalUserService {
             } catch (Exception e) {
                 throw new RuntimeException("Save user error");
             }
-            System.out.println("成功获取openId,保存用户");
-            System.out.println(user.getOpenId());
             normalUserMapper.registerNormalUser(user);
-            System.out.println("新用户注册");
+            return ResponseResult.success("用户尚未注册");
         }
 
         redisCache.setObject("[OnlineNormalUser]" + openid, user);
