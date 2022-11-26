@@ -1,5 +1,6 @@
 package cn.bobolaboratory.springboot.mapper;
 
+import cn.bobolaboratory.springboot.entity.BlankQuestion;
 import cn.bobolaboratory.springboot.entity.ChoiceQuestion;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -54,4 +55,11 @@ public interface ChoiceQuestionMapper {
      * @return 返回题目id列表
      */
     List<Long> queryIdByQuestionId(Long questionId);
+
+    /**
+     * 根据id获取答案和分值
+     * @param id 题目id
+     * @return 答案和分值
+     */
+    ChoiceQuestion queryAnswerAndScoreById(Long id);
 }

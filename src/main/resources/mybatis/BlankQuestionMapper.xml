@@ -36,4 +36,8 @@
     <select id="queryIdByQuestionId" parameterType="long" resultType="long">
         select id from bobo.blankquestion where questionId = #{questionId};
     </select>
+
+    <select id="queryAnswerAndScoreById" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.BlankQuestion">
+        select answer from bobo.blankquestion where id = #{id};
+    </select>
 </mapper>

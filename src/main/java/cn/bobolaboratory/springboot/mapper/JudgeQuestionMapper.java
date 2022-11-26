@@ -55,4 +55,11 @@ public interface JudgeQuestionMapper {
      * @return 返回题目id列表
      */
     List<Long> queryIdByQuestionId(Long questionId);
+
+    /**
+     * 根据id获取答案和分值
+     * @param id 题目id
+     * @return 答案和分值
+     */
+    JudgeQuestion queryAnswerAndScoreById(Long id);
 }

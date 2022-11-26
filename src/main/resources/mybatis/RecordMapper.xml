@@ -3,11 +3,15 @@
 
 <mapper namespace="cn.bobolaboratory.springboot.mapper.RecordMapper">
     <insert id="addRecord" parameterType="cn.bobolaboratory.springboot.entity.Record">
-        insert into bobo.record (questionId, studentId, type, date, times, answer, result, score)
+        insert into bobo.record (questionId, studentId, type, `date`, times, answer, result, score)
             VALUE (#{questionId}, #{studentId}, #{type}, #{date}, #{times}, #{answer}, #{result}, #{score});
     </insert>
 
     <select id="queryAllRecord">
         select * from bobo.record;
+    </select>
+
+    <select id="checkTimesByNormalUserIdAndQuestionId" parameterType="cn.bobolaboratory.springboot.entity.Record">
+        select COUNT(id) from bobo.record where studentId = #{studentId} and questionId = #{questionId};
     </select>
 </mapper>

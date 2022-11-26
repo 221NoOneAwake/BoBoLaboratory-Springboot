@@ -40,4 +40,8 @@
     <select id="queryIdByQuestionId" parameterType="long" resultType="long">
         select id from bobo.choicequestion where questionId = #{questionId};
     </select>
+
+    <select id="queryAnswerAndScoreById" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.ChoiceQuestion">
+        select answer from bobo.choicequestion where id = #{id};
+    </select>
 </mapper>

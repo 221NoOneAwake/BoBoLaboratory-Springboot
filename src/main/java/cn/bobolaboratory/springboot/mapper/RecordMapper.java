@@ -21,4 +21,11 @@ public interface RecordMapper {
      * @return 返回查询结果
      */
     List<Record> queryAllRecord();
+
+    /**
+     * 查看已答题次数
+     * @param record 答题人Id和题目Id
+     * @return 返回已答题次数
+     */
+    Integer checkTimesByNormalUserIdAndQuestionId(Record record);
 }
