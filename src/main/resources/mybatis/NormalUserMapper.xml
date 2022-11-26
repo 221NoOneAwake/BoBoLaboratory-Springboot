@@ -27,4 +27,17 @@
         from bobo.normaluser
         where id = #{id};
     </delete>
+
+    <insert id="registerNormalUser" parameterType="cn.bobolaboratory.springboot.entity.NormalUser">
+        insert into bobo.normaluser (openId) value #{openId};
+    </insert>
+
+    <update id="addNormalUser" parameterType="cn.bobolaboratory.springboot.entity.NormalUser">
+        update bobo.normaluser
+        set `name`     = #{name},
+            sex      = #{sex},
+            `group`  = #{group},
+            schoolId = #{schoolId}
+        where openId = #{openId};
+    </update>
 </mapper>

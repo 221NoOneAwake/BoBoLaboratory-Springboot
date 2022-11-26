@@ -16,7 +16,7 @@ public interface NormalUserMapper {
      * @param openid 用户微信openid
      * @return 返回查询获得的信息
      */
-    List<NormalUser> queryNormalUserByOpenid(String openid);
+    NormalUser queryNormalUserByOpenid(String openid);
 
 
     /**
@@ -36,4 +36,16 @@ public interface NormalUserMapper {
      * @param id 要删除的学生的id
      */
     void deleteNormalUserById(Long id);
+
+    /**
+     * 新用户注册
+     * @param normalUser 包含新用户的openId
+     */
+    void registerNormalUser(NormalUser normalUser);
+
+    /**
+     * 新用户信息完善
+     * @param normalUser 包含openId和用户信息
+     */
+    void addNormalUser(NormalUser normalUser);
 }

@@ -19,7 +19,7 @@ public class NormalUser {
     /**
      * 微信openid
      */
-    private String openid;
+    private String openId;
 
     /**
      * 真实姓名
@@ -34,10 +34,14 @@ public class NormalUser {
     /**
      * 学号
      */
-    private String schoolid;
+    private String schoolId;
 
     /**
      * 性别
      */
     private String sex;
+
+    public NormalUser(String openId) {
+        this.openId = openId;
+    }
 }
