@@ -24,7 +24,7 @@ public class Record {
     /**
      * 用户的openid
      */
-    private Long openid;
+    private String openId;
 
     /**
      * 题目类型
@@ -39,7 +39,7 @@ public class Record {
     /**
      * 答题的次数
      */
-    private int times;
+    private Integer times;
 
     /**
      * 答案
@@ -56,9 +56,9 @@ public class Record {
      */
     private int score;
 
-    public Record(Long questionId, Long openid, String type, Long date, int times, String answer, byte result, int score) {
+    public Record(Long questionId, String openId, String type, Long date, Integer times, String answer, byte result, int score) {
         this.questionId = questionId;
-        this.openid = openid;
+        this.openId = openId;
         this.type = type;
         this.date = date;
         this.times = times;
