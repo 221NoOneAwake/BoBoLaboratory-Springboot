@@ -65,6 +65,7 @@ public class NormalUserServiceImpl implements NormalUserService {
         }
 
         NormalUser user;
+        System.out.println("查询用户是否存在");
         user = normalUserMapper.queryNormalUserByOpenid(openid);
         if (user == null) {
             try {
@@ -72,7 +73,10 @@ public class NormalUserServiceImpl implements NormalUserService {
             } catch (Exception e) {
                 throw new RuntimeException("Save user error");
             }
+            System.out.println("成功获取openId,保存用户");
+            System.out.println(user.getOpenId());
             normalUserMapper.registerNormalUser(user);
+            System.out.println("新用户注册");
         }
 
         redisCache.setObject("[OnlineNormalUser]" + openid, user);

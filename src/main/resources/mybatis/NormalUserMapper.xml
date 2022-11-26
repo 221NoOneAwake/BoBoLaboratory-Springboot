@@ -29,7 +29,7 @@
     </delete>
 
     <insert id="registerNormalUser" parameterType="cn.bobolaboratory.springboot.entity.NormalUser">
-        insert into bobo.normaluser (openId) value #{openId};
+        insert into bobo.normaluser (openId) value (#{openId});
     </insert>
 
     <update id="addNormalUser" parameterType="cn.bobolaboratory.springboot.entity.NormalUser">

@@ -192,7 +192,7 @@ create index questionId
 | ---------- | -------- | ------------- | ------------ | -------- | ---------- |
 | id         | Long     | bigint        | no           | yes      | 自增主键   |
 | questionId | Long     | bigint        | no           | no       | 题目的id   |
-| studentId  | Long     | bigint        | no           | no       | 学生的id   |
+| studentId  | Long     | bigint        | no           | no       | openid     |
 | type       | String   | varchar(255)  | no           | no       | 题目类型   |
 | date       | Long     | bigint        | no           | no       | 答题时间   |
 | times      | int      | int           | no           | no       | 答题的次数 |

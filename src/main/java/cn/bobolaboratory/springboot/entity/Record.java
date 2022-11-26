@@ -22,9 +22,9 @@ public class Record {
     private Long questionId;
 
     /**
-     * 学生的id
+     * 用户的openid
      */
-    private Long studentId;
+    private Long openid;
 
     /**
      * 题目类型
@@ -55,4 +55,15 @@ public class Record {
      * 得分 * 10
      */
     private int score;
+
+    public Record(Long questionId, Long openid, String type, Long date, int times, String answer, byte result, int score) {
+        this.questionId = questionId;
+        this.openid = openid;
+        this.type = type;
+        this.date = date;
+        this.times = times;
+        this.answer = answer;
+        this.result = result;
+        this.score = score;
+    }
 }

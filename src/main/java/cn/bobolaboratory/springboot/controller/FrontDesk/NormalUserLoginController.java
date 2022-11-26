@@ -3,7 +3,9 @@ package cn.bobolaboratory.springboot.controller.FrontDesk;
 import cn.bobolaboratory.springboot.entity.NormalUser;
 import cn.bobolaboratory.springboot.service.FrontDesk.NormalUser.NormalUserService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,9 +25,14 @@ public class NormalUserLoginController {
         this.normalUserService = normalUserService;
     }
 
+    @Setter
+    static class LoginData {
+        String code;
+    }
+
     @PostMapping("")
-    public ResponseResult normalUserLogin(@RequestBody String code) {
-        return normalUserService.normalUserLogin(code);
+    public ResponseResult normalUserLogin(@RequestBody LoginData loginData) {
+        return normalUserService.normalUserLogin(loginData.code);
     }
 
 }

@@ -36,9 +36,20 @@ public class AnswerListDTO {
      */
     private List<JudgeQuestion> judgeQuestionList;
 
-    public AnswerListDTO(List<BlankQuestion> blankQuestionList, List<ChoiceQuestion> choiceQuestionList, List<JudgeQuestion> judgeQuestionList) {
+    /**
+     * 答题日期时间戳
+     */
+    private Long date;
+
+    /**
+     * 答题次数
+     */
+    private Integer times;
+
+    public AnswerListDTO(List<BlankQuestion> blankQuestionList, List<ChoiceQuestion> choiceQuestionList, List<JudgeQuestion> judgeQuestionList, Long date) {
         this.blankQuestionList = blankQuestionList;
         this.choiceQuestionList = choiceQuestionList;
         this.judgeQuestionList = judgeQuestionList;
+        this.date = date;
     }
 }
