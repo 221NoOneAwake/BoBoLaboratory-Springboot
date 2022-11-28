@@ -39,5 +39,5 @@ public class BlankQuestion {
     /**
      * 类型
      */
-    private String type = "判断题";
+    private String type = "填空题";
 }
