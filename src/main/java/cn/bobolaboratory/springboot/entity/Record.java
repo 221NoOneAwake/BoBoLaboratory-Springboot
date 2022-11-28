@@ -67,8 +67,9 @@ public class Record {
         this.score = score;
     }
 
-    public Record(Long questionId, String openId) {
+    public Record(Long questionId, String openId, String type) {
         this.questionId = questionId;
         this.openId = openId;
+        this.type = type;
     }
 }

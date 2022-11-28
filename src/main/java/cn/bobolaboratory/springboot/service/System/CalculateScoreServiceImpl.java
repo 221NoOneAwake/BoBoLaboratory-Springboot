@@ -42,12 +42,12 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
         int times;
         Record record;
         if (answerListDTO.getBlankQuestionList().size() != 0) {
-            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getBlankQuestionList().get(0).getId(), answerListDTO.getOpenId()));
+            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getBlankQuestionList().get(0).getId(), answerListDTO.getOpenId(), "填空题"));
         } else if (answerListDTO.getChoiceQuestionList().size() != 0) {
-            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getChoiceQuestionList().get(0).getId(), answerListDTO.getOpenId()));
+            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getChoiceQuestionList().get(0).getId(), answerListDTO.getOpenId(), "选择题"));
         } else if (answerListDTO.getJudgeQuestionList().size() != 0) {
             System.out.println(answerListDTO.getJudgeQuestionList().get(0).getId());
-            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getJudgeQuestionList().get(0).getId(), answerListDTO.getOpenId()));
+            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getJudgeQuestionList().get(0).getId(), answerListDTO.getOpenId(), "判断题"));
         } else {
             return ResponseResult.error("空题目集无法作答");
         }
