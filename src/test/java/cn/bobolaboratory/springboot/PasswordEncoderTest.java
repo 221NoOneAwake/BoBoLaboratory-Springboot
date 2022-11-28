@@ -10,6 +10,6 @@ public class PasswordEncoderTest {
     @Test
     public void pwdEncoder() {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        System.out.println(passwordEncoder.encode("Wd.020518"));
+        System.out.println(passwordEncoder.encode("12345687"));
     }
 }
