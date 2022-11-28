@@ -30,7 +30,7 @@
     </delete>
 
     <select id="queryQuestionAndAnswerByQuestionId" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.ChoiceQuestion">
-        select question, choice1, choice2, choice3, choice4, answer from bobo.choicequestion where questionId = #{questionId};
+        select id, question, choice1, choice2, choice3, choice4, answer, score from bobo.choicequestion where questionId = #{questionId};
     </select>
 
     <select id="queryIdAndQuestionByQuestionId" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.ChoiceQuestion">

@@ -26,7 +26,7 @@
     </delete>
 
     <select id="queryQuestionAndAnswerByQuestionId" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.BlankQuestion">
-        select question, answer from bobo.blankquestion where questionId = #{questionId};
+        select id, question, answer, score from bobo.blankquestion where questionId = #{questionId};
     </select>
 
     <select id="queryIdAndQuestionByQuestionId" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.BlankQuestion">
