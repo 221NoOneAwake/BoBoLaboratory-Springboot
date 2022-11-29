@@ -50,7 +50,7 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService {
     @Override
     public ResponseResult updateChoiceQuestionById(ChoiceQuestion choiceQuestion) {
         try {
-            choiceQuestionMapper.updateChoiceQuestion(choiceQuestion);
+            choiceQuestionMapper.updateChoiceQuestionById(choiceQuestion);
             return ResponseResult.success();
         } catch (RuntimeException e) {
             return ResponseResult.error(e.getMessage());

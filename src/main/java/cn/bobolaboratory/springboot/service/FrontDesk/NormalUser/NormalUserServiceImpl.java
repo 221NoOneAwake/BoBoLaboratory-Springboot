@@ -65,7 +65,6 @@ public class NormalUserServiceImpl implements NormalUserService {
         }
 
         NormalUser user;
-        System.out.println("查询用户是否存在");
         user = normalUserMapper.queryNormalUserByOpenid(openid);
         if (user == null) {
             try {

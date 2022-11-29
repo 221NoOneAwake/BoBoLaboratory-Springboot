@@ -49,7 +49,7 @@ public class JudgeQuestionServiceImpl implements JudgeQuestionService {
     @Override
     public ResponseResult updateJudgeQuestionById(JudgeQuestion judgeQuestion) {
         try {
-            judgeQuestionMapper.updateJudgeQuestion(judgeQuestion);
+            judgeQuestionMapper.updateJudgeQuestionById(judgeQuestion);
             return ResponseResult.success();
         } catch (RuntimeException e) {
             return ResponseResult.error(e.getMessage());

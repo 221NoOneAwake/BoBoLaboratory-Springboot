@@ -26,7 +26,7 @@ public interface BlankQuestionMapper {
      * 修改题目
      * @param blankQuestion 要修改的内容
      */
-    void updateBlankQuestion(BlankQuestion blankQuestion);
+    void updateBlankQuestionById(BlankQuestion blankQuestion);
 
     /**
      * 删除题目

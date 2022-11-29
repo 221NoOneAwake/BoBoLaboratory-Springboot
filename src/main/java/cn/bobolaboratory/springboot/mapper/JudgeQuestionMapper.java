@@ -27,7 +27,7 @@ public interface JudgeQuestionMapper {
      * 修改题目
      * @param judgeQuestion 要修改的内容
      */
-    void updateJudgeQuestion(JudgeQuestion judgeQuestion);
+    void updateJudgeQuestionById(JudgeQuestion judgeQuestion);
 
     /**
      * 删除题目

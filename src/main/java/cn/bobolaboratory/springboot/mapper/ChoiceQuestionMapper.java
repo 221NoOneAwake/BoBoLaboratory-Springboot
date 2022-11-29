@@ -27,7 +27,7 @@ public interface ChoiceQuestionMapper {
      * 修改题目
      * @param choiceQuestion 要修改的内容
      */
-    void updateChoiceQuestion(ChoiceQuestion choiceQuestion);
+    void updateChoiceQuestionById(ChoiceQuestion choiceQuestion);
 
     /**
      * 删除题目

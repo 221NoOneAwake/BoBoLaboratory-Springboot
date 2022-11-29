@@ -51,7 +51,7 @@ public class BlankQuestionServiceImpl implements BlankQuestionService {
     @Override
     public ResponseResult updateBlankQuestionById(BlankQuestion blankQuestion) {
        try {
-           blankQuestionMapper.updateBlankQuestion(blankQuestion);
+           blankQuestionMapper.updateBlankQuestionById(blankQuestion);
            return ResponseResult.success();
        } catch (RuntimeException e) {
            return ResponseResult.error(e.getMessage());
