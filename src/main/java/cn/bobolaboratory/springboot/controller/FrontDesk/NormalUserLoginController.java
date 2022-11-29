@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author WhiteLeaf03
  */
 @RestController
-@RequestMapping("/fd/api/login")
+@RequestMapping("/fd/api")
 public class NormalUserLoginController {
 
     private final NormalUserService normalUserService;
@@ -30,7 +30,7 @@ public class NormalUserLoginController {
         String code;
     }
 
-    @PostMapping("")
+    @PostMapping("/login")
     public ResponseResult normalUserLogin(@RequestBody LoginData loginData) {
         return normalUserService.normalUserLogin(loginData.code);
     }
