@@ -37,7 +37,7 @@ public class BlankQuestionController {
 
     @PutMapping("")
     public ResponseResult updateQuestion(@RequestBody BlankQuestion blankQuestion) {
-        return blankQuestionService.updateBlankQuestion(blankQuestion);
+        return blankQuestionService.updateBlankQuestionById(blankQuestion);
     }
 
     @DeleteMapping("")

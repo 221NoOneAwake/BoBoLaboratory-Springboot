@@ -37,7 +37,7 @@ public class ChoiceQuestionController {
 
     @PutMapping("")
     public ResponseResult updateQuestion(@RequestBody ChoiceQuestion choiceQuestion) {
-        return choiceQuestionService.updateChoiceQuestion(choiceQuestion);
+        return choiceQuestionService.updateChoiceQuestionById(choiceQuestion);
     }
 
     @DeleteMapping("")

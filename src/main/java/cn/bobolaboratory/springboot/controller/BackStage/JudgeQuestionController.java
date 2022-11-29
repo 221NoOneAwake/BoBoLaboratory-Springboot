@@ -37,7 +37,7 @@ public class JudgeQuestionController {
 
     @PutMapping("")
     public ResponseResult updateQuestion(@RequestBody JudgeQuestion judgeQuestion) {
-        return judgeQuestionService.updateJudgeQuestion(judgeQuestion);
+        return judgeQuestionService.updateJudgeQuestionById(judgeQuestion);
     }
 
     @DeleteMapping("")
