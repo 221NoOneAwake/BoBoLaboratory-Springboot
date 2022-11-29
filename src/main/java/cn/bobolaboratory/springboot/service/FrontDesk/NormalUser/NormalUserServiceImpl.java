@@ -75,7 +75,13 @@ public class NormalUserServiceImpl implements NormalUserService {
                 throw new RuntimeException("Save user error");
             }
             normalUserMapper.registerNormalUser(user);
-            return ResponseResult.success("用户尚未注册");
+            NormalUser normalUser = normalUserMapper.queryNormalUserByOpenid(openid);
+            Map<String, String> map = new HashMap<>();
+            redisCache.setObject("[NUser]id:" + normalUser.getId(), normalUser);
+            String token = JwtUtil.createJwt(normalUser.getId().toString());
+            map.put("msg", "用户尚未注册");
+            map.put("token", token);
+            return ResponseResult.success(map);
         }
 
         redisCache.setObject("[NUser]id:" + user.getId(), user);
