@@ -9,8 +9,10 @@ import cn.bobolaboratory.springboot.mapper.BlankQuestionMapper;
 import cn.bobolaboratory.springboot.mapper.ChoiceQuestionMapper;
 import cn.bobolaboratory.springboot.mapper.JudgeQuestionMapper;
 import cn.bobolaboratory.springboot.mapper.RecordMapper;
+import cn.bobolaboratory.springboot.security.AuthNormalUser;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -40,14 +42,16 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
     public ResponseResult calculateScoreAndSaveRecord(AnswerListDTO answerListDTO) {
         int score = 0;
         int times;
+        AuthNormalUser authNormalUser = (AuthNormalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Long userId = authNormalUser.getNormalUser().getId();
         Record record;
         if (answerListDTO.getBlankQuestionList().size() != 0) {
-            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getBlankQuestionList().get(0).getId(), answerListDTO.getOpenId(), "填空题"));
+            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getBlankQuestionList().get(0).getId(), userId, "填空题"));
         } else if (answerListDTO.getChoiceQuestionList().size() != 0) {
-            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getChoiceQuestionList().get(0).getId(), answerListDTO.getOpenId(), "选择题"));
+            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getChoiceQuestionList().get(0).getId(), userId, "选择题"));
         } else if (answerListDTO.getJudgeQuestionList().size() != 0) {
             System.out.println(answerListDTO.getJudgeQuestionList().get(0).getId());
-            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getJudgeQuestionList().get(0).getId(), answerListDTO.getOpenId(), "判断题"));
+            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getJudgeQuestionList().get(0).getId(), userId, "判断题"));
         } else {
             return ResponseResult.error("空题目集无法作答");
         }
@@ -55,10 +59,10 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
             BlankQuestion blankQuestionAnswerAndScore = blankQuestionMapper.queryAnswerAndScoreById(blankQuestion.getId());
             if (blankQuestion.getAnswer().equals(blankQuestionAnswerAndScore.getAnswer())) {
                 score += blankQuestionAnswerAndScore.getScore();
-                record= new Record(blankQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), times + 1, blankQuestion.getAnswer(), (byte) 1, blankQuestionAnswerAndScore.getScore());
+                record= new Record(blankQuestion.getId(), userId, "填空题", answerListDTO.getDate(), times + 1, blankQuestion.getAnswer(), (byte) 1, blankQuestionAnswerAndScore.getScore());
                 recordMapper.addRecord(record);
             } else {
-                record = new Record(blankQuestion.getId(), answerListDTO.getOpenId(), "填空题", answerListDTO.getDate(), times + 1, blankQuestion.getAnswer(), (byte) 0, 0);
+                record = new Record(blankQuestion.getId(), userId, "填空题", answerListDTO.getDate(), times + 1, blankQuestion.getAnswer(), (byte) 0, 0);
                 recordMapper.addRecord(record);
             }
         }
@@ -66,10 +70,10 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
             ChoiceQuestion choiceQuestionAnswerAndScore = choiceQuestionMapper.queryAnswerAndScoreById(choiceQuestion.getId());
             if (choiceQuestion.getAnswer().equals(choiceQuestionAnswerAndScore.getAnswer())) {
                 score += choiceQuestionAnswerAndScore.getScore();
-                record = new Record(choiceQuestion.getId(), answerListDTO.getOpenId(), "选择题", answerListDTO.getDate(), times + 1, choiceQuestion.getAnswer(), (byte) 1, choiceQuestionAnswerAndScore.getScore());
+                record = new Record(choiceQuestion.getId(), userId, "选择题", answerListDTO.getDate(), times + 1, choiceQuestion.getAnswer(), (byte) 1, choiceQuestionAnswerAndScore.getScore());
                 recordMapper.addRecord(record);
             } else {
-                record = new Record(choiceQuestion.getId(), answerListDTO.getOpenId(), "选择题", answerListDTO.getDate(), times + 1, choiceQuestion.getAnswer(), (byte) 0, 0);
+                record = new Record(choiceQuestion.getId(), userId, "选择题", answerListDTO.getDate(), times + 1, choiceQuestion.getAnswer(), (byte) 0, 0);
                 recordMapper.addRecord(record);
             }
         }
@@ -78,11 +82,11 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
             if (judgeQuestion.getAnswer().equals(judgeQuestionAnswerAndScore.getAnswer())) {
                 score += judgeQuestionAnswerAndScore.getScore();
                 System.out.println(times);
-                record = new Record(judgeQuestion.getId(), answerListDTO.getOpenId(), "判断题", answerListDTO.getDate(), times + 1, judgeQuestion.getAnswer(), (byte) 1, judgeQuestionAnswerAndScore.getScore());
+                record = new Record(judgeQuestion.getId(), userId, "判断题", answerListDTO.getDate(), times + 1, judgeQuestion.getAnswer(), (byte) 1, judgeQuestionAnswerAndScore.getScore());
                 recordMapper.addRecord(record);
             } else {
                 System.out.println(times);
-                record = new Record(judgeQuestion.getId(), answerListDTO.getOpenId(), "判断题", answerListDTO.getDate(), times + 1, judgeQuestion.getAnswer(), (byte) 0, 0);
+                record = new Record(judgeQuestion.getId(), userId, "判断题", answerListDTO.getDate(), times + 1, judgeQuestion.getAnswer(), (byte) 0, 0);
                 recordMapper.addRecord(record);
             }
         }

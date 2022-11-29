@@ -17,11 +17,6 @@ import java.util.List;
 @NoArgsConstructor
 public class AnswerListDTO {
     /**
-     * 答题人openId
-     */
-    private String openId;
-
-    /**
      * 包含填空题id和答案
      */
     private List<BlankQuestion> blankQuestionList;

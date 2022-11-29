@@ -2,6 +2,7 @@ package cn.bobolaboratory.springboot.service.FrontDesk.NormalUser;
 
 import cn.bobolaboratory.springboot.entity.NormalUser;
 import cn.bobolaboratory.springboot.mapper.NormalUserMapper;
+import cn.bobolaboratory.springboot.security.AuthNormalUser;
 import cn.bobolaboratory.springboot.utils.JwtUtil;
 import cn.bobolaboratory.springboot.utils.RedisCache;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -76,8 +78,8 @@ public class NormalUserServiceImpl implements NormalUserService {
             return ResponseResult.success("用户尚未注册");
         }
 
-        redisCache.setObject("[OnlineNormalUser]" + openid, user);
-        String token = JwtUtil.createJwt(openid);
+        redisCache.setObject("[NUser]id:" + user.getId(), user);
+        String token = JwtUtil.createJwt(user.getId().toString());
         return ResponseResult.success(token);
     }
 
@@ -89,7 +91,9 @@ public class NormalUserServiceImpl implements NormalUserService {
     @Override
     public ResponseResult normalUserRegister(NormalUser normalUser) {
         try {
-            normalUserMapper.updateNormalUserByOpenId(normalUser);
+            AuthNormalUser authNormalUser = (AuthNormalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            normalUser.setId(authNormalUser.getNormalUser().getId());
+            normalUserMapper.updateNormalUserById(normalUser);
             return ResponseResult.success();
         } catch (RuntimeException e) {
             return ResponseResult.error(e.getMessage());

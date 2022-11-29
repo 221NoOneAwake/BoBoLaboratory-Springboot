@@ -22,9 +22,9 @@ public class Record {
     private Long questionId;
 
     /**
-     * 用户的openid
+     * 用户id
      */
-    private String openId;
+    private Long userId;
 
     /**
      * 题目类型
@@ -56,9 +56,9 @@ public class Record {
      */
     private int score;
 
-    public Record(Long questionId, String openId, String type, Long date, Integer times, String answer, byte result, int score) {
+    public Record(Long questionId, Long userId, String type, Long date, Integer times, String answer, byte result, int score) {
         this.questionId = questionId;
-        this.openId = openId;
+        this.userId = userId;
         this.type = type;
         this.date = date;
         this.times = times;
@@ -67,9 +67,9 @@ public class Record {
         this.score = score;
     }
 
-    public Record(Long questionId, String openId, String type) {
+    public Record(Long questionId, Long userId, String type) {
         this.questionId = questionId;
-        this.openId = openId;
+        this.userId = userId;
         this.type = type;
     }
 }

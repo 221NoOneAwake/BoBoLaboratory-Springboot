@@ -16,8 +16,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.rmi.RemoteException;
 import java.util.Objects;
 
+/**
+ * @author WhiteLeaf03
+ */
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     private final RedisCache redisCache;
@@ -53,15 +57,31 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         } catch (Exception e) {
             throw new RuntimeException("token非法");
         }
-        //从redis中获取用户信息
-        AuthBackstageUser authBackstageUser = new AuthBackstageUser(redisCache.getCacheObject("[OnlineUser]id:" + userId));
-        if (Objects.isNull(authBackstageUser.getBackstageUser())) {
-            throw new  RuntimeException("用户未登录");
+
+        if (request.getRequestURI().contains("/bs/api")) {
+            //从redis中获取用户信息
+            System.out.println("userId" + userId);
+            AuthBackstageUser authBackstageUser = new AuthBackstageUser(redisCache.getCacheObject("[BSUser]id:" + userId));
+            System.out.println("[BSUser]id:" + userId);
+            if (Objects.isNull(authBackstageUser.getBackstageUser())) {
+                throw new  RuntimeException("用户未登录");
+            }
+            //存入SecurityContextHolder
+            //TODO 获取权限信息 封装到Authentication
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(authBackstageUser, null, authBackstageUser.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            filterChain.doFilter(request, response);
         }
-        //存入SecurityContextHolder
-        //TODO 获取权限信息 封装到Authentication
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(authBackstageUser, null, authBackstageUser.getAuthorities());
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-        filterChain.doFilter(request, response);
+        else if (request.getRequestURI().contains("/fd/api")) {
+            AuthNormalUser authNormalUser = new AuthNormalUser(redisCache.getCacheObject("[NUser]id:" + userId));
+            System.out.println("[NUser]id:" + userId);
+            if (Objects.isNull(authNormalUser.getNormalUser())) {
+                throw new RemoteException("用户未登录");
+            }
+            //存入SecurityContextHolder
+            UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(authNormalUser, null, authNormalUser.getAuthorities());
+            SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+            filterChain.doFilter(request, response);
+        }
     }
 }

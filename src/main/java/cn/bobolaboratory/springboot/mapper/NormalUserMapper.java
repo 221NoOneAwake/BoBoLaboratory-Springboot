@@ -42,10 +42,4 @@ public interface NormalUserMapper {
      * @param normalUser 包含新用户的openId
      */
     void registerNormalUser(NormalUser normalUser);
-
-    /**
-     * 新用户信息完善
-     * @param normalUser 包含openId和用户信息
-     */
-    void updateNormalUserByOpenId(NormalUser normalUser);
 }
