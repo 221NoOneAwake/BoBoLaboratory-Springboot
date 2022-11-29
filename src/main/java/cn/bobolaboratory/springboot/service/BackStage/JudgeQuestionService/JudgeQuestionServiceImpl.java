@@ -47,7 +47,7 @@ public class JudgeQuestionServiceImpl implements JudgeQuestionService {
      * @return 返回结果
      */
     @Override
-    public ResponseResult updateJudgeQuestion(JudgeQuestion judgeQuestion) {
+    public ResponseResult updateJudgeQuestionById(JudgeQuestion judgeQuestion) {
         try {
             judgeQuestionMapper.updateJudgeQuestion(judgeQuestion);
             return ResponseResult.success();

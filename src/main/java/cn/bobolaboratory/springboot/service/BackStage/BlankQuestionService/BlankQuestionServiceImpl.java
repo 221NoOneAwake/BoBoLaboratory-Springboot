@@ -49,7 +49,7 @@ public class BlankQuestionServiceImpl implements BlankQuestionService {
      * @return 返回结果
      */
     @Override
-    public ResponseResult updateBlankQuestion(BlankQuestion blankQuestion) {
+    public ResponseResult updateBlankQuestionById(BlankQuestion blankQuestion) {
        try {
            blankQuestionMapper.updateBlankQuestion(blankQuestion);
            return ResponseResult.success();

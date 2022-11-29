@@ -25,7 +25,7 @@ public interface ChoiceQuestionService {
      * @param choiceQuestion 要修改的内容
      * @return 返回结果
      */
-    ResponseResult updateChoiceQuestion(ChoiceQuestion choiceQuestion);
+    ResponseResult updateChoiceQuestionById(ChoiceQuestion choiceQuestion);
 
     /**
      * 删除题目

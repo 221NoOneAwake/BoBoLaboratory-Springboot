@@ -25,7 +25,7 @@ public interface BlankQuestionService {
      * @param blankQuestion 要修改的内容
      * @return 返回结果
      */
-    ResponseResult updateBlankQuestion(BlankQuestion blankQuestion);
+    ResponseResult updateBlankQuestionById(BlankQuestion blankQuestion);
 
     /**
      * 删除题目

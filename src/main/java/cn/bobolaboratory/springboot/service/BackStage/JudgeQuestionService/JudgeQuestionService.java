@@ -24,7 +24,7 @@ public interface JudgeQuestionService {
      * @param judgeQuestion 要修改的内容
      * @return 返回结果
      */
-    ResponseResult updateJudgeQuestion(JudgeQuestion judgeQuestion);
+    ResponseResult updateJudgeQuestionById(JudgeQuestion judgeQuestion);
 
     /**
      * 删除题目

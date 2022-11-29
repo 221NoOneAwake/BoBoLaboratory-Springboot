@@ -48,7 +48,7 @@ public class ChoiceQuestionServiceImpl implements ChoiceQuestionService {
      * @return 返回结果
      */
     @Override
-    public ResponseResult updateChoiceQuestion(ChoiceQuestion choiceQuestion) {
+    public ResponseResult updateChoiceQuestionById(ChoiceQuestion choiceQuestion) {
         try {
             choiceQuestionMapper.updateChoiceQuestion(choiceQuestion);
             return ResponseResult.success();
