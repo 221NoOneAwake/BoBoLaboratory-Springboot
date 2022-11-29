@@ -27,8 +27,6 @@ public class NormalUserController {
         return normalUserService.queryAllNormalUser();
     }
 
-    @PostMapping("")
-
     @PutMapping("")
     public ResponseResult updateNormalUser(@RequestBody NormalUser normalUser) {
         return normalUserService.updateNormalUserById(normalUser);
