@@ -61,4 +61,8 @@
     <select id="checkIdExist" resultType="long" parameterType="long">
         select count(id) from bobo.questionwarehouse where id = #{id};
     </select>
+
+    <select id="queryTimesByQuestionWarehouseId" parameterType="long" resultType="int">
+        select times from bobo.questionwarehouse where id = #{id};
+    </select>
 </mapper>

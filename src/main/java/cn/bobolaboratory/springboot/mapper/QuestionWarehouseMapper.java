@@ -59,4 +59,11 @@ public interface QuestionWarehouseMapper {
      * @return 返回查询结果
      */
     Long checkIdExist(Long id);
+
+    /**
+     * 根据题目库id查询可答题次数
+     * @param id 题目库id
+     * @return 可答题次数
+     */
+    Integer queryTimesByQuestionWarehouseId(Long id);
 }

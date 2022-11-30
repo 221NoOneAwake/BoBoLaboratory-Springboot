@@ -62,4 +62,11 @@ public interface ChoiceQuestionMapper {
      * @return 答案和分值
      */
     ChoiceQuestion queryAnswerAndScoreById(Long id);
+
+    /**
+     * 根据题目id获取题集id
+     * @param id 题目id
+     * @return 题目所属题集的id
+     */
+    Long queryQuestionWarehouseIdByQuestionId(Long id);
 }

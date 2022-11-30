@@ -40,4 +40,8 @@
     <select id="queryAnswerAndScoreById" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.JudgeQuestion">
         select answer, score from bobo.judgequestion where id = #{id};
     </select>
+
+    <select id="queryQuestionWarehouseIdByQuestionId" parameterType="long" resultType="long">
+        select questionId from bobo.judgequestion where id = #{id};
+    </select>
 </mapper>
