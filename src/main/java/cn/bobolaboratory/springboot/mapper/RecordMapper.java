@@ -28,4 +28,11 @@ public interface RecordMapper {
      * @return 返回已答题次数
      */
     Integer checkTimesByOpenIdAndQuestionId(Record record);
+
+    /**
+     * 用户查询答题记录
+     * @param id 用户id
+     * @return 返回查询结果
+     */
+    List<Record> queryRecordByUserId(Long id);
 }
