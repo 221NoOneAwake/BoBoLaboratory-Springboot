@@ -58,7 +58,6 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
             Map<String, Object> questions = new HashMap<>();
             List<ChoiceQuestion> choiceQuestionList = choiceQuestionMapper.queryIdAndQuestionByQuestionId(id);
             List<JudgeQuestion> judgeQuestionList = judgeQuestionMapper.queryIdAndQuestionByQuestionId(id);
-            questions.put("BlankQuestion", blankQuestionList);
             questions.put("ChoiceQuestion", choiceQuestionList);
             questions.put("JudgeQuestion", judgeQuestionList);
             return ResponseResult.success(questions);

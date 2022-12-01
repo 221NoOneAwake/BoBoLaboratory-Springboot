@@ -72,14 +72,14 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
         }
         for (JudgeQuestion judgeQuestion : answerListDTO.getJudgeQuestionList()) {
             JudgeQuestion judgeQuestionAnswerAndScore = judgeQuestionMapper.queryAnswerAndScoreById(judgeQuestion.getId());
-            if (judgeQuestion.getAnswer().equals(judgeQuestionAnswerAndScore.getAnswer())) {
+            if (judgeQuestion.getAnswer() == judgeQuestionAnswerAndScore.getAnswer()) {
                 score += judgeQuestionAnswerAndScore.getScore();
                 System.out.println(times);
-                record = new Record(judgeQuestion.getId(), userId, "判断题", answerListDTO.getDate(), times + 1, judgeQuestion.getAnswer(), (byte) 1, judgeQuestionAnswerAndScore.getScore());
+                record = new Record(judgeQuestion.getId(), userId, "判断题", answerListDTO.getDate(), times + 1, String.valueOf(judgeQuestion.getAnswer()), (byte) 1, judgeQuestionAnswerAndScore.getScore());
                 recordMapper.addRecord(record);
             } else {
                 System.out.println(times);
-                record = new Record(judgeQuestion.getId(), userId, "判断题", answerListDTO.getDate(), times + 1, judgeQuestion.getAnswer(), (byte) 0, 0);
+                record = new Record(judgeQuestion.getId(), userId, "判断题", answerListDTO.getDate(), times + 1, String.valueOf(judgeQuestion.getAnswer()), (byte) 0, 0);
                 recordMapper.addRecord(record);
             }
         }
