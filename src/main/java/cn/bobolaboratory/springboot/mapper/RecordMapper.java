@@ -27,7 +27,7 @@ public interface RecordMapper {
      * @param record 答题人Id和题目Id
      * @return 返回已答题次数
      */
-    Integer checkTimesByOpenIdAndQuestionId(Record record);
+    Integer checkTimesByUserIdAndQuestionId(Record record);
 
     /**
      * 用户查询答题记录

@@ -46,10 +46,10 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
         Long userId = authNormalUser.getNormalUser().getId();
         Record record;
         if (answerListDTO.getChoiceQuestionList().size() != 0) {
-            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getChoiceQuestionList().get(0).getId(), userId, "选择题"));
+            times = recordMapper.checkTimesByUserIdAndQuestionId(new Record(answerListDTO.getChoiceQuestionList().get(0).getId(), userId, "选择题"));
             residueTimes = questionWarehouseMapper.queryTimesByQuestionWarehouseId(choiceQuestionMapper.queryQuestionWarehouseIdByQuestionId(answerListDTO.getChoiceQuestionList().get(0).getId())) - times;
         } else if (answerListDTO.getJudgeQuestionList().size() != 0) {
-            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getJudgeQuestionList().get(0).getId(), userId, "判断题"));
+            times = recordMapper.checkTimesByUserIdAndQuestionId(new Record(answerListDTO.getJudgeQuestionList().get(0).getId(), userId, "判断题"));
             residueTimes = questionWarehouseMapper.queryTimesByQuestionWarehouseId(judgeQuestionMapper.queryQuestionWarehouseIdByQuestionId(answerListDTO.getJudgeQuestionList().get(0).getId())) - times;
         } else {
             return ResponseResult.error("空题目集无法作答");
