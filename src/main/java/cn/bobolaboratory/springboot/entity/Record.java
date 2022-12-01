@@ -54,9 +54,9 @@ public class Record {
     /**
      * 得分 * 10
      */
-    private int score;
+    private Integer score;
 
-    public Record(Long questionId, Long userId, String type, Long date, Integer times, String answer, byte result, int score) {
+    public Record(Long questionId, Long userId, String type, Long date, Integer times, String answer, byte result, Integer score) {
         this.questionId = questionId;
         this.userId = userId;
         this.type = type;

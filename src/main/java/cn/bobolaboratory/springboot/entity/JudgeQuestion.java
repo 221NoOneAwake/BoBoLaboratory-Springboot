@@ -29,7 +29,7 @@ public class JudgeQuestion {
     /**
      * 答案
      */
-    private String answer;
+    private byte answer;
 
     /**
      * 分值
