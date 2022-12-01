@@ -206,7 +206,7 @@ create table bobo.record
     id         bigint auto_increment
         primary key,
     questionId bigint        not null,
-    studentId  bigint        not null,
+    userId     bigint        not null,
     type       varchar(255)  not null,
     `date`     bigint        not null,
     times      int           not null,
