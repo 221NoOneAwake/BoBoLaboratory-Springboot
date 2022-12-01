@@ -1,6 +1,5 @@
 package cn.bobolaboratory.springboot.DTO;
 
-import cn.bobolaboratory.springboot.entity.BlankQuestion;
 import cn.bobolaboratory.springboot.entity.ChoiceQuestion;
 import cn.bobolaboratory.springboot.entity.JudgeQuestion;
 import lombok.AllArgsConstructor;
@@ -16,11 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AnswerListDTO {
-    /**
-     * 包含填空题id和答案
-     */
-    private List<BlankQuestion> blankQuestionList;
-
     /**
      * 包含选择题id和答案
      */
@@ -41,8 +35,7 @@ public class AnswerListDTO {
      */
     private Integer times;
 
-    public AnswerListDTO(List<BlankQuestion> blankQuestionList, List<ChoiceQuestion> choiceQuestionList, List<JudgeQuestion> judgeQuestionList, Long date) {
-        this.blankQuestionList = blankQuestionList;
+    public AnswerListDTO(List<ChoiceQuestion> choiceQuestionList, List<JudgeQuestion> judgeQuestionList, Long date) {
         this.choiceQuestionList = choiceQuestionList;
         this.judgeQuestionList = judgeQuestionList;
         this.date = date;

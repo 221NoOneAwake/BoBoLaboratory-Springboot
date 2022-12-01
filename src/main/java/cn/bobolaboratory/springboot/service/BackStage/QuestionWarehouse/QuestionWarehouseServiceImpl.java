@@ -1,10 +1,8 @@
 package cn.bobolaboratory.springboot.service.BackStage.QuestionWarehouse;
 
-import cn.bobolaboratory.springboot.entity.BlankQuestion;
 import cn.bobolaboratory.springboot.entity.ChoiceQuestion;
 import cn.bobolaboratory.springboot.entity.JudgeQuestion;
 import cn.bobolaboratory.springboot.entity.QuestionWarehouse;
-import cn.bobolaboratory.springboot.mapper.BlankQuestionMapper;
 import cn.bobolaboratory.springboot.mapper.ChoiceQuestionMapper;
 import cn.bobolaboratory.springboot.mapper.JudgeQuestionMapper;
 import cn.bobolaboratory.springboot.mapper.QuestionWarehouseMapper;
@@ -12,7 +10,6 @@ import cn.bobolaboratory.springboot.utils.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,14 +21,12 @@ import java.util.Map;
 public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
     private final QuestionWarehouseMapper questionWarehouseMapper;
     private final ChoiceQuestionMapper choiceQuestionMapper;
-    private final BlankQuestionMapper blankQuestionMapper;
     private final JudgeQuestionMapper judgeQuestionMapper;
 
     @Autowired
-    public QuestionWarehouseServiceImpl(QuestionWarehouseMapper questionWarehouseMapper, ChoiceQuestionMapper choiceQuestionMapper, BlankQuestionMapper blankQuestionMapper, JudgeQuestionMapper judgeQuestionMapper) {
+    public QuestionWarehouseServiceImpl(QuestionWarehouseMapper questionWarehouseMapper, ChoiceQuestionMapper choiceQuestionMapper, JudgeQuestionMapper judgeQuestionMapper) {
         this.questionWarehouseMapper = questionWarehouseMapper;
         this.choiceQuestionMapper = choiceQuestionMapper;
-        this.blankQuestionMapper = blankQuestionMapper;
         this.judgeQuestionMapper = judgeQuestionMapper;
     }
 
@@ -49,12 +44,6 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
                 for (ChoiceQuestion choiceQuestion : questionWarehouse.getChoiceQuestionList()) {
                     choiceQuestion.setQuestionId(id);
                     choiceQuestionMapper.addChoiceQuestion(choiceQuestion);
-                }
-            }
-            if (questionWarehouse.getBlankQuestionList().size() != 0) {
-                for (BlankQuestion blankQuestion : questionWarehouse.getBlankQuestionList()) {
-                    blankQuestion.setQuestionId(id);
-                    blankQuestionMapper.addBlankQuestion(blankQuestion);
                 }
             }
             if (questionWarehouse.getJudgeQuestionList().size() != 0) {
@@ -108,10 +97,8 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
                 return ResponseResult.error("id不存在");
             }
             Map<String, Object> questions = new HashMap<>();
-            List<BlankQuestion> blankQuestionList = blankQuestionMapper.queryQuestionAndAnswerByQuestionId(id);
             List<ChoiceQuestion> choiceQuestionList = choiceQuestionMapper.queryQuestionAndAnswerByQuestionId(id);
             List<JudgeQuestion> judgeQuestionList = judgeQuestionMapper.queryQuestionAndAnswerByQuestionId(id);
-            questions.put("BlankQuestion", blankQuestionList);
             questions.put("ChoiceQuestion", choiceQuestionList);
             questions.put("JudgeQuestion", judgeQuestionList);
             return ResponseResult.success(questions);
@@ -131,12 +118,8 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
             if (questionWarehouseMapper.checkIdExist(questionId) == 0L) {
                 return ResponseResult.error("id不存在");
             }
-            List<Long> blankQuestionIdList = blankQuestionMapper.queryIdByQuestionId(questionId);
             List<Long> choiceQuestionIdList = choiceQuestionMapper.queryIdByQuestionId(questionId);
             List<Long> judgeQuestionIdList = judgeQuestionMapper.queryIdByQuestionId(questionId);
-            for (Long id : blankQuestionIdList) {
-                blankQuestionMapper.deleteQuestionById(id);
-            }
             for (Long id : choiceQuestionIdList) {
                 choiceQuestionMapper.deleteQuestionById(id);
             }

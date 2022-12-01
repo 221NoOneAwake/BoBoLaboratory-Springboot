@@ -69,11 +69,6 @@ public class QuestionWarehouse {
     private List<ChoiceQuestion> choiceQuestionList;
 
     /**
-     * 填空题列表
-     */
-    private List<BlankQuestion> blankQuestionList;
-
-    /**
      * 判断题列表
      */
     private List<JudgeQuestion> judgeQuestionList;

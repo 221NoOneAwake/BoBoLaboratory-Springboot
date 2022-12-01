@@ -1,6 +1,5 @@
 package cn.bobolaboratory.springboot.mapper;
 
-import cn.bobolaboratory.springboot.entity.BlankQuestion;
 import cn.bobolaboratory.springboot.entity.ChoiceQuestion;
 import org.apache.ibatis.annotations.Mapper;
 

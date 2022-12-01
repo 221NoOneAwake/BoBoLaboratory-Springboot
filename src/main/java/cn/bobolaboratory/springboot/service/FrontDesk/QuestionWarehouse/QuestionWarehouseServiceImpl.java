@@ -1,10 +1,8 @@
 package cn.bobolaboratory.springboot.service.FrontDesk.QuestionWarehouse;
 
-import cn.bobolaboratory.springboot.entity.BlankQuestion;
 import cn.bobolaboratory.springboot.entity.ChoiceQuestion;
 import cn.bobolaboratory.springboot.entity.JudgeQuestion;
 import cn.bobolaboratory.springboot.entity.QuestionWarehouse;
-import cn.bobolaboratory.springboot.mapper.BlankQuestionMapper;
 import cn.bobolaboratory.springboot.mapper.ChoiceQuestionMapper;
 import cn.bobolaboratory.springboot.mapper.JudgeQuestionMapper;
 import cn.bobolaboratory.springboot.mapper.QuestionWarehouseMapper;
@@ -22,14 +20,12 @@ import java.util.Map;
 @Service
 public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
     private final QuestionWarehouseMapper questionWarehouseMapper;
-    private final BlankQuestionMapper blankQuestionMapper;
     private final JudgeQuestionMapper judgeQuestionMapper;
     private final ChoiceQuestionMapper choiceQuestionMapper;
 
     @Autowired
-    public QuestionWarehouseServiceImpl(QuestionWarehouseMapper questionWarehouseMapper, BlankQuestionMapper blankQuestionMapper, JudgeQuestionMapper judgeQuestionMapper, ChoiceQuestionMapper choiceQuestionMapper) {
+    public QuestionWarehouseServiceImpl(QuestionWarehouseMapper questionWarehouseMapper, JudgeQuestionMapper judgeQuestionMapper, ChoiceQuestionMapper choiceQuestionMapper) {
         this.questionWarehouseMapper = questionWarehouseMapper;
-        this.blankQuestionMapper = blankQuestionMapper;
         this.judgeQuestionMapper = judgeQuestionMapper;
         this.choiceQuestionMapper = choiceQuestionMapper;
     }
@@ -60,7 +56,6 @@ public class QuestionWarehouseServiceImpl implements QuestionWarehouseService {
                 return ResponseResult.error("id不存在");
             }
             Map<String, Object> questions = new HashMap<>();
-            List<BlankQuestion> blankQuestionList = blankQuestionMapper.queryIdAndQuestionByQuestionId(id);
             List<ChoiceQuestion> choiceQuestionList = choiceQuestionMapper.queryIdAndQuestionByQuestionId(id);
             List<JudgeQuestion> judgeQuestionList = judgeQuestionMapper.queryIdAndQuestionByQuestionId(id);
             questions.put("BlankQuestion", blankQuestionList);

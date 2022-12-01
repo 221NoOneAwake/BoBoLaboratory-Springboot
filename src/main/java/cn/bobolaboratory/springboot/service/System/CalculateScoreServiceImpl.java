@@ -1,7 +1,6 @@
 package cn.bobolaboratory.springboot.service.System;
 
 import cn.bobolaboratory.springboot.DTO.AnswerListDTO;
-import cn.bobolaboratory.springboot.entity.BlankQuestion;
 import cn.bobolaboratory.springboot.entity.ChoiceQuestion;
 import cn.bobolaboratory.springboot.entity.JudgeQuestion;
 import cn.bobolaboratory.springboot.entity.Record;
@@ -20,15 +19,13 @@ import java.util.Map;
  */
 @Service
 public class CalculateScoreServiceImpl implements CalculateScoreService {
-    private final BlankQuestionMapper blankQuestionMapper;
     private final ChoiceQuestionMapper choiceQuestionMapper;
     private final JudgeQuestionMapper judgeQuestionMapper;
     private final RecordMapper recordMapper;
     private final QuestionWarehouseMapper questionWarehouseMapper;
 
     @Autowired
-    public CalculateScoreServiceImpl(BlankQuestionMapper blankQuestionMapper, ChoiceQuestionMapper choiceQuestionMapper, JudgeQuestionMapper judgeQuestionMapper, RecordMapper recordMapper, QuestionWarehouseMapper questionWarehouseMapper) {
-        this.blankQuestionMapper = blankQuestionMapper;
+    public CalculateScoreServiceImpl(ChoiceQuestionMapper choiceQuestionMapper, JudgeQuestionMapper judgeQuestionMapper, RecordMapper recordMapper, QuestionWarehouseMapper questionWarehouseMapper) {
         this.choiceQuestionMapper = choiceQuestionMapper;
         this.judgeQuestionMapper = judgeQuestionMapper;
         this.recordMapper = recordMapper;
@@ -48,10 +45,7 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
         AuthNormalUser authNormalUser = (AuthNormalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Long userId = authNormalUser.getNormalUser().getId();
         Record record;
-        if (answerListDTO.getBlankQuestionList().size() != 0) {
-            times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getBlankQuestionList().get(0).getId(), userId, "填空题"));
-            residueTimes = questionWarehouseMapper.queryTimesByQuestionWarehouseId(blankQuestionMapper.queryQuestionWarehouseIdByQuestionId(answerListDTO.getBlankQuestionList().get(0).getId())) - times;
-        } else if (answerListDTO.getChoiceQuestionList().size() != 0) {
+        if (answerListDTO.getChoiceQuestionList().size() != 0) {
             times = recordMapper.checkTimesByOpenIdAndQuestionId(new Record(answerListDTO.getChoiceQuestionList().get(0).getId(), userId, "选择题"));
             residueTimes = questionWarehouseMapper.queryTimesByQuestionWarehouseId(choiceQuestionMapper.queryQuestionWarehouseIdByQuestionId(answerListDTO.getChoiceQuestionList().get(0).getId())) - times;
         } else if (answerListDTO.getJudgeQuestionList().size() != 0) {
@@ -65,17 +59,6 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
             return ResponseResult.refuse("答题次数已超过限制");
         }
 
-        for (BlankQuestion blankQuestion : answerListDTO.getBlankQuestionList()) {
-            BlankQuestion blankQuestionAnswerAndScore = blankQuestionMapper.queryAnswerAndScoreById(blankQuestion.getId());
-            if (blankQuestion.getAnswer().equals(blankQuestionAnswerAndScore.getAnswer())) {
-                score += blankQuestionAnswerAndScore.getScore();
-                record= new Record(blankQuestion.getId(), userId, "填空题", answerListDTO.getDate(), times + 1, blankQuestion.getAnswer(), (byte) 1, blankQuestionAnswerAndScore.getScore());
-                recordMapper.addRecord(record);
-            } else {
-                record = new Record(blankQuestion.getId(), userId, "填空题", answerListDTO.getDate(), times + 1, blankQuestion.getAnswer(), (byte) 0, 0);
-                recordMapper.addRecord(record);
-            }
-        }
         for (ChoiceQuestion choiceQuestion : answerListDTO.getChoiceQuestionList()) {
             ChoiceQuestion choiceQuestionAnswerAndScore = choiceQuestionMapper.queryAnswerAndScoreById(choiceQuestion.getId());
             if (choiceQuestion.getAnswer().equals(choiceQuestionAnswerAndScore.getAnswer())) {
@@ -100,6 +83,7 @@ public class CalculateScoreServiceImpl implements CalculateScoreService {
                 recordMapper.addRecord(record);
             }
         }
+
         Map<String, Integer> map = new HashMap<>();
         map.put("score", score / 10);
         map.put("residueTimes", residueTimes);
