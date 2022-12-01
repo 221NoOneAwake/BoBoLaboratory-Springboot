@@ -31,19 +31,19 @@ create table bobo.normaluser
 
 ## 题库表
 
-| 键名        | Java类型 | MySQL类型    | 是否允许为空 | 是否唯一 | 描述          |
-|-----------| -------- | ------------ | ------------ | -------- |-------------|
-| id        | Long     | bigint       | no           | yes      | 自增主键        |
-| name      | String   | varchar(255) | no           | yes      | 题库名称        |
-| choice    | int      | int          | no           | no       | 选择题数量       |
-| blank     | int      | int          | no           | no       | 填空题数量       |
-| judge     | int      | int          | no           | no       | 判断题数量       |
-| startDate | Long     | bigint       | no           | no       | 开始日期时间      |
-| endDate   | Long     | bigint       | no           | no       | 结束日期时间      |
-| examTime  | Long     | bigint       | no           | no       | 单次答题时间      |
-| times     | int      | int          | no           | no       | 允许答题次数      |
+| 键名      | Java类型 | MySQL类型    | 是否允许为空 | 是否唯一 | 描述                   |
+| --------- | -------- | ------------ | ------------ | -------- | ---------------------- |
+| id        | Long     | bigint       | no           | yes      | 自增主键               |
+| name      | String   | varchar(255) | no           | yes      | 题库名称               |
+| choice    | int      | int          | yes          | no       | 选择题数量             |
+| blank     | int      | int          | yes          | no       | 填空题数量             |
+| judge     | int      | int          | yes          | no       | 判断题数量             |
+| startDate | Long     | bigint       | no           | no       | 开始日期时间           |
+| endDate   | Long     | bigint       | no           | no       | 结束日期时间           |
+| examTime  | Long     | bigint       | no           | no       | 单次答题时间           |
+| times     | int      | int          | no           | no       | 允许答题次数           |
 | answer    | byte     | tinyint      | no           | no       | 提交后是否允许查看答案 |
-| open      | byte     | tinyint      | no           | no       | 题集是否开放      |
+| open      | byte     | tinyint      | no           | no       | 题集是否开放           |
 
 ```mysql
 create table bobo.questionwarehouse
@@ -79,7 +79,7 @@ create table bobo.questionwarehouse
 | choice2    | String   | varchar(3000) | no           | no       | 选项2      |
 | choice3    | String   | varchar(3000) | no           | no       | 选项3      |
 | choice4    | String   | varchar(3000) | no           | no       | 选项4      |
-| answer     | String   | varchar(3000) | no           | no       | 答案       |
+| answer     | String   | varchar(255)  | no           | no       | 答案       |
 | score      | Integer  | int           | no           | no       | 分数       |
 
 ```mysql
@@ -92,7 +92,7 @@ create table bobo.questionwarehouse
         choice2    varchar(3000) not null,
         choice3    varchar(3000) not null,
         choice4    varchar(3000) not null,
-        answer     varchar(3000) not null,
+        answer     varchar(255)  not null,
         question   varchar(3000) not null,
         score      int           not null,
         constraint choicequestion_ibfk_1
@@ -104,7 +104,7 @@ create index questionId
     on bobo.choicequestion (questionId);
 ```
 
-## 填空题表
+## 填空题表(废弃)
 
 | 键名       | Java类型 | MySQL类型     | 是否允许为空 | 是否唯一 | 描述       |
 | ---------- | -------- | ------------- | ------------ | -------- | ---------- |
@@ -139,7 +139,7 @@ create index questionId
 | id         | Long     | bigint        | no           | yes      | 自增主键   |
 | questionId | Long     | bigint        | no           | no       | 题库表外键 |
 | question   | String   | varchar(3000) | no           | no       | 题目       |
-| answer     | String   | varchar(3000) | no           | no       | 答案       |
+| answer     | byte     | tinyint       | no           | no       | 答案       |
 | score      | Integer  | int           | no           | no       | 分数       |
 
 ```mysql
@@ -149,7 +149,7 @@ create table bobo.judgequestion
         primary key,
     questionId bigint        not null,
     question   varchar(3000) not null,
-    answer     varchar(3000) not null,
+    answer     tinyint       not null,
     score      int           not null,
     constraint judgequestion_ibfk_1
         foreign key (questionId) references bobo.questionwarehouse (Id)
@@ -160,7 +160,7 @@ create index questionId
     on bobo.judgequestion (questionId);
 ```
 
-## 分配表
+## 分配表(废弃)
 
 | 键名       | Java类型 | MySQL类型    | 是否允许为空 | 是否唯一 | 描述       |
 | ---------- | -------- | ------------ | ------------ | -------- | ---------- |
@@ -188,14 +188,14 @@ create index questionId
 
 ## 答题记录表
 
-| 键名         | Java类型 | MySQL类型     | 是否允许为空 | 是否唯一 | 描述       |
-|------------| -------- | ------------- | ------------ | -------- | ---------- |
+| 键名       | Java类型 | MySQL类型     | 是否允许为空 | 是否唯一 | 描述       |
+| ---------- | -------- | ------------- | ------------ | -------- | ---------- |
 | id         | Long     | bigint        | no           | yes      | 自增主键   |
 | questionId | Long     | bigint        | no           | no       | 题目的id   |
-| openId     | Long     | bigint        | no           | no       | openid     |
+| userId     | Long     | bigint        | no           | no       | 用户的id   |
 | type       | String   | varchar(255)  | no           | no       | 题目类型   |
 | date       | Long     | bigint        | no           | no       | 答题时间   |
-| times      | int      | int           | no           | no       | 答题的次数 |
+| times      | Integer  | int           | no           | no       | 答题的次数 |
 | answer     | String   | varchar(3000) | no           | no       | 答案       |
 | result     | byte     | tinyint       | no           | no       | 是否正确   |
 | score      | int      | int           | yes          | no       | 得分 * 10  |
@@ -219,13 +219,13 @@ create table bobo.record
 
 ## 后台用户表
 
-| 键名      | Java类型 | MySQL类型 | 是否允许为空 | 是否唯一 | 描述     |
-| --------- | -------- | --------- | ------------ | -------- | -------- |
-| id        | Long     | bigint    | no           | yes      | 自增主键 |
-| username  | String   | varchar() | no           | yes      | 用户名   |
-| password  | String   | varchar() | no           | no       | 密码     |
-| nickname  | String   | varchar() | no           | no       | 昵称     |
-| authority | String   | varchar() | no           | no       | 账户权限 |
+| 键名      | Java类型 | MySQL类型   | 是否允许为空 | 是否唯一 | 描述     |
+| --------- | -------- | ----------- | ------------ | -------- | -------- |
+| id        | Long     | bigint      | no           | yes      | 自增主键 |
+| username  | String   | varchar(32) | no           | yes      | 用户名   |
+| password  | String   | varchar(64) | no           | no       | 密码     |
+| nickname  | String   | varchar(8)  | no           | no       | 昵称     |
+| authority | String   | varchar(16) | no           | no       | 账户权限 |
 
 ```mysql
 create table bobo.backstageuser
