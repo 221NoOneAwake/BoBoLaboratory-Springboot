@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--  0 判断 1 选择  -->
+<mapper namespace="cn.bobolaboratory.springboot.mapper.QuestionMapper">
+    <!--  插入判断题  -->
+    <insert id="insertJudgeQuestion" parameterType="cn.bobolaboratory.springboot.entity.Question">
+        insert into bobo.question (questionSetId, title, type, answer, score)
+            value (#{questionSetId}, #{title}, 0, #{answer}, #{score});
+    </insert>
+
+    <!--  插入选择题  -->
+    <insert id="insertChoiceQuestion" parameterType="cn.bobolaboratory.springboot.entity.Question">
+        insert into bobo.question (questionSetId, title, type, choice1, choice2, choice3, choice4, answer, score)
+            value (#{questionSetId}, #{title}, 1, #{choice1}, #{choice2}, #{choice3}, #{choice4}, #{answer}, #{score});
+    </insert>
+
+    <!--  后台查询题目  -->
+    <select id="selectQuestionByQuestionSetIdFromBackEnd" parameterType="cn.bobolaboratory.springboot.entity.Question" resultType="cn.bobolaboratory.springboot.entity.Question">
+        select id, title, type, choice1, choice2, choice3, choice4, answer, score
+        from bobo.question
+        where questionSetId = #{questionSetId}
+        order by id;
+    </select>
+
+    <!--  前台查询题目  -->
+    <select id="selectQuestionByQuestionSetIdFromFrontEnd" parameterType="cn.bobolaboratory.springboot.entity.Question" resultType="cn.bobolaboratory.springboot.entity.Question">
+        select id, title, type, choice1, choice2, choice3, choice4, score
+        from bobo.question
+        where questionSetId = #{questionSetId}
+        order by id;
+    </select>
+
+    <!--  根据题集id查看 题目id 类型 答案 分值  -->
+    <select id="selectAnswerByQuestionSetId" parameterType="Long" resultType="cn.bobolaboratory.springboot.entity.Question">
+        select id, type, answer, score
+        from bobo.question
+        where questionSetId = #{questionSetId}
+        order by id;
+    </select>
+
+    <!--  计算一个题集的总分  -->
+    <select id="countTotalScoreByQuestionSetId" resultType="int">
+        select sum(score)
+        from bobo.question
+        where questionSetId = #{questionSetId};
+    </select>
+
+    <!--  更新题目信息  -->
+    <update id="updateQuestionByQuestionId" parameterType="cn.bobolaboratory.springboot.entity.Question">
+        update bobo.question
+        set questionSetId = #{questionSetId},
+            title         = #{title},
+            type          = #{type},
+            choice1       = #{choice1},
+            choice2       = #{choice2},
+            choice3       = #{choice3},
+            choice4       = #{choice4},
+            answer        = #{answer},
+            score         = #{score}
+        where id = #{id};
+    </update>
+</mapper>

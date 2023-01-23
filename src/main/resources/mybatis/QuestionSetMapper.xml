@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.bobolaboratory.springboot.mapper.QuestionSetMapper">
+    <!--  添加题目库  -->
+    <insert id="insertQuestionSet" parameterType="cn.bobolaboratory.springboot.entity.QuestionSet">
+        insert into bobo.questionset (`name`, startDate, endDate, examTime, submitTimes, answer, `open`)
+            value (#{name}, #{startDate}, #{endDate}, #{examTime}, #{submitTimes}, #{answer}, false);
+    </insert>
+
+    <!--  获取最新插入id  -->
+    <select id="getLastInsertId" resultType="Long">
+        SELECT LAST_INSERT_ID();
+    </select>
+
+    <!--  后台查询所有题目集  -->
+    <select id="selectAllQuestionSet">
+        select id, `name`, startDate, endDate, examTime, submitTimes, answer, `open`
+        from bobo.questionset;
+    </select>
+
+    <!--  查询所有已开放题目集信息  -->
+    <select id="selectOpenQuestionSetInfo" resultType="cn.bobolaboratory.springboot.dto.QuestionSetInfoDto">
+        select id as questionSetId, submitTimes, examTime, answer
+        from bobo.questionset
+        where open = true;
+    </select>
+
+    <!--  根据id开放题集  -->
+    <update id="openQuestionSet" parameterType="Long">
+        update bobo.questionset
+        set open = true
+        where id = #{questionSetId};
+    </update>
+</mapper>

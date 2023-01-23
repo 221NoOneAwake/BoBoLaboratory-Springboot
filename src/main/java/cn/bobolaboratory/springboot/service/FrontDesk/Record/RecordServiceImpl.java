@@ -2,10 +2,9 @@ package cn.bobolaboratory.springboot.service.FrontDesk.Record;
 
 import cn.bobolaboratory.springboot.entity.Record;
 import cn.bobolaboratory.springboot.mapper.RecordMapper;
-import cn.bobolaboratory.springboot.security.AuthNormalUser;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
+import cn.bobolaboratory.springboot.utils.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,11 +26,11 @@ public class RecordServiceImpl implements RecordService {
      * @return 返回查询结果
      */
     @Override
-    public ResponseResult queryRecordByUserId() {
-        AuthNormalUser user = (AuthNormalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public ResponseResult queryRecordByQuestionSetId(Long questionSetId) {
+        Long userId = UserUtil.getNormalUserId();
         try {
-            List<Record> list = recordMapper.queryRecordByUserId(user.getNormalUser().getId());
-            return ResponseResult.success(list);
+            List<Record> recordList = recordMapper.selectRecordByQuestionSetIdAndUserId(questionSetId, userId);
+            return ResponseResult.success(recordList);
         } catch (RuntimeException e) {
             return ResponseResult.error(e.getMessage());
         }

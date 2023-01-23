@@ -1,5 +1,6 @@
 package cn.bobolaboratory.springboot.controller.FrontDesk;
 
+import cn.bobolaboratory.springboot.dto.QuestionSetIdDto;
 import cn.bobolaboratory.springboot.service.FrontDesk.Record.RecordService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,7 @@ public class RecordController {
     }
 
     @GetMapping("")
-    public ResponseResult queryRecordByUserId() {
-        return recordService.queryRecordByUserId();
+    public ResponseResult queryRecordByUserId(QuestionSetIdDto questionSetIdDto) {
+        return recordService.queryRecordByQuestionSetId(questionSetIdDto.getQuestionSetId());
     }
 }

@@ -9,7 +9,8 @@ public interface RecordService {
 
     /**
      * 用户查询答题记录
+     * @param questionSetId 要查询的题集id
      * @return 返回查询结果
      */
-    ResponseResult queryRecordByUserId();
+    ResponseResult queryRecordByQuestionSetId(Long questionSetId);
 }

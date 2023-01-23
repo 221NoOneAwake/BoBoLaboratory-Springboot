@@ -1,29 +1,53 @@
 package cn.bobolaboratory.springboot.controller.FrontDesk;
 
-import cn.bobolaboratory.springboot.DTO.AnswerListDTO;
-import cn.bobolaboratory.springboot.service.System.CalculateScoreService;
+import cn.bobolaboratory.springboot.dto.AnswerListDto;
+import cn.bobolaboratory.springboot.dto.QuestionSetIdDto;
+import cn.bobolaboratory.springboot.service.FrontDesk.QuestionService.QuestionService;
+import cn.bobolaboratory.springboot.service.FrontDesk.QuestionSetService.QuestionSetService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author WhiteLeaf03
  */
 @RestController
-@RequestMapping("/fd/api/question")
+@RequestMapping("/fd/api")
 public class QuestionController {
-    private final CalculateScoreService calculateScoreService;
+    private final QuestionSetService questionSetService;
+    private final QuestionService questionService;
 
     @Autowired
-    public QuestionController(CalculateScoreService calculateScoreService) {
-        this.calculateScoreService = calculateScoreService;
+    public QuestionController(QuestionSetService questionSetService, QuestionService questionService) {
+        this.questionSetService = questionSetService;
+        this.questionService = questionService;
     }
 
-    @PostMapping("/answer")
-    public ResponseResult checkAnswer(@RequestBody AnswerListDTO answerListDTO) {
-        return calculateScoreService.calculateScoreAndSaveRecord(answerListDTO);
+    /**
+     * 查询所有已开放题目集
+     * @return 返回查询结果
+     */
+    @GetMapping("/questionSet/open")
+    public ResponseResult queryOpenQuestionSet() {
+        return questionSetService.queryOpenQuestionSet();
+    }
+
+    /**
+     * 学生获取试卷
+     * @param questionSetIdDto 包含题集id
+     * @return 返回题目详情 包含 题目id 题目 类型 选项 分值
+     */
+    @GetMapping("/question")
+    public ResponseResult queryQuestionByQuestionSetIdFromFrontEnd(QuestionSetIdDto questionSetIdDto) {
+        return questionService.queryQuestionByQuestionSetIdFromFrontEnd(questionSetIdDto.getQuestionSetId());
+    }
+
+    /**
+     * 提交答案
+     * @param answerListDto 包含 题集id 和 答案详情 答题详情包括 题目id 答案 选择题为A B C D 判断题为true / false 类型皆为字符串
+     */
+    @PostMapping("/question")
+    public ResponseResult submitAnswer(@RequestBody AnswerListDto answerListDto) {
+        return questionService.submitAnswerAndCalculateScore(answerListDto.getQuestionSetId(), answerListDto.getQuestionList());
     }
 }

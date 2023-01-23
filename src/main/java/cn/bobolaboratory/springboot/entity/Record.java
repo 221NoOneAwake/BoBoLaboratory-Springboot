@@ -17,7 +17,12 @@ public class Record {
     private Long id;
 
     /**
-     * 题目的id
+     * 题目集id
+     */
+    private Long questionSetId;
+
+    /**
+     * 题目id
      */
     private Long questionId;
 
@@ -28,18 +33,20 @@ public class Record {
 
     /**
      * 题目类型
+     * 0 判断
+     * 1 选择
      */
-    private String type;
+    private Short type;
 
     /**
      * 答题时间
      */
-    private Long date;
+    private Long submitDate;
 
     /**
      * 答题的次数
      */
-    private Integer times;
+    private Integer submitTimes;
 
     /**
      * 答案
@@ -49,27 +56,22 @@ public class Record {
     /**
      * 是否正确
      */
-    private byte result;
+    private Boolean result;
 
     /**
      * 得分 * 10
      */
     private Integer score;
 
-    public Record(Long questionId, Long userId, String type, Long date, Integer times, String answer, byte result, Integer score) {
+    public Record(Long questionSetId, Long questionId, Long userId, Short type, Long submitDate, Integer submitTimes, String answer, Boolean result, Integer score) {
+        this.questionSetId = questionSetId;
         this.questionId = questionId;
         this.userId = userId;
         this.type = type;
-        this.date = date;
-        this.times = times;
+        this.submitDate = submitDate;
+        this.submitTimes = submitTimes;
         this.answer = answer;
         this.result = result;
         this.score = score;
-    }
-
-    public Record(Long questionId, Long userId, String type) {
-        this.questionId = questionId;
-        this.userId = userId;
-        this.type = type;
     }
 }

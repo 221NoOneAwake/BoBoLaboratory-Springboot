@@ -14,25 +14,13 @@ public interface RecordMapper {
      * 新增答题记录
      * @param record 要添加的记录
      */
-    void addRecord(Record record);
+    void insertRecord(Record record);
 
     /**
-     * 查询所有记录
-     * @return 返回查询结果
+     * 用户查询题集的答题记录
+     * @param questionSetId 题集id
+     * @param userId 用户id
+     * @return 返回 题目类型, 提交日期, 提交次数, 用户答案, 正确与否, 得分
      */
-    List<Record> queryAllRecord();
-
-    /**
-     * 查看已答题次数
-     * @param record 答题人Id和题目Id
-     * @return 返回已答题次数
-     */
-    Integer checkTimesByUserIdAndQuestionId(Record record);
-
-    /**
-     * 用户查询答题记录
-     * @param id 用户id
-     * @return 返回查询结果
-     */
-    List<Record> queryRecordByUserId(Long id);
+    List<Record> selectRecordByQuestionSetIdAndUserId(Long questionSetId, Long userId);
 }

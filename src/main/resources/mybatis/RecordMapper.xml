@@ -2,20 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.bobolaboratory.springboot.mapper.RecordMapper">
-    <insert id="addRecord" parameterType="cn.bobolaboratory.springboot.entity.Record">
-        insert into bobo.record (questionId, userId, type, `date`, times, answer, result, score)
-            VALUE (#{questionId}, #{userId}, #{type}, #{date}, #{times}, #{answer}, #{result}, #{score});
+    <!--  新增答题记录  -->
+    <insert id="insertRecord" parameterType="cn.bobolaboratory.springboot.entity.Record">
+        insert into bobo.record (questionSetId, questionId, userId, type, submitDate, submitTimes, answer, result, score)
+            VALUE (#{questionSetId}, #{questionId}, #{userId}, #{type}, #{submitDate}, #{submitTimes}, #{answer}, #{result}, #{score});
     </insert>
 
-    <select id="queryAllRecord">
-        select * from bobo.record;
-    </select>
-
-    <select id="checkTimesByUserIdAndQuestionId" parameterType="cn.bobolaboratory.springboot.entity.Record" resultType="int">
-        select COUNT(id) from bobo.record where userId = #{userId} and questionId = #{questionId} and type = #{type};
-    </select>
-
-    <select id="queryRecordByUserId" parameterType="long" resultType="cn.bobolaboratory.springboot.entity.Record">
-        select * from bobo.record where userId = #{userId};
+    <!--  用户查询题集的答题记录  -->
+    <select id="selectRecordByQuestionSetIdAndUserId" resultType="cn.bobolaboratory.springboot.entity.Record">
+        select id, type, submitDate, submitTimes, answer, result, score
+        from bobo.record
+        where questionSetId = #{questionSetId}
+          and userId = #{userId}
+        order by submitTimes DESC, id;
     </select>
 </mapper>
