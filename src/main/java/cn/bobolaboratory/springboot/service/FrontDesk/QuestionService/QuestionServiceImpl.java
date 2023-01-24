@@ -72,7 +72,19 @@ public class QuestionServiceImpl implements QuestionService {
             maxScore = result.getMaxScore();
         }
         Long submitDate = System.currentTimeMillis();
-        List<Question> answerInfoList = questionMapper.selectAnswerByQuestionSetId(questionSetId);
+        List<Question> answerInfoList;
+        //获取标准答案
+        try {
+            answerInfoList = redisCache.getCacheObject("[ExamAnswer]:" + questionSetId);
+            if (Objects.isNull(answerInfoList)) {
+                answerInfoList = questionMapper.selectAnswerByQuestionSetId(questionSetId);
+                redisCache.setCacheObject("[ExamAnswer]:" + questionSetId, answerInfoList, 30, TimeUnit.MINUTES);
+            } else if (!redisCache.expire("[ExamAnswer]:" + questionSetId, 30, TimeUnit.MINUTES)){
+                throw new RuntimeException("更新答案缓存时间失败");
+            }
+        } catch (RuntimeException e) {
+            return ResponseResult.error(e.getMessage());
+        }
         int score = 0;
         for (int index = 0; index < questionList.size(); index++) {
             Question standardData = answerInfoList.get(index);
