@@ -39,7 +39,7 @@ public class QuestionSet {
     /**
      * 允许答题次数
      */
-    private Integer times;
+    private Integer submitTimes;
 
     /**
      * 所有提交次数后是否允许查看答案
