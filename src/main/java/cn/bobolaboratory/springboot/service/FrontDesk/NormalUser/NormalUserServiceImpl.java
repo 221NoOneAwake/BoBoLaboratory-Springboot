@@ -1,5 +1,6 @@
 package cn.bobolaboratory.springboot.service.FrontDesk.NormalUser;
 
+import cn.bobolaboratory.springboot.config.GlobalConfig;
 import cn.bobolaboratory.springboot.entity.NormalUser;
 import cn.bobolaboratory.springboot.mapper.NormalUserMapper;
 import cn.bobolaboratory.springboot.security.AuthNormalUser;
@@ -25,11 +26,13 @@ public class NormalUserServiceImpl implements NormalUserService {
 
     private final NormalUserMapper normalUserMapper;
     private final RedisCache redisCache;
+    private final GlobalConfig globalConfig;
 
     @Autowired
-    public NormalUserServiceImpl(NormalUserMapper normalUserMapper, RedisCache redisCache) {
+    public NormalUserServiceImpl(NormalUserMapper normalUserMapper, RedisCache redisCache, GlobalConfig globalConfig) {
         this.normalUserMapper = normalUserMapper;
         this.redisCache = redisCache;
+        this.globalConfig = globalConfig;
     }
 
     /**
@@ -46,10 +49,8 @@ public class NormalUserServiceImpl implements NormalUserService {
 
         String url = "https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={secret}&js_code={code}&grant_type=authorization_code";
         Map<String, String> requestMap = new HashMap<>();
-//        requestMap.put("appid", "wxca84b633d9875593");
-//        requestMap.put("secret", "7500ca9f8d22a56aa50fd61da8ab3f3e");
-        requestMap.put("appid", "wx2fe6e4f200b1b46b");
-        requestMap.put("secret", "1a72955f1b73d61df0abbabdf6c32e16");
+        requestMap.put("appid", globalConfig.getAppid());
+        requestMap.put("secret", globalConfig.getSecret());
         requestMap.put("code", code);
 
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class, requestMap);
