@@ -46,7 +46,6 @@ public class QuestionServiceImpl implements QuestionService {
             if (Objects.isNull(questionList)) {
                 questionList = questionMapper.selectQuestionByQuestionSetIdFromFrontEnd(questionSetId);
                 redisCache.setCacheObject("[ExamPaper]:" + questionSetId, questionList, 30, TimeUnit.MINUTES);
-            } else {
             }
         } catch (RuntimeException e) {
             return ResponseResult.error(e.getMessage());
