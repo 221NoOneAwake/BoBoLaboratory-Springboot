@@ -6,6 +6,7 @@ import cn.bobolaboratory.springboot.entity.Result;
 import cn.bobolaboratory.springboot.mapper.QuestionMapper;
 import cn.bobolaboratory.springboot.mapper.RecordMapper;
 import cn.bobolaboratory.springboot.mapper.ResultMapper;
+import cn.bobolaboratory.springboot.utils.RedisCache;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import cn.bobolaboratory.springboot.utils.UserUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author WhiteLeaf03
@@ -22,12 +24,14 @@ public class QuestionServiceImpl implements QuestionService {
     private final QuestionMapper questionMapper;
     private final ResultMapper resultMapper;
     private final RecordMapper recordMapper;
+    private final RedisCache redisCache;
 
     @Autowired
-    public QuestionServiceImpl(QuestionMapper questionMapper, ResultMapper resultMapper, RecordMapper recordMapper) {
+    public QuestionServiceImpl(QuestionMapper questionMapper, ResultMapper resultMapper, RecordMapper recordMapper, RedisCache redisCache) {
         this.questionMapper = questionMapper;
         this.resultMapper = resultMapper;
         this.recordMapper = recordMapper;
+        this.redisCache = redisCache;
     }
 
     /**
@@ -38,7 +42,12 @@ public class QuestionServiceImpl implements QuestionService {
     public ResponseResult queryQuestionByQuestionSetIdFromFrontEnd(Long questionSetId) {
         List<Question> questionList;
         try {
-            questionList = questionMapper.selectQuestionByQuestionSetIdFromFrontEnd(questionSetId);
+            questionList = redisCache.getCacheObject("[ExamPaper]:" + questionSetId);
+            if (Objects.isNull(questionList)) {
+                questionList = questionMapper.selectQuestionByQuestionSetIdFromFrontEnd(questionSetId);
+                redisCache.setCacheObject("[ExamPaper]:" + questionSetId, questionList, 30, TimeUnit.MINUTES);
+            } else {
+            }
         } catch (RuntimeException e) {
             return ResponseResult.error(e.getMessage());
         }
