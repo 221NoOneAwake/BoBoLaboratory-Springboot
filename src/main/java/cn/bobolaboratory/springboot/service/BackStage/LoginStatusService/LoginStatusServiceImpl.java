@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author WhiteLeaf03
@@ -58,7 +59,7 @@ public class LoginStatusServiceImpl implements LoginStatusService {
         //创建jwt
         String jwt = JwtUtil.createJwt(userId);
         //将用户信息存入redis
-        redisCache.setObject("[BSUser]id:" + userId, user.getBackstageUser());
+        redisCache.setCacheObject("[BSUser]id:" + userId, user.getBackstageUser(), 6, TimeUnit.HOURS);
         //返回token
         Map<String, String> map = new HashMap<>();
         map.put("token", jwt);

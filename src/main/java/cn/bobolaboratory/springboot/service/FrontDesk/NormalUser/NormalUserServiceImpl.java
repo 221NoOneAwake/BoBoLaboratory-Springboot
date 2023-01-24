@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @Service
 public class NormalUserServiceImpl implements NormalUserService {
@@ -79,14 +80,14 @@ public class NormalUserServiceImpl implements NormalUserService {
             normalUserMapper.registerNormalUser(user);
             NormalUser normalUser = normalUserMapper.queryNormalUserByOpenid(openid);
             Map<String, String> map = new HashMap<>();
-            redisCache.setObject("[NUser]id:" + normalUser.getId(), normalUser);
+            redisCache.setCacheObject("[NUser]id:" + normalUser.getId(), normalUser, 90, TimeUnit.MINUTES);
             String token = JwtUtil.createJwt(normalUser.getId().toString());
             map.put("msg", "用户尚未注册");
             map.put("token", token);
             return ResponseResult.success(map);
         }
 
-        redisCache.setObject("[NUser]id:" + user.getId(), user);
+        redisCache.setCacheObject("[NUser]id:" + user.getId(), user, 90, TimeUnit.HOURS);
         String token = JwtUtil.createJwt(user.getId().toString());
         return ResponseResult.success(token);
     }

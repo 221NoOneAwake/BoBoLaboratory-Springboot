@@ -60,9 +60,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
         if (request.getRequestURI().contains("/bs/api")) {
             //从redis中获取用户信息
-            System.out.println("userId" + userId);
             AuthBackstageUser authBackstageUser = new AuthBackstageUser(redisCache.getCacheObject("[BSUser]id:" + userId));
-            System.out.println("[BSUser]id:" + userId);
             if (Objects.isNull(authBackstageUser.getBackstageUser())) {
                 throw new  RuntimeException("用户未登录");
             }
@@ -74,7 +72,6 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         }
         else if (request.getRequestURI().contains("/fd/api")) {
             AuthNormalUser authNormalUser = new AuthNormalUser(redisCache.getCacheObject("[NUser]id:" + userId));
-            System.out.println("[NUser]id:" + userId);
             if (Objects.isNull(authNormalUser.getNormalUser())) {
                 throw new RemoteException("用户未登录");
             }
