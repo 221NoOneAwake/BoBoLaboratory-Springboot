@@ -87,7 +87,7 @@ public class NormalUserServiceImpl implements NormalUserService {
             return ResponseResult.success(map);
         }
 
-        redisCache.setCacheObject("[NUser]id:" + user.getId(), user, 90, TimeUnit.HOURS);
+        redisCache.setCacheObject("[NUser]id:" + user.getId(), user, 90, TimeUnit.MINUTES);
         String token = JwtUtil.createJwt(user.getId().toString());
         return ResponseResult.success(token);
     }
