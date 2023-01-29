@@ -5,7 +5,6 @@ import cn.bobolaboratory.springboot.service.FrontDesk.NormalUser.NormalUserServi
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
