@@ -36,5 +36,5 @@ public class BackstageUser {
     /**
      * 账号权限
      */
-    private String authority;
+    private String authority = "Teacher";
 }

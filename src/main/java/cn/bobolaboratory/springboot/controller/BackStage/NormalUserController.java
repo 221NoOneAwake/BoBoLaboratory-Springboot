@@ -5,6 +5,7 @@ import cn.bobolaboratory.springboot.service.BackStage.NormalUserService.NormalUs
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,16 +24,19 @@ public class NormalUserController {
     }
 
     @GetMapping("")
+    @PreAuthorize("hasAuthority('Teacher')")
     public ResponseResult queryAllNormalUser() {
         return normalUserService.queryAllNormalUser();
     }
 
     @PutMapping("")
+    @PreAuthorize("hasAuthority('Teacher')")
     public ResponseResult updateNormalUser(@RequestBody NormalUser normalUser) {
         return normalUserService.updateNormalUserById(normalUser);
     }
 
     @DeleteMapping("")
+    @PreAuthorize("hasAuthority('Teacher')")
     ResponseResult deleteNormalUserById(@RequestBody NormalUserData normalUserData) {
         return normalUserService.deleteNormalUserById(normalUserData.id);
     }

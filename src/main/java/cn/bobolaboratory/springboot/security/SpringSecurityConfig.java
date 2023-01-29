@@ -57,7 +57,7 @@ public class SpringSecurityConfig {
         http
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/bs/api/login").permitAll()
-                .antMatchers("/fd/api/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/fd/api/login").permitAll()
                 .anyRequest().authenticated();
         http    //将jwtAuthenticationTokenFilter放置于UsernamePasswordAuthenticationFilter前
                 .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
