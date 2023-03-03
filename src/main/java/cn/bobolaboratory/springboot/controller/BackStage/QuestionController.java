@@ -7,6 +7,7 @@ import cn.bobolaboratory.springboot.entity.QuestionSet;
 import cn.bobolaboratory.springboot.service.BackStage.QuestionService.QuestionService;
 import cn.bobolaboratory.springboot.service.BackStage.QuestionSetService.QuestionSetService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * @author WhiteLeaf03
  */
+@Api(tags = "后台-题目管理")
 @RestController
 @RequestMapping("/bs/api")
 public class QuestionController {

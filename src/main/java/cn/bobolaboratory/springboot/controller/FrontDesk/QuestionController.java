@@ -5,12 +5,14 @@ import cn.bobolaboratory.springboot.dto.QuestionSetIdDto;
 import cn.bobolaboratory.springboot.service.FrontDesk.QuestionService.QuestionService;
 import cn.bobolaboratory.springboot.service.FrontDesk.QuestionSetService.QuestionSetService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
  * @author WhiteLeaf03
  */
+@Api(tags = "前台-题目相关")
 @RestController
 @RequestMapping("/fd/api")
 public class QuestionController {
