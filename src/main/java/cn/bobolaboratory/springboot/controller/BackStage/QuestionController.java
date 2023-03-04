@@ -1,7 +1,7 @@
 package cn.bobolaboratory.springboot.controller.BackStage;
 
-import cn.bobolaboratory.springboot.dto.QuestionSetAndQuestionListDto;
-import cn.bobolaboratory.springboot.dto.QuestionSetIdDto;
+import cn.bobolaboratory.springboot.dto.QuestionSetAndQuestionListAddRequest;
+import cn.bobolaboratory.springboot.dto.QuestionSetGetRequest;
 import cn.bobolaboratory.springboot.entity.Question;
 import cn.bobolaboratory.springboot.entity.QuestionSet;
 import cn.bobolaboratory.springboot.service.BackStage.QuestionService.QuestionService;
@@ -44,19 +44,19 @@ public class QuestionController {
      */
     @PostMapping("/questionSet/add")
     @PreAuthorize("hasAuthority('Teacher')")
-    public ResponseResult addQuestionSet(@RequestBody QuestionSetAndQuestionListDto questionSetAndQuestionListDto) {
-        return questionSetService.addQuestionSet(questionSetAndQuestionListDto.getQuestionSet(), questionSetAndQuestionListDto.getQuestionList());
+    public ResponseResult addQuestionSet(@RequestBody QuestionSetAndQuestionListAddRequest questionSetAndQuestionListAddRequest) {
+        return questionSetService.addQuestionSet(questionSetAndQuestionListAddRequest.getQuestionSet(), questionSetAndQuestionListAddRequest.getQuestionList());
     }
 
     /**
      * 开放题目集
-     * @param questionSetIdDto 包含 questionSetId
+     * @param questionSetGetRequest 包含 questionSetId
      * @return 返回结果
      */
     @PutMapping("/questionSet")
     @PreAuthorize("hasAuthority('Teacher')")
-    public ResponseResult openQuestionSet(@RequestBody QuestionSetIdDto questionSetIdDto) {
-        return questionSetService.openQuestionSet(questionSetIdDto.getQuestionSetId());
+    public ResponseResult openQuestionSet(@RequestBody QuestionSetGetRequest questionSetGetRequest) {
+        return questionSetService.openQuestionSet(questionSetGetRequest.getQuestionSetId());
     }
 
     /**
@@ -71,14 +71,14 @@ public class QuestionController {
 
     /**
      * 管理员获取题目详情
-     * @param questionSetIdDto 包含题集id
+     * @param questionSetGetRequest 包含题集id
      * @return 返回题目详情 包含 题目id 题目 类型 选项 答案 分值
      */
     @GetMapping("/question")
     @PreAuthorize("hasAuthority('Teacher')")
-    public ResponseResult queryQuestionByQuestionSetIdFromBackEnd(QuestionSetIdDto questionSetIdDto) {
+    public ResponseResult queryQuestionByQuestionSetIdFromBackEnd(QuestionSetGetRequest questionSetGetRequest) {
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-        return questionService.queryQuestionByQuestionSetIdFromBackEnd(questionSetIdDto.getQuestionSetId());
+        return questionService.queryQuestionByQuestionSetIdFromBackEnd(questionSetGetRequest.getQuestionSetId());
     }
 
     /**

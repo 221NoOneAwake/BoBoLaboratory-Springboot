@@ -1,6 +1,6 @@
 package cn.bobolaboratory.springboot.service.FrontDesk.QuestionSetService;
 
-import cn.bobolaboratory.springboot.dto.QuestionSetInfoDto;
+import cn.bobolaboratory.springboot.vo.QuestionSetInfoVo;
 import cn.bobolaboratory.springboot.entity.Result;
 import cn.bobolaboratory.springboot.mapper.QuestionSetMapper;
 import cn.bobolaboratory.springboot.mapper.ResultMapper;
@@ -32,23 +32,23 @@ public class QuestionSetServiceImpl implements QuestionSetService {
     @Override
     public ResponseResult queryOpenQuestionSet() {
         Long userId = UserUtil.getNormalUserId();
-        List<QuestionSetInfoDto> questionSetInfoDtoList;
+        List<QuestionSetInfoVo> questionSetInfoVoList;
         try {
             //questionSetId, allowSubmitTimes, examTime, answer
-            questionSetInfoDtoList = questionSetMapper.selectOpenQuestionSetInfo();
+            questionSetInfoVoList = questionSetMapper.selectOpenQuestionSetInfo();
             Result result;
-            for (QuestionSetInfoDto questionSetInfoDto : questionSetInfoDtoList) {
-                result = resultMapper.countSubmitTimesByUserIdAndQuestionSetId(userId, questionSetInfoDto.getQuestionSetId());
-                questionSetInfoDto.setAlreadySubmitTimes(result.getSubmitTimes());
+            for (QuestionSetInfoVo questionSetInfoVo : questionSetInfoVoList) {
+                result = resultMapper.countSubmitTimesByUserIdAndQuestionSetId(userId, questionSetInfoVo.getQuestionSetId());
+                questionSetInfoVo.setAlreadySubmitTimes(result.getSubmitTimes());
                 if (result.getMaxScore() == null) {
-                    questionSetInfoDto.setMaxScore(-1);
+                    questionSetInfoVo.setMaxScore(-1);
                 } else {
-                    questionSetInfoDto.setMaxScore(result.getMaxScore());
+                    questionSetInfoVo.setMaxScore(result.getMaxScore());
                 }
             }
         } catch (RuntimeException e) {
             return ResponseResult.error(e.getMessage());
         }
-        return ResponseResult.success(questionSetInfoDtoList);
+        return ResponseResult.success(questionSetInfoVoList);
     }
 }

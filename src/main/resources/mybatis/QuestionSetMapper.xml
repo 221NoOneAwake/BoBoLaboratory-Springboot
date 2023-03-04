@@ -20,7 +20,7 @@
     </select>
 
     <!--  查询所有已开放题目集信息  -->
-    <select id="selectOpenQuestionSetInfo" resultType="cn.bobolaboratory.springboot.dto.QuestionSetInfoDto">
+    <select id="selectOpenQuestionSetInfo" resultType="cn.bobolaboratory.springboot.vo.QuestionSetInfoVo">
         select id as questionSetId, submitTimes, examTime, answer
         from bobo.questionset
         where open = true;

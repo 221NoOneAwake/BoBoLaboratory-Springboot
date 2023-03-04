@@ -1,11 +1,8 @@
 package cn.bobolaboratory.springboot.dto;
 
-import cn.bobolaboratory.springboot.entity.Question;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 /**
  * @author WhiteLeaf03
@@ -13,7 +10,6 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnswerListDto {
+public class QuestionSetGetRequest {
     private Long questionSetId;
-    List<Question> questionList;
 }

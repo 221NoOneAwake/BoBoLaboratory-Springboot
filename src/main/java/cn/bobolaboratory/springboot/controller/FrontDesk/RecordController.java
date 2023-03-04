@@ -1,6 +1,6 @@
 package cn.bobolaboratory.springboot.controller.FrontDesk;
 
-import cn.bobolaboratory.springboot.dto.QuestionSetIdDto;
+import cn.bobolaboratory.springboot.dto.QuestionSetGetRequest;
 import cn.bobolaboratory.springboot.service.FrontDesk.Record.RecordService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import io.swagger.annotations.Api;
@@ -22,7 +22,7 @@ public class RecordController {
     }
 
     @GetMapping("")
-    public ResponseResult queryRecordByUserId(QuestionSetIdDto questionSetIdDto) {
-        return recordService.queryRecordByQuestionSetId(questionSetIdDto.getQuestionSetId());
+    public ResponseResult queryRecordByUserId(QuestionSetGetRequest questionSetGetRequest) {
+        return recordService.queryRecordByQuestionSetId(questionSetGetRequest.getQuestionSetId());
     }
 }

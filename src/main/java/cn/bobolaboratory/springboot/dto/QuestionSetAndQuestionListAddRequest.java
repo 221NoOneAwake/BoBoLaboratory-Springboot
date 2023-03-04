@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class QuestionSetAndQuestionListDto {
+public class QuestionSetAndQuestionListAddRequest {
     QuestionSet questionSet;
     List<Question> questionList;
 }

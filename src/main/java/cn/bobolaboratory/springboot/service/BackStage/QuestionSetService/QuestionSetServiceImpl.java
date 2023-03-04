@@ -1,6 +1,6 @@
 package cn.bobolaboratory.springboot.service.BackStage.QuestionSetService;
 
-import cn.bobolaboratory.springboot.dto.QuestionSetInfoDto;
+import cn.bobolaboratory.springboot.vo.QuestionSetInfoVo;
 import cn.bobolaboratory.springboot.entity.Question;
 import cn.bobolaboratory.springboot.entity.QuestionSet;
 import cn.bobolaboratory.springboot.mapper.QuestionMapper;
@@ -86,7 +86,7 @@ public class QuestionSetServiceImpl implements QuestionSetService {
      */
     @Override
     public ResponseResult queryOpenQuestionSet() {
-        List<QuestionSetInfoDto> questionSetList;
+        List<QuestionSetInfoVo> questionSetList;
         try {
             questionSetList = questionSetMapper.selectOpenQuestionSetInfo();
         } catch (RuntimeException e) {

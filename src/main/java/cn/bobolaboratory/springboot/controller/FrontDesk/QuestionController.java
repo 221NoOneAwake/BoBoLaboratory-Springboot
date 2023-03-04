@@ -1,7 +1,7 @@
 package cn.bobolaboratory.springboot.controller.FrontDesk;
 
-import cn.bobolaboratory.springboot.dto.AnswerListDto;
-import cn.bobolaboratory.springboot.dto.QuestionSetIdDto;
+import cn.bobolaboratory.springboot.dto.AnswerListPostRequest;
+import cn.bobolaboratory.springboot.dto.QuestionSetGetRequest;
 import cn.bobolaboratory.springboot.service.FrontDesk.QuestionService.QuestionService;
 import cn.bobolaboratory.springboot.service.FrontDesk.QuestionSetService.QuestionSetService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
@@ -36,20 +36,20 @@ public class QuestionController {
 
     /**
      * 学生获取试卷
-     * @param questionSetIdDto 包含题集id
+     * @param questionSetGetRequest 包含题集id
      * @return 返回题目详情 包含 题目id 题目 类型 选项 分值
      */
     @GetMapping("/question")
-    public ResponseResult queryQuestionByQuestionSetIdFromFrontEnd(QuestionSetIdDto questionSetIdDto) {
-        return questionService.queryQuestionByQuestionSetIdFromFrontEnd(questionSetIdDto.getQuestionSetId());
+    public ResponseResult queryQuestionByQuestionSetIdFromFrontEnd(QuestionSetGetRequest questionSetGetRequest) {
+        return questionService.queryQuestionByQuestionSetIdFromFrontEnd(questionSetGetRequest.getQuestionSetId());
     }
 
     /**
      * 提交答案
-     * @param answerListDto 包含 题集id 和 答案详情 答题详情包括 题目id 答案 选择题为A B C D 判断题为true / false 类型皆为字符串
+     * @param answerListPostRequest 包含 题集id 和 答案详情 答题详情包括 题目id 答案 选择题为A B C D 判断题为true / false 类型皆为字符串
      */
     @PostMapping("/question")
-    public ResponseResult submitAnswer(@RequestBody AnswerListDto answerListDto) {
-        return questionService.submitAnswerAndCalculateScore(answerListDto.getQuestionSetId(), answerListDto.getQuestionList());
+    public ResponseResult submitAnswer(@RequestBody AnswerListPostRequest answerListPostRequest) {
+        return questionService.submitAnswerAndCalculateScore(answerListPostRequest.getQuestionSetId(), answerListPostRequest.getQuestionList());
     }
 }

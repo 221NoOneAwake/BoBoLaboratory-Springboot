@@ -1,6 +1,6 @@
 package cn.bobolaboratory.springboot.mapper;
 
-import cn.bobolaboratory.springboot.dto.QuestionSetInfoDto;
+import cn.bobolaboratory.springboot.vo.QuestionSetInfoVo;
 import cn.bobolaboratory.springboot.entity.QuestionSet;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -33,7 +33,7 @@ public interface QuestionSetMapper {
      * 查询所有已开放题目集信息
      * @return 返回查询结果
      */
-    List<QuestionSetInfoDto> selectOpenQuestionSetInfo();
+    List<QuestionSetInfoVo> selectOpenQuestionSetInfo();
 
     /**
      * 根据题集id开放题集
