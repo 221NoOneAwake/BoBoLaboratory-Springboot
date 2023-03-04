@@ -14,7 +14,7 @@
     </select>
 
     <!--  后台查询所有题目集  -->
-    <select id="selectAllQuestionSet">
+    <select id="selectAllQuestionSet" resultType="cn.bobolaboratory.springboot.entity.QuestionSet">
         select id, `name`, startDate, endDate, examTime, submitTimes, answer, `open`
         from bobo.questionset;
     </select>
