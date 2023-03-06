@@ -1,6 +1,6 @@
 package cn.bobolaboratory.springboot.service.BackStage.LoginStatusService;
 
-import cn.bobolaboratory.springboot.entity.BackstageUser;
+import cn.bobolaboratory.springboot.dto.BackstageUserLoginRequest;
 import cn.bobolaboratory.springboot.security.AuthBackstageUser;
 import cn.bobolaboratory.springboot.utils.JwtUtil;
 import cn.bobolaboratory.springboot.utils.RedisCache;
@@ -34,13 +34,13 @@ public class LoginStatusServiceImpl implements LoginStatusService {
 
     /**
      * 用户登录
-     * @param backstageUser 含有用户名及密码
+     * @param backstageUserLoginRequest 含有用户名及密码
      * @return 返回登录结果
      */
     @Override
-    public ResponseResult login(BackstageUser backstageUser) {
+    public ResponseResult login(BackstageUserLoginRequest backstageUserLoginRequest) {
         //用户认证
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(backstageUser.getUsername(), backstageUser.getPassword());
+        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(backstageUserLoginRequest.getUsername(), backstageUserLoginRequest.getPassword());
         Authentication authenticate;
         try {
             authenticate = authenticationManager.authenticate(authenticationToken);

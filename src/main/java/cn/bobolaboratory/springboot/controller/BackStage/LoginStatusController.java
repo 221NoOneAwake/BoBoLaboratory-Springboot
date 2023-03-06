@@ -1,6 +1,6 @@
 package cn.bobolaboratory.springboot.controller.BackStage;
 
-import cn.bobolaboratory.springboot.entity.BackstageUser;
+import cn.bobolaboratory.springboot.dto.BackstageUserLoginRequest;
 import cn.bobolaboratory.springboot.service.BackStage.LoginStatusService.LoginStatusService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import io.swagger.annotations.Api;
@@ -25,7 +25,7 @@ public class LoginStatusController {
     }
 
     @PostMapping("")
-    public ResponseResult login(@RequestBody BackstageUser backstageUser) {
-        return loginStatusService.login(backstageUser);
+    public ResponseResult login(@RequestBody BackstageUserLoginRequest backstageUserLoginRequest) {
+        return loginStatusService.login(backstageUserLoginRequest);
     }
 }

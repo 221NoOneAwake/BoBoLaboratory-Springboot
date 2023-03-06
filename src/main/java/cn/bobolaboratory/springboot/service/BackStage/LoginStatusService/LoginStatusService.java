@@ -1,6 +1,6 @@
 package cn.bobolaboratory.springboot.service.BackStage.LoginStatusService;
 
-import cn.bobolaboratory.springboot.entity.BackstageUser;
+import cn.bobolaboratory.springboot.dto.BackstageUserLoginRequest;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 
 /**
@@ -9,8 +9,8 @@ import cn.bobolaboratory.springboot.utils.ResponseResult;
 public interface LoginStatusService {
     /**
      * 用户登录
-     * @param backstageUser 含有用户名及密码
+     * @param backstageUserLoginRequest 含有用户名及密码
      * @return 返回登录结果
      */
-    ResponseResult login(BackstageUser backstageUser);
+    ResponseResult login(BackstageUserLoginRequest backstageUserLoginRequest);
 }
