@@ -1,5 +1,7 @@
 package cn.bobolaboratory.springboot.mapper;
 
+import cn.bobolaboratory.springboot.dto.NormalUserRegisterRequest;
+import cn.bobolaboratory.springboot.dto.NormalUserUpdateRequest;
 import cn.bobolaboratory.springboot.entity.NormalUser;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -27,9 +29,9 @@ public interface NormalUserMapper {
 
     /**
      * 更新学生信息
-     * @param normalUser 要更新的学生信息
+     * @param normalUserUpdateRequest 要更新的学生信息
      */
-    void updateNormalUserById(NormalUser normalUser);
+    void updateNormalUserById(NormalUserUpdateRequest normalUserUpdateRequest);
 
     /**
      * 删除学生信息
@@ -38,8 +40,16 @@ public interface NormalUserMapper {
     void deleteNormalUserById(Long id);
 
     /**
-     * 新用户注册
-     * @param normalUser 包含新用户的openId
+     * 添加新用户
+     * @param openId 新用户的openId
+     * 新用户首次登录时，保存其openId
      */
-    void registerNormalUser(NormalUser normalUser);
+    void addNormalUser(String openId);
+
+    /**
+     * 新用户注册
+     * @param normalUserRegisterRequest 包含新用户注册信息
+     * 包含姓名 性别 班级 学号
+     */
+    void registerNormalUser(Long id, NormalUserRegisterRequest normalUserRegisterRequest);
 }

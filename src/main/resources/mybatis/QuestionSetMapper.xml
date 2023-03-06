@@ -3,7 +3,7 @@
 
 <mapper namespace="cn.bobolaboratory.springboot.mapper.QuestionSetMapper">
     <!--  添加题目库  -->
-    <insert id="insertQuestionSet" parameterType="cn.bobolaboratory.springboot.entity.QuestionSet">
+    <insert id="insertQuestionSet" parameterType="cn.bobolaboratory.springboot.dto.QuestionSetAddRequest">
         insert into bobo.questionset (`name`, startDate, endDate, examTime, submitTimes, answer, `open`)
             value (#{name}, #{startDate}, #{endDate}, #{examTime}, #{submitTimes}, #{answer}, false);
     </insert>
@@ -21,7 +21,7 @@
 
     <!--  查询所有已开放题目集信息  -->
     <select id="selectOpenQuestionSetInfo" resultType="cn.bobolaboratory.springboot.vo.QuestionSetInfoVo">
-        select id as questionSetId, submitTimes, examTime, answer
+        select id as questionSetId, submitTimes as allowSubmitTimes, `name`, examTime, answer
         from bobo.questionset
         where open = true;
     </select>

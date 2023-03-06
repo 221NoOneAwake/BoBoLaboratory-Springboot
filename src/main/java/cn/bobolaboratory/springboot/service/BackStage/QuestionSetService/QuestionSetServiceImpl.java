@@ -1,7 +1,9 @@
 package cn.bobolaboratory.springboot.service.BackStage.QuestionSetService;
 
+import cn.bobolaboratory.springboot.dto.QuestionAddRequest;
+import cn.bobolaboratory.springboot.dto.QuestionSetAddRequest;
+import cn.bobolaboratory.springboot.dto.QuestionSetAndQuestionListAddRequest;
 import cn.bobolaboratory.springboot.vo.QuestionSetInfoVo;
-import cn.bobolaboratory.springboot.entity.Question;
 import cn.bobolaboratory.springboot.entity.QuestionSet;
 import cn.bobolaboratory.springboot.mapper.QuestionMapper;
 import cn.bobolaboratory.springboot.mapper.QuestionSetMapper;
@@ -27,13 +29,13 @@ public class QuestionSetServiceImpl implements QuestionSetService {
 
     /**
      * 新增一个题目集
-     * @param questionSet 要添加的题目集
+     * @param questionSetAddRequest 要添加的题目集
      * @return 返回结果
      */
     @Override
-    public ResponseResult newQuestionSet(QuestionSet questionSet) {
+    public ResponseResult newQuestionSet(QuestionSetAddRequest questionSetAddRequest) {
         try {
-            questionSetMapper.insertQuestionSet(questionSet);
+            questionSetMapper.insertQuestionSet(questionSetAddRequest);
         } catch (RuntimeException e) {
             return ResponseResult.error(e.getMessage());
         }
@@ -42,16 +44,15 @@ public class QuestionSetServiceImpl implements QuestionSetService {
 
     /**
      * 新增题目集并添加题目
-     * @param questionSet  要添加的题目集
-     * @param questionList 要添加的题目
+     * @param questionSetAndQuestionListAddRequest  要添加的题目集和要添加的题目
      * @return 返回结果
      */
     @Override
-    public ResponseResult addQuestionSet(QuestionSet questionSet, List<Question> questionList) {
+    public ResponseResult addQuestionSet(QuestionSetAndQuestionListAddRequest questionSetAndQuestionListAddRequest) {
         try {
-            questionSetMapper.insertQuestionSet(questionSet);
+            questionSetMapper.insertQuestionSet(questionSetAndQuestionListAddRequest.getQuestionSet());
             final Long questionSetId = questionSetMapper.getLastInsertId();
-            for (Question question : questionList) {
+            for (QuestionAddRequest question : questionSetAndQuestionListAddRequest.getQuestionList()) {
                 question.setQuestionSetId(questionSetId);
                 if ("".equals(question.getChoice1())) {
                     questionMapper.insertJudgeQuestion(question);

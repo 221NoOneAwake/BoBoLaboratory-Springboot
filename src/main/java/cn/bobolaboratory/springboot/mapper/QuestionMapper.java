@@ -1,5 +1,6 @@
 package cn.bobolaboratory.springboot.mapper;
 
+import cn.bobolaboratory.springboot.dto.QuestionAddRequest;
 import cn.bobolaboratory.springboot.entity.Question;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,15 +13,15 @@ import java.util.List;
 public interface QuestionMapper {
     /**
      * 添加单道判断题题目
-     * @param question 要添加的题目
+     * @param questionAddRequest 要添加的题目
      */
-    void insertJudgeQuestion(Question question);
+    void insertJudgeQuestion(QuestionAddRequest questionAddRequest);
 
     /**
      * 添加单道选择题题目
-     * @param question 要添加的题目
+     * @param questionAddRequest 要添加的题目
      */
-    void insertChoiceQuestion(Question question);
+    void insertChoiceQuestion(QuestionAddRequest questionAddRequest);
 
     /**
      * 后台根据题集id查询题目详情

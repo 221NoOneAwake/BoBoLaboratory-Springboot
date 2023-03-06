@@ -1,18 +1,20 @@
 package cn.bobolaboratory.springboot.dto;
 
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 /**
  * @author WhiteLeaf03
  */
+@ApiModel
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AnswerListPostRequest {
-    private Long questionSetId;
-    List<Answer> answerList;
+public class NormalUserDeleteRequest {
+    /**
+     * 主键
+     */
+    Long id;
 }

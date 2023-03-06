@@ -4,13 +4,13 @@
 <!--  0 判断 1 选择  -->
 <mapper namespace="cn.bobolaboratory.springboot.mapper.QuestionMapper">
     <!--  插入判断题  -->
-    <insert id="insertJudgeQuestion" parameterType="cn.bobolaboratory.springboot.entity.Question">
+    <insert id="insertJudgeQuestion" parameterType="cn.bobolaboratory.springboot.dto.QuestionAddRequest">
         insert into bobo.question (questionSetId, title, type, answer, score)
             value (#{questionSetId}, #{title}, 0, #{answer}, #{score});
     </insert>
 
     <!--  插入选择题  -->
-    <insert id="insertChoiceQuestion" parameterType="cn.bobolaboratory.springboot.entity.Question">
+    <insert id="insertChoiceQuestion" parameterType="cn.bobolaboratory.springboot.dto.QuestionAddRequest">
         insert into bobo.question (questionSetId, title, type, choice1, choice2, choice3, choice4, answer, score)
             value (#{questionSetId}, #{title}, 1, #{choice1}, #{choice2}, #{choice3}, #{choice4}, #{answer}, #{score});
     </insert>

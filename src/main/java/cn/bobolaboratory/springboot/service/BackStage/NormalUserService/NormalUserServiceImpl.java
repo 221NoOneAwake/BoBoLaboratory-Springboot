@@ -1,5 +1,6 @@
 package cn.bobolaboratory.springboot.service.BackStage.NormalUserService;
 
+import cn.bobolaboratory.springboot.dto.NormalUserUpdateRequest;
 import cn.bobolaboratory.springboot.entity.NormalUser;
 import cn.bobolaboratory.springboot.mapper.NormalUserMapper;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
@@ -8,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * @author WhiteLeaf03
+ */
 @Service
 public class NormalUserServiceImpl implements NormalUserService {
     private final NormalUserMapper normalUserMapper;
@@ -33,13 +37,13 @@ public class NormalUserServiceImpl implements NormalUserService {
 
     /**
      * 更新学生信息
-     * @param normalUser 要更新的学生信息
+     * @param normalUserUpdateRequest 要更新的学生的信息
      * @return 返回结果
      */
     @Override
-    public ResponseResult updateNormalUserById(NormalUser normalUser) {
+    public ResponseResult updateNormalUserById(NormalUserUpdateRequest normalUserUpdateRequest) {
         try {
-            normalUserMapper.updateNormalUserById(normalUser);
+            normalUserMapper.updateNormalUserById(normalUserUpdateRequest);
             return ResponseResult.success();
         } catch (RuntimeException e) {
             return ResponseResult.error(e.getMessage());

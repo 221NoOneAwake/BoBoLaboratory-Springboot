@@ -1,5 +1,6 @@
 package cn.bobolaboratory.springboot.service.BackStage.QuestionService;
 
+import cn.bobolaboratory.springboot.dto.QuestionAddRequest;
 import cn.bobolaboratory.springboot.entity.Question;
 import cn.bobolaboratory.springboot.mapper.QuestionMapper;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
@@ -22,17 +23,17 @@ public class QuestionServiceImpl implements QuestionService {
 
     /**
      * 添加单道题目
-     * @param question 要添加的题目
+     * @param questionAddRequest 要添加的题目
      * @return 返回结果
      */
     @Override
-    public ResponseResult addSingleQuestion(Question question) {
+    public ResponseResult addSingleQuestion(QuestionAddRequest questionAddRequest) {
         try {
             // 0 判断题 1 选择题
-            if (question.getType() == 0) {
-                questionMapper.insertJudgeQuestion(question);
+            if (questionAddRequest.getType() == 0) {
+                questionMapper.insertJudgeQuestion(questionAddRequest);
             } else {
-                questionMapper.insertChoiceQuestion(question);
+                questionMapper.insertChoiceQuestion(questionAddRequest);
             }
         } catch (RuntimeException e) {
             return ResponseResult.error(e.getMessage());

@@ -4,7 +4,7 @@
 <mapper namespace="cn.bobolaboratory.springboot.mapper.ResultMapper">
     <!--  获取用户已答题次数和最高成绩  -->
     <select id="countSubmitTimesByUserIdAndQuestionSetId" parameterType="Long" resultType="cn.bobolaboratory.springboot.entity.Result">
-        select submitTimes, maxScore
+        select submitTimes , maxScore
         from bobo.result
         where userId = #{userId} and questionSetId = #{questionSetId};
     </select>

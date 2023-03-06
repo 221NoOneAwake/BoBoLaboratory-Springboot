@@ -1,5 +1,6 @@
 package cn.bobolaboratory.springboot.service.BackStage.QuestionService;
 
+import cn.bobolaboratory.springboot.dto.QuestionAddRequest;
 import cn.bobolaboratory.springboot.entity.Question;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 
@@ -9,10 +10,10 @@ import cn.bobolaboratory.springboot.utils.ResponseResult;
 public interface QuestionService {
     /**
      * 添加单道题目
-     * @param question 要添加的题目
+     * @param questionAddRequest 要添加的题目
      * @return 返回结果
      */
-    ResponseResult addSingleQuestion(Question question);
+    ResponseResult addSingleQuestion(QuestionAddRequest questionAddRequest);
 
     /**
      * 管理员获取题目详情

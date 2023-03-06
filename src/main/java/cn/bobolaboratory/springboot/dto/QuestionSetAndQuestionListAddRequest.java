@@ -15,6 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class QuestionSetAndQuestionListAddRequest {
-    QuestionSet questionSet;
-    List<Question> questionList;
+    QuestionSetAddRequest questionSet;
+    List<QuestionAddRequest> questionList;
 }

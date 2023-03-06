@@ -1,5 +1,7 @@
 package cn.bobolaboratory.springboot.service.BackStage.QuestionSetService;
 
+import cn.bobolaboratory.springboot.dto.QuestionSetAddRequest;
+import cn.bobolaboratory.springboot.dto.QuestionSetAndQuestionListAddRequest;
 import cn.bobolaboratory.springboot.entity.Question;
 import cn.bobolaboratory.springboot.entity.QuestionSet;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
@@ -12,18 +14,17 @@ import java.util.List;
 public interface QuestionSetService {
     /**
      * 添加题目集
-     * @param questionSet 要添加的题目集
+     * @param questionSetAddRequest 要添加的题目集
      * @return 返回结果
      */
-    ResponseResult newQuestionSet(QuestionSet questionSet);
+    ResponseResult newQuestionSet(QuestionSetAddRequest questionSetAddRequest);
 
     /**
      * 新增题目集并添加题目
-     * @param questionSet 要添加的题目集
-     * @param questionList 要添加的题目
+     * @param questionSetAndQuestionListAddRequest 要添加的题目集和要添加的题目
      * @return 返回结果
      */
-    ResponseResult addQuestionSet(QuestionSet questionSet, List<Question> questionList);
+    ResponseResult addQuestionSet(QuestionSetAndQuestionListAddRequest questionSetAndQuestionListAddRequest);
 
 
     /**

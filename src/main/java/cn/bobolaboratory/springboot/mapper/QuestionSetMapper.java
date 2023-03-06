@@ -1,5 +1,6 @@
 package cn.bobolaboratory.springboot.mapper;
 
+import cn.bobolaboratory.springboot.dto.QuestionSetAddRequest;
 import cn.bobolaboratory.springboot.vo.QuestionSetInfoVo;
 import cn.bobolaboratory.springboot.entity.QuestionSet;
 import org.apache.ibatis.annotations.Mapper;
@@ -13,9 +14,9 @@ import java.util.List;
 public interface QuestionSetMapper {
     /**
      * 新增题目集
-     * @param questionSet 要添加的题目集
+     * @param questionSetAddRequest 要添加的题目集
      */
-    void insertQuestionSet(QuestionSet questionSet);
+    void insertQuestionSet(QuestionSetAddRequest questionSetAddRequest);
 
     /**
      * 获取最新一条插入数据的id

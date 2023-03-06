@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author WhiteLeaf03
@@ -39,10 +40,13 @@ public class QuestionSetServiceImpl implements QuestionSetService {
             Result result;
             for (QuestionSetInfoVo questionSetInfoVo : questionSetInfoVoList) {
                 result = resultMapper.countSubmitTimesByUserIdAndQuestionSetId(userId, questionSetInfoVo.getQuestionSetId());
-                questionSetInfoVo.setAlreadySubmitTimes(result.getSubmitTimes());
-                if (result.getMaxScore() == null) {
+                if (Objects.isNull(result)) {
+                    //用户尚未答过题
+                    questionSetInfoVo.setAlreadySubmitTimes(0);
                     questionSetInfoVo.setMaxScore(-1);
                 } else {
+                    //用户已答过题目
+                    questionSetInfoVo.setAlreadySubmitTimes(result.getSubmitTimes());
                     questionSetInfoVo.setMaxScore(result.getMaxScore());
                 }
             }

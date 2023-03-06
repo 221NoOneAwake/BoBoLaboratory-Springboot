@@ -1,10 +1,10 @@
 package cn.bobolaboratory.springboot.controller.FrontDesk;
 
-import cn.bobolaboratory.springboot.entity.NormalUser;
+import cn.bobolaboratory.springboot.dto.NormalUserLoginRequest;
+import cn.bobolaboratory.springboot.dto.NormalUserRegisterRequest;
 import cn.bobolaboratory.springboot.service.FrontDesk.NormalUser.NormalUserService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import io.swagger.annotations.Api;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,18 +26,13 @@ public class NormalUserLoginController {
         this.normalUserService = normalUserService;
     }
 
-    @Setter
-    static class LoginData {
-        String code;
-    }
-
     @PostMapping("/login")
-    public ResponseResult normalUserLogin(@RequestBody LoginData loginData) {
-        return normalUserService.normalUserLogin(loginData.code);
+    public ResponseResult normalUserLogin(@RequestBody NormalUserLoginRequest normalUserLoginRequest) {
+        return normalUserService.normalUserLogin(normalUserLoginRequest);
     }
 
     @PostMapping("/register")
-    public ResponseResult normalUserRegister(@RequestBody NormalUser normalUser) {
-        return normalUserService.normalUserRegister(normalUser);
+    public ResponseResult normalUserRegister(@RequestBody NormalUserRegisterRequest normalUserRegisterRequest) {
+        return normalUserService.normalUserRegister(normalUserRegisterRequest);
     }
 }

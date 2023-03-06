@@ -1,6 +1,6 @@
 package cn.bobolaboratory.springboot.service.BackStage.NormalUserService;
 
-import cn.bobolaboratory.springboot.entity.NormalUser;
+import cn.bobolaboratory.springboot.dto.NormalUserUpdateRequest;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 
 public interface NormalUserService {
@@ -12,10 +12,10 @@ public interface NormalUserService {
 
     /**
      * 更新学生信息
-     * @param normalUser 要更新的学生信息
+     * @param normalUserUpdateRequest 要更新的学生的信息
      * @return 返回结果
      */
-    ResponseResult updateNormalUserById(NormalUser normalUser);
+    ResponseResult updateNormalUserById(NormalUserUpdateRequest normalUserUpdateRequest);
 
     /**
      * 删除学生信息

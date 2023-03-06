@@ -1,5 +1,7 @@
 package cn.bobolaboratory.springboot.controller.BackStage;
 
+import cn.bobolaboratory.springboot.dto.QuestionAddRequest;
+import cn.bobolaboratory.springboot.dto.QuestionSetAddRequest;
 import cn.bobolaboratory.springboot.dto.QuestionSetAndQuestionListAddRequest;
 import cn.bobolaboratory.springboot.dto.QuestionSetGetRequest;
 import cn.bobolaboratory.springboot.entity.Question;
@@ -35,8 +37,8 @@ public class QuestionController {
      */
     @PostMapping("/questionSet")
     @PreAuthorize("hasAuthority('Teacher')")
-    public ResponseResult newQuestionSet(@RequestBody QuestionSet questionSet) {
-        return questionSetService.newQuestionSet(questionSet);
+    public ResponseResult newQuestionSet(@RequestBody QuestionSetAddRequest questionSetAddRequest) {
+        return questionSetService.newQuestionSet(questionSetAddRequest);
     }
 
     /**
@@ -45,7 +47,7 @@ public class QuestionController {
     @PostMapping("/questionSet/add")
     @PreAuthorize("hasAuthority('Teacher')")
     public ResponseResult addQuestionSet(@RequestBody QuestionSetAndQuestionListAddRequest questionSetAndQuestionListAddRequest) {
-        return questionSetService.addQuestionSet(questionSetAndQuestionListAddRequest.getQuestionSet(), questionSetAndQuestionListAddRequest.getQuestionList());
+        return questionSetService.addQuestionSet(questionSetAndQuestionListAddRequest);
     }
 
     /**
@@ -64,8 +66,8 @@ public class QuestionController {
      */
     @PostMapping("/question")
     @PreAuthorize("hasAuthority('Teacher')")
-    public ResponseResult addSingleQuestion(@RequestBody Question question) {
-        return questionService.addSingleQuestion(question);
+    public ResponseResult addSingleQuestion(@RequestBody QuestionAddRequest questionAddRequest) {
+        return questionService.addSingleQuestion(questionAddRequest);
     }
 
 

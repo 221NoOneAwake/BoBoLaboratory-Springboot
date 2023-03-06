@@ -17,6 +17,11 @@ public class QuestionSetInfoVo {
     private Long questionSetId;
 
     /**
+     * 题目名称
+     */
+    private String name;
+
+    /**
      * 允许答题次数
      */
     private Integer allowSubmitTimes;

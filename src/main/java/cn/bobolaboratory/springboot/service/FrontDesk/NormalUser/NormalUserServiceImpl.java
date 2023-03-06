@@ -1,6 +1,8 @@
 package cn.bobolaboratory.springboot.service.FrontDesk.NormalUser;
 
 import cn.bobolaboratory.springboot.config.GlobalConfig;
+import cn.bobolaboratory.springboot.dto.NormalUserLoginRequest;
+import cn.bobolaboratory.springboot.dto.NormalUserRegisterRequest;
 import cn.bobolaboratory.springboot.entity.NormalUser;
 import cn.bobolaboratory.springboot.mapper.NormalUserMapper;
 import cn.bobolaboratory.springboot.security.AuthNormalUser;
@@ -37,21 +39,21 @@ public class NormalUserServiceImpl implements NormalUserService {
 
     /**
      * 根据code进行用户登录
-     * @param code 用户临时登录凭证
+     * @param normalUserLoginRequest 用户临时登录凭证
      * @return 返回登录结果
      */
     @Override
-    public ResponseResult normalUserLogin(String code) {
+    public ResponseResult normalUserLogin(NormalUserLoginRequest normalUserLoginRequest) {
         //发送get请求到微信服务器，换区登录用户信息
         RestTemplate restTemplate = new RestTemplate();
         //防止get乱码 设置编码格式
-        restTemplate.getMessageConverters().set(1,new StringHttpMessageConverter(StandardCharsets.UTF_8));
+        restTemplate.getMessageConverters().set(1, new StringHttpMessageConverter(StandardCharsets.UTF_8));
 
         String url = "https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={secret}&js_code={code}&grant_type=authorization_code";
         Map<String, String> requestMap = new HashMap<>();
         requestMap.put("appid", globalConfig.getAppid());
         requestMap.put("secret", globalConfig.getSecret());
-        requestMap.put("code", code);
+        requestMap.put("code", normalUserLoginRequest.getCode());
 
         ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class, requestMap);
 
@@ -73,12 +75,7 @@ public class NormalUserServiceImpl implements NormalUserService {
         NormalUser user;
         user = normalUserMapper.queryNormalUserByOpenid(openid);
         if (user == null) {
-            try {
-                user = new NormalUser(openid);
-            } catch (Exception e) {
-                throw new RuntimeException("Save user error");
-            }
-            normalUserMapper.registerNormalUser(user);
+            normalUserMapper.addNormalUser(openid);
             NormalUser normalUser = normalUserMapper.queryNormalUserByOpenid(openid);
             Map<String, String> map = new HashMap<>();
             redisCache.setCacheObject("[NUser]id:" + normalUser.getId(), normalUser, 90, TimeUnit.MINUTES);
@@ -94,16 +91,15 @@ public class NormalUserServiceImpl implements NormalUserService {
     }
 
     /**
-     * 新用户注册
-     * @param normalUser 新用户信息
+     * 新用户更新信息
+     * @param normalUserRegisterRequest 新用户信息
      * @return 返回结果
      */
     @Override
-    public ResponseResult normalUserRegister(NormalUser normalUser) {
+    public ResponseResult normalUserRegister(NormalUserRegisterRequest normalUserRegisterRequest) {
         try {
             AuthNormalUser authNormalUser = (AuthNormalUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            normalUser.setId(authNormalUser.getNormalUser().getId());
-            normalUserMapper.updateNormalUserById(normalUser);
+            normalUserMapper.registerNormalUser(authNormalUser.getNormalUser().getId(), normalUserRegisterRequest);
             return ResponseResult.success();
         } catch (RuntimeException e) {
             return ResponseResult.error(e.getMessage());

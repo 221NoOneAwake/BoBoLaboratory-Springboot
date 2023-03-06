@@ -50,6 +50,6 @@ public class QuestionController {
      */
     @PostMapping("/question")
     public ResponseResult submitAnswer(@RequestBody AnswerListPostRequest answerListPostRequest) {
-        return questionService.submitAnswerAndCalculateScore(answerListPostRequest.getQuestionSetId(), answerListPostRequest.getQuestionList());
+        return questionService.submitAnswerAndCalculateScore(answerListPostRequest);
     }
 }

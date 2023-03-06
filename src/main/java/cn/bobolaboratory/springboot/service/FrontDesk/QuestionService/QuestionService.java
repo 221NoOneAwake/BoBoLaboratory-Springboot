@@ -1,5 +1,6 @@
 package cn.bobolaboratory.springboot.service.FrontDesk.QuestionService;
 
+import cn.bobolaboratory.springboot.dto.AnswerListPostRequest;
 import cn.bobolaboratory.springboot.entity.Question;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 
@@ -18,9 +19,8 @@ public interface QuestionService {
 
     /**
      * 提交答案并打分
-     * @param questionSetId 题集id
-     * @param questionList 提交的答案列表
+     * @param answerListPostRequest 提交的答案
      * @return 返回成绩
      */
-    ResponseResult submitAnswerAndCalculateScore(Long questionSetId, List<Question> questionList);
+    ResponseResult submitAnswerAndCalculateScore(AnswerListPostRequest answerListPostRequest);
 }

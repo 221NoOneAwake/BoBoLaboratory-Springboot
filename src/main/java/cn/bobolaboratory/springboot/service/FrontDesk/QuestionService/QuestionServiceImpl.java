@@ -1,5 +1,7 @@
 package cn.bobolaboratory.springboot.service.FrontDesk.QuestionService;
 
+import cn.bobolaboratory.springboot.dto.Answer;
+import cn.bobolaboratory.springboot.dto.AnswerListPostRequest;
 import cn.bobolaboratory.springboot.entity.Question;
 import cn.bobolaboratory.springboot.entity.Record;
 import cn.bobolaboratory.springboot.entity.Result;
@@ -57,12 +59,13 @@ public class QuestionServiceImpl implements QuestionService {
 
     /**
      * 提交答案并打分
-     * @param questionList 提交的答案列表
+     * @param answerListPostRequest 提交的答案列表
      * @return 返回成绩
      */
     @Override
-    public ResponseResult submitAnswerAndCalculateScore(Long questionSetId, List<Question> questionList) {
+    public ResponseResult submitAnswerAndCalculateScore(AnswerListPostRequest answerListPostRequest) {
         Long userId = UserUtil.getNormalUserId();
+        Long questionSetId = answerListPostRequest.getQuestionSetId();
         Result result = resultMapper.countSubmitTimesByUserIdAndQuestionSetId(userId, questionSetId);
         Integer submitTimes;
         Integer maxScore;
@@ -88,9 +91,10 @@ public class QuestionServiceImpl implements QuestionService {
             return ResponseResult.error(e.getMessage());
         }
         int score = 0;
-        for (int index = 0; index < questionList.size(); index++) {
+        List<Answer> answerList = answerListPostRequest.getAnswerList();
+        for (int index = 0; index < answerList.size(); index++) {
             Question standardData = answerInfoList.get(index);
-            Question submitData = questionList.get(index);
+            Answer submitData = answerList.get(index);
             if (submitData.getId().equals(standardData.getId()) && submitData.getAnswer().equals(standardData.getAnswer())) {
                 //答案正确
                 recordMapper.insertRecord(new Record(questionSetId, submitData.getId(), userId, standardData.getType(), submitDate, submitTimes, submitData.getAnswer(), true, standardData.getScore()));
