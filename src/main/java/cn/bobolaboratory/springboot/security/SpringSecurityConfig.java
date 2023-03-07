@@ -58,6 +58,7 @@ public class SpringSecurityConfig {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/bs/api/login").permitAll()
                 .antMatchers(HttpMethod.POST, "/fd/api/login").permitAll()
+                .antMatchers("/bs/api/captcha").permitAll()
                 .antMatchers("/swagger**/**").permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/v2/**").permitAll()
