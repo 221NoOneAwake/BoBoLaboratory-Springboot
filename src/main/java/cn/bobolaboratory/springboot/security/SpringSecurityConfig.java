@@ -65,6 +65,8 @@ public class SpringSecurityConfig {
                 .anyRequest().authenticated();
         http    //将jwtAuthenticationTokenFilter放置于UsernamePasswordAuthenticationFilter前
                 .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        http
+                .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler());
         return http.build();
     }
 }

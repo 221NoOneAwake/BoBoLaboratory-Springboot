@@ -4,6 +4,7 @@ import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author WhiteLeaf03
@@ -12,24 +13,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BackstageUserLoginRequest {
+public class StudentInfoUploadRequest {
     /**
-     * 用户名
+     * 上传的班级
      */
-    private String username;
+    private String group;
 
     /**
-     * 密码
+     * 上传的Excel表
      */
-    private String password;
-
-    /**
-     * 身份码
-     */
-    private String identity;
-
-    /**
-     * 验证码
-     */
-    private String captcha;
+    private MultipartFile studentInfoExcel;
 }

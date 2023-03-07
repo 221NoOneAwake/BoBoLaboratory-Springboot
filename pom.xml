@@ -79,6 +79,15 @@
             <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
             <version>4.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>5.8.14</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.poi</groupId>-->
+<!--            <artifactId>poi-ooxml</artifactId>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
