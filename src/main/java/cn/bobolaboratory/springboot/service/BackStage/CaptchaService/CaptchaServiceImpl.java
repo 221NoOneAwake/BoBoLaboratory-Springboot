@@ -33,7 +33,7 @@ public class CaptchaServiceImpl implements CaptchaService {
         Map<String, String> map = new HashMap<>();
         map.put("identity", identity);
         map.put("captchaBase64Data", lineCaptcha.getImageBase64Data());
-        redisCache.setCacheObject("[Captcha|Identity]" + identity, lineCaptcha.getCode(), 5, TimeUnit.MINUTES);
+        redisCache.setCacheObject("[Captcha]" + identity, lineCaptcha.getCode(), 5, TimeUnit.MINUTES);
         return ResponseResult.success(map);
     }
 }

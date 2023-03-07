@@ -40,9 +40,10 @@ public class LoginStatusServiceImpl implements LoginStatusService {
     @Override
     public ResponseResult login(BackstageUserLoginRequest backstageUserLoginRequest) {
         //验证码校验
-        String identity = "[Captcha|Identity]" + backstageUserLoginRequest.getIdentity();
+        String identity = "[Captcha]" + backstageUserLoginRequest.getIdentity();
         String code = redisCache.getCacheObject(identity);
-        if (!Objects.isNull(code) && !code.equals(backstageUserLoginRequest.getCaptcha())) {
+        redisCache.deleteObject("[Captcha]" + backstageUserLoginRequest.getIdentity());
+        if (Objects.isNull(code) || !code.equals(backstageUserLoginRequest.getCaptcha())) {
             return ResponseResult.error("验证码错误！请重试!");
         }
         //用户认证
