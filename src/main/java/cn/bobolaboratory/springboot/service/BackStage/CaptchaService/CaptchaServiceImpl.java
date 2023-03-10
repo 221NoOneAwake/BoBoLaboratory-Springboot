@@ -28,7 +28,7 @@ public class CaptchaServiceImpl implements CaptchaService {
      */
     @Override
     public ResponseResult getCaptcha() {
-        LineCaptcha lineCaptcha = CaptchaUtil.createLineCaptcha(200, 40, 5, 4);
+        LineCaptcha lineCaptcha = CaptchaUtil.createLineCaptcha(180, 30, 6, 4);
         String identity = RandomUtil.randomString(16);
         Map<String, String> map = new HashMap<>();
         map.put("identity", identity);
