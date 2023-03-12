@@ -16,4 +16,11 @@
           and userId = #{userId}
         order by submitTimes DESC, id;
     </select>
+
+    <!--  根据userId删除相关记录  -->
+    <delete id="deleteRecordByUserId">
+        delete
+        from bobo.record
+        where userId = #{userId};
+    </delete>
 </mapper>

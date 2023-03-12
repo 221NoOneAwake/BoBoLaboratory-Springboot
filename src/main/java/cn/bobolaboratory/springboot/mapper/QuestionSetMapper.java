@@ -41,4 +41,11 @@ public interface QuestionSetMapper {
      * @param questionSetId 要开放的题集的id
      */
     void openQuestionSet(Long questionSetId);
+
+    /**
+     * 根据id获取题目集名称
+     * @param id 题目集id
+     * @return 返回题集名称
+     */
+    String queryNameById(Long id);
 }

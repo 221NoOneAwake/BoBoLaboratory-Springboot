@@ -2,6 +2,7 @@ package cn.bobolaboratory.springboot.controller.BackStage;
 
 import cn.bobolaboratory.springboot.dto.NormalUserDeleteRequest;
 import cn.bobolaboratory.springboot.dto.NormalUserUpdateRequest;
+import cn.bobolaboratory.springboot.dto.QueryNormalUserByGroupRequest;
 import cn.bobolaboratory.springboot.service.BackStage.NormalUserService.NormalUserService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import io.swagger.annotations.Api;
@@ -27,6 +28,24 @@ public class NormalUserController {
     @PreAuthorize("hasAuthority('Teacher')")
     public ResponseResult queryAllNormalUser() {
         return normalUserService.queryAllNormalUser();
+    }
+
+    @GetMapping("group/list")
+    @PreAuthorize("hasAuthority('Teacher')")
+    public ResponseResult queryGroupList() {
+        return normalUserService.queryGroupList();
+    }
+
+    @GetMapping("name")
+    @PreAuthorize("hasAuthority('Teacher')")
+    public ResponseResult queryNormalUserByName(String name) {
+        return normalUserService.queryNormalUserByName(name);
+    }
+
+    @GetMapping("group")
+    @PreAuthorize("hasAuthority('Teacher')")
+    public ResponseResult queryNormalUserByGroup(QueryNormalUserByGroupRequest queryNormalUserByGroupRequest) {
+        return normalUserService.queryNormalUserByGroup(queryNormalUserByGroupRequest);
     }
 
     @PutMapping("")

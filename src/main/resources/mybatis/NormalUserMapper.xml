@@ -13,7 +13,24 @@
         from bobo.normaluser;
     </select>
 
-    <update id="updateNormalUserById" parameterType="cn.bobolaboratory.springboot.dto.NormalUserUpdateRequest">
+    <select id="queryGroupList" resultType="cn.bobolaboratory.springboot.vo.GroupListVo">
+        select distinct `group` as `name`
+        from bobo.normaluser;
+    </select>
+    
+    <select id="queryNormalUserByGroup" resultType="cn.bobolaboratory.springboot.vo.NormalUserListVo">
+        select id, `name`, `group`, schoolId, sex
+        from bobo.normaluser
+        where `group` = #{group}
+    </select>
+
+    <select id="queryNormalUserByName" resultType="cn.bobolaboratory.springboot.vo.NormalUserListVo">
+        select id, `name`, `group`, schoolId, sex
+        from bobo.normaluser
+        where `name` = #{name}
+    </select>
+
+    <update id="updateNormalUserById" parameterType="cn.bobolaboratory.springboot.entity.NormalUser">
         update bobo.normaluser
         set name     = #{name},
             sex      = #{sex},

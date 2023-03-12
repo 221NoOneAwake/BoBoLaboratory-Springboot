@@ -1,6 +1,7 @@
 package cn.bobolaboratory.springboot.mapper;
 
 import cn.bobolaboratory.springboot.entity.Result;
+import cn.bobolaboratory.springboot.vo.ResultVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -36,4 +37,10 @@ public interface ResultMapper {
      * @param result 学生非首次答题更新成绩
      */
     void updateResult(Result result);
+
+    /**
+     * 根据userId删除该学生记录
+     * @param userId 要删除的学生的id
+     */
+    void deleteResultByUserId(Long userId);
 }

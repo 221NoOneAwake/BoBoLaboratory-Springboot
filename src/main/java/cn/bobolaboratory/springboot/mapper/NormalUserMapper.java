@@ -2,7 +2,10 @@ package cn.bobolaboratory.springboot.mapper;
 
 import cn.bobolaboratory.springboot.dto.NormalUserRegisterRequest;
 import cn.bobolaboratory.springboot.dto.NormalUserUpdateRequest;
+import cn.bobolaboratory.springboot.dto.QueryNormalUserByGroupRequest;
 import cn.bobolaboratory.springboot.entity.NormalUser;
+import cn.bobolaboratory.springboot.vo.GroupListVo;
+import cn.bobolaboratory.springboot.vo.NormalUserListVo;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -26,6 +29,26 @@ public interface NormalUserMapper {
      * @return 返回查询获得的信息
      */
     List<NormalUser> queryAllNormalUser();
+
+    /**
+     * 获取班级列表
+     * @return 返回班级列表
+     */
+    List<GroupListVo> queryGroupList();
+
+    /**
+     * 根据班级查询学生信息
+     * @param queryNormalUserByGroupRequest 班级
+     * @return 返回该班级的学生信息
+     */
+    List<NormalUserListVo> queryNormalUserByGroup(QueryNormalUserByGroupRequest queryNormalUserByGroupRequest);
+
+    /**
+     * 根据姓名查询学生信息
+     * @param name 姓名
+     * @return 返回学生信息
+     */
+    List<NormalUserListVo> queryNormalUserByName(String name);
 
     /**
      * 更新学生信息

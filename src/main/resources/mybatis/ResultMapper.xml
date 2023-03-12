@@ -31,4 +31,9 @@
         where questionSetId = #{questionSetId}
           and userId = #{userId};
     </update>
+
+    <!--  根据userId删除相关记录  -->
+    <delete id="deleteResultByUserId">
+        delete from bobo.result where userId = #{userId};
+    </delete>
 </mapper>
