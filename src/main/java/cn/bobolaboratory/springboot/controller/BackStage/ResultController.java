@@ -3,6 +3,7 @@ package cn.bobolaboratory.springboot.controller.BackStage;
 import cn.bobolaboratory.springboot.service.BackStage.ResultService.ResultService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class ResultController {
         this.resultService = resultService;
     }
 
+    @ApiOperation("根据id查询学生的答题情况")
     @GetMapping("")
     @PreAuthorize("hasAuthority('Teacher')")
     public ResponseResult queryAllRecord(Long id) {

@@ -3,6 +3,7 @@ package cn.bobolaboratory.springboot.controller.BackStage;
 import cn.bobolaboratory.springboot.service.BackStage.CaptchaService.CaptchaService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.Data;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class CaptchaController {
         this.captchaService = captchaService;
     }
 
+    @ApiOperation(("获取验证码"))
     @GetMapping("")
     public ResponseResult getCaptcha() {
         return captchaService.getCaptcha();

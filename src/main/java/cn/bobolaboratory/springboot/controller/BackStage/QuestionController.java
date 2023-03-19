@@ -10,6 +10,7 @@ import cn.bobolaboratory.springboot.service.BackStage.QuestionService.QuestionSe
 import cn.bobolaboratory.springboot.service.BackStage.QuestionSetService.QuestionSetService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -35,6 +36,7 @@ public class QuestionController {
     /**
      * 添加题目集
      */
+    @ApiOperation("添加题目集")
     @PostMapping("/questionSet")
     @PreAuthorize("hasAuthority('Teacher')")
     public ResponseResult newQuestionSet(@RequestBody QuestionSetAddRequest questionSetAddRequest) {
@@ -44,6 +46,7 @@ public class QuestionController {
     /**
      * 添加题目集并添加题目
      */
+    @ApiOperation("添加题目集并添加题目")
     @PostMapping("/questionSet/add")
     @PreAuthorize("hasAuthority('Teacher')")
     public ResponseResult addQuestionSet(@RequestBody QuestionSetAndQuestionListAddRequest questionSetAndQuestionListAddRequest) {
@@ -55,6 +58,7 @@ public class QuestionController {
      * @param questionSetGetRequest 包含 questionSetId
      * @return 返回结果
      */
+    @ApiOperation("开放题目集")
     @PutMapping("/questionSet")
     @PreAuthorize("hasAuthority('Teacher')")
     public ResponseResult openQuestionSet(@RequestBody QuestionSetGetRequest questionSetGetRequest) {
@@ -64,6 +68,7 @@ public class QuestionController {
     /**
      * 添加单个题目
      */
+    @ApiOperation("添加单个题目")
     @PostMapping("/question")
     @PreAuthorize("hasAuthority('Teacher')")
     public ResponseResult addSingleQuestion(@RequestBody QuestionAddRequest questionAddRequest) {
@@ -76,6 +81,7 @@ public class QuestionController {
      * @param questionSetGetRequest 包含题集id
      * @return 返回题目详情 包含 题目id 题目 类型 选项 答案 分值
      */
+    @ApiOperation("管理员获取题目详情")
     @GetMapping("/question")
     @PreAuthorize("hasAuthority('Teacher')")
     public ResponseResult queryQuestionByQuestionSetIdFromBackEnd(QuestionSetGetRequest questionSetGetRequest) {
@@ -88,6 +94,7 @@ public class QuestionController {
      * @param question 要修改的题目的信息
      * @return 返回结果
      */
+    @ApiOperation("修改题目信息")
     @PutMapping("/question")
     @PreAuthorize("hasAuthority('Teacher')")
     public ResponseResult modifyQuestion(@RequestBody Question question) {

@@ -6,6 +6,7 @@ import cn.bobolaboratory.springboot.service.FrontDesk.QuestionService.QuestionSe
 import cn.bobolaboratory.springboot.service.FrontDesk.QuestionSetService.QuestionSetService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +30,7 @@ public class QuestionController {
      * 查询所有已开放题目集
      * @return 返回查询结果
      */
+    @ApiOperation("查询所有已开放题目集")
     @GetMapping("/questionSet/open")
     public ResponseResult queryOpenQuestionSet() {
         return questionSetService.queryOpenQuestionSet();
@@ -39,6 +41,7 @@ public class QuestionController {
      * @param questionSetGetRequest 包含题集id
      * @return 返回题目详情 包含 题目id 题目 类型 选项 分值
      */
+    @ApiOperation("学生获取试卷")
     @GetMapping("/question")
     public ResponseResult queryQuestionByQuestionSetIdFromFrontEnd(QuestionSetGetRequest questionSetGetRequest) {
         return questionService.queryQuestionByQuestionSetIdFromFrontEnd(questionSetGetRequest.getQuestionSetId());
@@ -48,6 +51,7 @@ public class QuestionController {
      * 提交答案
      * @param answerListPostRequest 包含 题集id 和 答案详情 答题详情包括 题目id 答案 选择题为A B C D 判断题为true / false 类型皆为字符串
      */
+    @ApiOperation("提交答案")
     @PostMapping("/question")
     public ResponseResult submitAnswer(@RequestBody AnswerListPostRequest answerListPostRequest) {
         return questionService.submitAnswerAndCalculateScore(answerListPostRequest);

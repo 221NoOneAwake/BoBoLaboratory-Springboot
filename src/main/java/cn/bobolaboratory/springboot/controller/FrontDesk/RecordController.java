@@ -4,6 +4,7 @@ import cn.bobolaboratory.springboot.dto.QuestionSetGetRequest;
 import cn.bobolaboratory.springboot.service.FrontDesk.Record.RecordService;
 import cn.bobolaboratory.springboot.utils.ResponseResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +22,7 @@ public class RecordController {
         this.recordService = recordService;
     }
 
+    @ApiOperation("查询某一题集的答题详情")
     @GetMapping("")
     public ResponseResult queryRecordByUserId(QuestionSetGetRequest questionSetGetRequest) {
         return recordService.queryRecordByQuestionSetId(questionSetGetRequest.getQuestionSetId());
