@@ -25,7 +25,7 @@ public class ResultController {
 
     @ApiOperation("查询自己所有卷子的答题情况")
     @GetMapping("")
-    public ResponseResult queryAllRecord() {
+    public ResponseResult queryAllResult() {
         return resultService.queryResultByUserId();
     }
 }
