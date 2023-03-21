@@ -40,3 +40,4 @@ application.properties
 *.gz
 
 src/test/
+src/main/resources/config.yml
