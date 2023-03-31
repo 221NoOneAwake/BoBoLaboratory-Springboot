@@ -22,10 +22,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SpringSecurityConfig {
     private final JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
+    private final AuthenticationEntryPointImpl authenticationEntryPoint;
+    private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
     @Autowired
-    public SpringSecurityConfig(JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter) {
+    public SpringSecurityConfig(JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter, AuthenticationEntryPointImpl authenticationEntryPoint, CustomAccessDeniedHandler customAccessDeniedHandler) {
         this.jwtAuthenticationTokenFilter = jwtAuthenticationTokenFilter;
+        this.authenticationEntryPoint = authenticationEntryPoint;
+        this.customAccessDeniedHandler = customAccessDeniedHandler;
     }
 
     /**
@@ -67,7 +71,9 @@ public class SpringSecurityConfig {
         http    //将jwtAuthenticationTokenFilter放置于UsernamePasswordAuthenticationFilter前
                 .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         http
-                .exceptionHandling().accessDeniedHandler(new CustomAccessDeniedHandler());
+                .exceptionHandling()
+                    .authenticationEntryPoint(authenticationEntryPoint)
+                    .accessDeniedHandler(customAccessDeniedHandler);
         return http.build();
     }
 }
